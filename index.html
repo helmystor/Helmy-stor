@@ -721,6 +721,37 @@
             font-weight: bold;
             color: var(--accent);
         }
+        
+        /* تحسينات جديدة */
+        .user-account {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .user-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .total-spent {
+            background: var(--jewel-gradient);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -754,10 +785,18 @@
                         طلباتي
                     </a>
                     
-                    <a href="#" onclick="logout()" class="nav-link nav-link-logout">
-                        <i class="fas fa-sign-out-alt"></i>
-                        تسجيل الخروج
-                    </a>
+                    <div class="user-account" id="userAccount">
+                        <div class="user-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div id="userInfo">
+                            <div style="font-size: 12px; font-weight: bold;">مرحباً</div>
+                            <div style="font-size: 11px; opacity: 0.8;" id="userPhone"></div>
+                        </div>
+                        <a href="#" onclick="logout()" class="nav-link-logout" style="padding: 5px 10px; font-size: 12px;">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </div>
                 </nav>
             </header>
 
@@ -768,6 +807,13 @@
                     <i class="fas fa-gem"></i> ابدأ الآن
                 </a>
             </section>
+
+            <!-- إجمالي المصروفات -->
+            <div class="total-spent">
+                <h3><i class="fas fa-coins"></i> إجمالي مصروفاتك</h3>
+                <p id="totalSpent" style="font-size: 2rem; font-weight: bold; margin: 10px 0;">0 جنيه</p>
+                <small>المبلغ الإجمالي الذي تم صرفه على الطلبات</small>
+            </div>
 
             <section class="features">
                 <div class="feature-card">
@@ -999,6 +1045,53 @@
         const db = firebase.firestore();
 
         let selectedPackage = { amount: 1000, price: 10, service: 'linky', type: 'جواهر' };
+        let currentUserId = null;
+        let currentUserPhone = null;
+
+        // دالة إدارة المستخدم
+        function initializeUser() {
+            // جلب بيانات المستخدم من localStorage
+            let userId = localStorage.getItem('helmy_user_id');
+            let userPhone = localStorage.getItem('helmy_user_phone');
+            
+            if (!userId) {
+                // إنشاء مستخدم جديد
+                userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('helmy_user_id', userId);
+            }
+            
+            currentUserId = userId;
+            currentUserPhone = userPhone;
+            
+            // تحديث واجهة المستخدم
+            updateUserUI();
+            
+            // حساب إجمالي المصروفات
+            calculateTotalSpent();
+        }
+
+        // تحديث واجهة المستخدم
+        function updateUserUI() {
+            const userInfo = document.getElementById('userInfo');
+            const userPhoneEl = document.getElementById('userPhone');
+            
+            if (currentUserPhone) {
+                userPhoneEl.textContent = currentUserPhone;
+            } else {
+                userPhoneEl.textContent = 'زائر';
+                // إذا كان زائراً، اطلب رقم الهاتف عند أول طلب
+                setTimeout(() => {
+                    if (!currentUserPhone) {
+                        const phone = prompt("مرحباً بك! الرجاء إدخال رقم هاتفك للتواصل:");
+                        if (phone && phone.length >= 10) {
+                            localStorage.setItem('helmy_user_phone', phone);
+                            currentUserPhone = phone;
+                            updateUserUI();
+                        }
+                    }
+                }, 1000);
+            }
+        }
 
         // دالة لمعاينة صورة الإيصال
         function previewReceipt(event) {
@@ -1122,6 +1215,10 @@
             if (pageId === 'ordersPage') {
                 loadOrders();
             }
+            
+            if (pageId === 'homePage') {
+                calculateTotalSpent();
+            }
         }
 
         function toggleMenu() {
@@ -1139,6 +1236,29 @@
                 `باقة ${amount} جوهرة - ${price} جنيه`;
             
             showPage('paymentPage');
+        }
+
+        // دالة حساب إجمالي المصروفات
+        async function calculateTotalSpent() {
+            if (!currentUserId) return;
+            
+            try {
+                const snapshot = await db.collection('jewelry-orders')
+                    .where('userId', '==', currentUserId)
+                    .get();
+                
+                let total = 0;
+                snapshot.forEach(doc => {
+                    const order = doc.data();
+                    if (order.package && order.package.price) {
+                        total += parseFloat(order.package.price);
+                    }
+                });
+                
+                document.getElementById('totalSpent').textContent = total + ' جنيه';
+            } catch (error) {
+                console.error('Error calculating total spent:', error);
+            }
         }
 
         async function submitOrder() {
@@ -1159,6 +1279,13 @@
             if (!receiptFile) {
                 alert('يرجى إرفاق صورة إيصال الدفع');
                 return;
+            }
+            
+            // تحديث رقم الهاتف في الحساب
+            if (!currentUserPhone) {
+                localStorage.setItem('helmy_user_phone', phone);
+                currentUserPhone = phone;
+                updateUserUI();
             }
             
             try {
@@ -1190,7 +1317,13 @@
                     time: new Date().toLocaleTimeString('ar-EG'),
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     orderId: generateOrderId(),
-                    service: 'Linky'
+                    service: 'Linky',
+                    userId: currentUserId,
+                    userPhone: currentUserPhone,
+                    completed: false,
+                    completedAt: null,
+                    adminNote: '',
+                    countInProfit: false // سيتم تعديله من قبل الأدمن
                 };
                 
                 // إرسال الطلب إلى Firebase
@@ -1205,6 +1338,9 @@
                 
                 // إعادة تعيين النموذج
                 resetPaymentForm();
+                
+                // حساب المصروفات الجديدة
+                calculateTotalSpent();
                 
                 // العودة إلى صفحة الطلبات
                 showPage('ordersPage');
@@ -1247,8 +1383,20 @@
         async function loadOrders() {
             const ordersList = document.getElementById('ordersList');
             
+            if (!currentUserId) {
+                ordersList.innerHTML = `
+                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                        <i class="fas fa-user-slash" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <h3>يرجى تسجيل الدخول</h3>
+                        <p style="opacity: 0.7;">يجب تسجيل الدخول لعرض الطلبات</p>
+                    </div>
+                `;
+                return;
+            }
+            
             try {
                 const snapshot = await db.collection('jewelry-orders')
+                    .where('userId', '==', currentUserId)
                     .orderBy('timestamp', 'desc')
                     .get();
                 
@@ -1275,6 +1423,12 @@
                         </button>` : 
                         '<span style="color: var(--warning);">لا يوجد إيصال</span>';
                     
+                    // ملاحظة الأدمن إذا كانت موجودة
+                    const adminNote = order.adminNote ? 
+                        `<div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <strong><i class="fas fa-user-shield"></i> ملاحظة الأدمن:</strong> ${order.adminNote}
+                        </div>` : '';
+                    
                     ordersHTML += `
                         <div class="order-item">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
@@ -1287,7 +1441,12 @@
                             <p><strong>ID اللعبة:</strong> ${order.gameId}</p>
                             <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
                             <p><strong>تاريخ الطلب:</strong> ${order.date} ${order.time || ''}</p>
+                            ${order.completedAt ? 
+                                `<p><strong>تم الإرسال:</strong> ${new Date(order.completedAt.toDate()).toLocaleString('ar-EG')}</p>` : 
+                                ''
+                            }
                             <p><strong>صورة الإيصال:</strong><br>${receiptButton}</p>
+                            ${adminNote}
                         </div>
                     `;
                 });
@@ -1339,25 +1498,22 @@
             });
         }
 
-        // Auto-load orders when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Helmy Stor Started Successfully!');
-        });
-
-        // التحقق من تسجيل الدخول
-        if (!localStorage.getItem("loggedIn")) {
-            // إعادة التوجيه إلى صفحة تسجيل الدخول إذا لم يكن مسجلاً
-            // window.location.href = "login.html";
-            // يمكنك إضافة نظام تسجيل دخول لاحقاً
-        }
-        
         // تسجيل الخروج
         function logout() {
-            localStorage.removeItem("loggedIn");
-            // يمكنك إعادة التوجيه إلى صفحة تسجيل الدخول
-            alert('تم تسجيل الخروج بنجاح');
-            // window.location.href = "login.html";
+            if (confirm("هل تريد تسجيل الخروج؟")) {
+                localStorage.removeItem("helmy_user_id");
+                localStorage.removeItem("helmy_user_phone");
+                alert("تم تسجيل الخروج بنجاح");
+                location.reload();
+            }
         }
+
+        // Auto-load عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Helmy Stor Started Successfully!');
+            initializeUser();
+            loadOrders();
+        });
     </script>
 </body>
 </html>
