@@ -548,27 +548,9 @@
             display: inline-block;
         }
 
-        .status-processing {
-            background: rgba(0, 201, 255, 0.2);
-            color: var(--secondary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
-        }
-
         .status-completed {
             background: rgba(0, 201, 167, 0.2);
             color: var(--success);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
-        }
-
-        .status-cancelled {
-            background: rgba(255, 128, 102, 0.2);
-            color: var(--danger);
             padding: 5px 15px;
             border-radius: 20px;
             font-size: 14px;
@@ -739,46 +721,6 @@
             font-weight: bold;
             color: var(--accent);
         }
-
-        /* أزرار التحكم في الطلبات */
-        .order-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .action-btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .action-btn.confirm {
-            background: var(--success);
-            color: white;
-        }
-
-        .action-btn.cancel {
-            background: var(--danger);
-            color: white;
-        }
-
-        .action-btn.delete {
-            background: #ff4444;
-            color: white;
-        }
-
-        .action-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
     </style>
 </head>
 <body>
@@ -812,9 +754,9 @@
                         طلباتي
                     </a>
                     
-                    <a href="admin.html" class="nav-link" target="_blank">
-                        <i class="fas fa-user-shield"></i>
-                        لوحة التحكم
+                    <a href="#" onclick="logout()" class="nav-link nav-link-logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        تسجيل الخروج
                     </a>
                 </nav>
             </header>
@@ -951,11 +893,6 @@
                         <i class="fas fa-shopping-bag"></i>
                         طلباتي
                     </a>
-                    
-                    <a href="admin.html" class="nav-link" target="_blank">
-                        <i class="fas fa-user-shield"></i>
-                        لوحة التحكم
-                    </a>
                 </nav>
             </header>
 
@@ -991,11 +928,6 @@
                     <a href="#" onclick="showPage('ordersPage')" class="nav-link">
                         <i class="fas fa-shopping-bag"></i>
                         طلباتي
-                    </a>
-                    
-                    <a href="admin.html" class="nav-link" target="_blank">
-                        <i class="fas fa-user-shield"></i>
-                        لوحة التحكم
                     </a>
                 </nav>
             </header>
@@ -1046,10 +978,25 @@
         </div>
     </div>
 
-    <!-- Firebase SDK v9 -->
-    <script type="module">
-        import { db } from './firebase-config.js';
-        import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Firebase Configuration - المشروع الجديد
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtJsnMgwmduOyTFcgZOvbBPHXb996Q5ig",
+            authDomain: "helmy-47ada.firebaseapp.com",
+            projectId: "helmy-47ada",
+            storageBucket: "helmy-47ada.firebasestorage.app",
+            messagingSenderId: "9755290268",
+            appId: "1:9755290268:web:8754eb7b3c5f0a9f2edb59",
+            measurementId: "G-0ZC7L8DZLR"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
         let selectedPackage = { amount: 1000, price: 10, service: 'linky', type: 'جواهر' };
 
@@ -1241,13 +1188,13 @@
                     status: 'قيد المراجعة',
                     date: new Date().toLocaleDateString('ar-EG'),
                     time: new Date().toLocaleTimeString('ar-EG'),
-                    timestamp: serverTimestamp(),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     orderId: generateOrderId(),
                     service: 'Linky'
                 };
                 
                 // إرسال الطلب إلى Firebase
-                await addDoc(collection(db, "orders"), newOrder);
+                await db.collection('jewelry-orders').add(newOrder);
                 
                 // استعادة الزر لحالته الأصلية
                 submitButton.innerHTML = originalText;
@@ -1301,10 +1248,11 @@
             const ordersList = document.getElementById('ordersList');
             
             try {
-                const q = query(collection(db, "orders"), orderBy("timestamp", "desc"));
-                const querySnapshot = await getDocs(q);
+                const snapshot = await db.collection('jewelry-orders')
+                    .orderBy('timestamp', 'desc')
+                    .get();
                 
-                if (querySnapshot.empty) {
+                if (snapshot.empty) {
                     ordersList.innerHTML = `
                         <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
                             <i class="fas fa-shopping-cart" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
@@ -1316,9 +1264,9 @@
                 }
                 
                 let ordersHTML = '';
-                querySnapshot.forEach((doc) => {
+                snapshot.forEach(doc => {
                     const order = doc.data();
-                    const statusClass = getStatusClass(order.status);
+                    const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
                     
                     // إنشاء زر لعرض صورة الإيصال
                     const receiptButton = order.receiptImage ? 
@@ -1328,7 +1276,7 @@
                         '<span style="color: var(--warning);">لا يوجد إيصال</span>';
                     
                     ordersHTML += `
-                        <div class="order-item" id="order-${doc.id}">
+                        <div class="order-item">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                                 <div>
                                     <strong>طلب #${order.orderId || doc.id.slice(-6)}</strong>
@@ -1348,16 +1296,6 @@
             } catch (error) {
                 console.error('Error loading orders:', error);
                 ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
-            }
-        }
-
-        function getStatusClass(status) {
-            switch(status) {
-                case 'قيد المراجعة': return 'status-pending';
-                case 'جاري التجهيز': return 'status-processing';
-                case 'تم التأكيد': return 'status-completed';
-                case 'ملغي': return 'status-cancelled';
-                default: return 'status-pending';
             }
         }
 
@@ -1401,18 +1339,25 @@
             });
         }
 
-        // تعيين الدوال للاستخدام العام
-        window.showPage = showPage;
-        window.toggleMenu = toggleMenu;
-        window.selectPackage = selectPackage;
-        window.previewReceipt = previewReceipt;
-        window.submitOrder = submitOrder;
-        window.showReceipt = showReceipt;
-
-        // تحميل الطلبات عند تحميل الصفحة
+        // Auto-load orders when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Helmy Stor Started Successfully with Firebase v9!');
+            console.log('Helmy Stor Started Successfully!');
         });
+
+        // التحقق من تسجيل الدخول
+        if (!localStorage.getItem("loggedIn")) {
+            // إعادة التوجيه إلى صفحة تسجيل الدخول إذا لم يكن مسجلاً
+            // window.location.href = "login.html";
+            // يمكنك إضافة نظام تسجيل دخول لاحقاً
+        }
+        
+        // تسجيل الخروج
+        function logout() {
+            localStorage.removeItem("loggedIn");
+            // يمكنك إعادة التوجيه إلى صفحة تسجيل الدخول
+            alert('تم تسجيل الخروج بنجاح');
+            // window.location.href = "login.html";
+        }
     </script>
 </body>
 </html>
