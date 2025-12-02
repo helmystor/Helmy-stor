@@ -64,6 +64,133 @@
             padding: 0 20px;
         }
 
+        /* صفحات التسجيل والدخول */
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: rgba(255,255,255,0.08);
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .auth-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 0, 224, 0.3);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .btn {
+            background: var(--gradient);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(74, 0, 224, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 0, 224, 0.5);
+        }
+
+        .btn-jewel {
+            background: var(--jewel-gradient);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-jewel:hover {
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .auth-link {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-light);
+        }
+
+        .auth-link a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: rgba(255, 128, 102, 0.2);
+            color: var(--danger);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 128, 102, 0.3);
+        }
+
+        .success-message {
+            background: rgba(0, 201, 167, 0.2);
+            color: var(--success);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            border: 1px solid rgba(0, 201, 167, 0.3);
+        }
+
         /* الشريط العلوي المحسن */
         header {
             display: flex;
@@ -151,29 +278,6 @@
             background: rgba(255,255,255,0.1);
         }
 
-        .nav-link-download {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 4px 20px rgba(74, 0, 224, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-link-download::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .nav-link-download:hover::before {
-            left: 100%;
-        }
-
         .nav-link-logout {
             color: var(--secondary);
             border: 1px solid var(--secondary);
@@ -184,6 +288,28 @@
             background: rgba(0, 201, 255, 0.2);
         }
 
+        .user-account {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .user-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* باقي الأنماط مثل Hero, Features, Packages, etc... */
         .hero {
             text-align: center;
             padding: 100px 0;
@@ -217,52 +343,6 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        .btn {
-            background: var(--gradient);
-            color: white;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(74, 0, 224, 0.4);
-        }
-
-        .btn.jewel {
-            background: var(--jewel-gradient);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(74, 0, 224, 0.6);
-        }
-
-        .btn.jewel:hover {
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.6);
         }
 
         .features {
@@ -343,10 +423,6 @@
             border-radius: 3px;
         }
 
-        .section-title.jewel::after {
-            background: var(--jewel-gradient);
-        }
-
         .package-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -412,7 +488,7 @@
             margin-bottom: 15px;
         }
 
-        /* قسم التواصل الجديد */
+        /* قسم التواصل */
         .contact-section {
             background: rgba(255,255,255,0.05);
             margin: 80px -20px;
@@ -475,6 +551,7 @@
             font-size: 0.9rem;
         }
 
+        /* صفحة الطلبات والدفع */
         .page {
             display: none;
             animation: fadeIn 0.5s ease;
@@ -498,31 +575,6 @@
             border: 1px solid rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(74, 0, 224, 0.3);
-        }
-
-        .form-control::placeholder {
-            color: rgba(255,255,255,0.5);
         }
 
         .order-item {
@@ -557,101 +609,32 @@
             display: inline-block;
         }
 
-        /* معاينة صورة الإيصال */
-        .receipt-preview {
-            margin-top: 10px;
+        /* تنسيق أرقام الكاش */
+        .cash-numbers {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .cash-number {
+            background: rgba(255,255,255,0.08);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
             text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent);
         }
 
-        .receipt-preview img {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 10px;
-            border: 2px solid var(--accent);
-            display: none;
-        }
-
-        /* تحسينات للاستجابة */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-            
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
-            
-            .nav-link {
-                padding: 10px 15px;
-                font-size: 13px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .package-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-                padding: 0 15px;
-            }
-
-            .contact-bar {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-item {
-                padding: 15px;
-            }
-            
-            .payment-page {
-                padding: 25px;
-                margin: 30px auto;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .package-amount {
-                font-size: 2.5rem;
-            }
-            
-            .package-price {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-                padding: 0 10px;
-            }
-            
-            .payment-page {
-                padding: 20px;
-                margin: 20px auto;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 16px;
-            }
+        .total-spent {
+            background: var(--jewel-gradient);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 215, 0, 0.3);
         }
 
         /* هامبرغر مينو للشاشات الصغيرة */
@@ -685,520 +668,514 @@
             nav.show {
                 display: flex;
             }
-        }
-        
-        /* أحجام مختلفة لمعاينة الصور */
-        .preview-small {
-            max-width: 150px;
-            max-height: 150px;
-        }
-        
-        .preview-medium {
-            max-width: 250px;
-            max-height: 250px;
-        }
-        
-        .preview-large {
-            max-width: 100%;
-            max-height: 300px;
-        }
-        
-        /* تنسيق أرقام الكاش */
-        .cash-numbers {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 15px 0;
-        }
-        
-        .cash-number {
-            background: rgba(255,255,255,0.08);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--accent);
-        }
-        
-        /* تحسينات جديدة */
-        .user-account {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 15px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .user-icon {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-        
-        .total-spent {
-            background: var(--jewel-gradient);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 30px 0;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            
+            .auth-card {
+                padding: 30px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- الصفحة الرئيسية -->
-        <div id="homePage" class="page active">
-            <!-- الشريط العلوي المحسن -->
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Helmy Stor">
-                    </div>
-                    <div>
-                        <div class="logo-text">Helmy Stor</div>
-                        <div class="logo-subtitle">Linky Jewels Services</div>
-                    </div>
-                </div>
-
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-
-                <nav id="mainNav">
-                    <a href="#" onclick="showPage('homePage')" class="nav-link">
-                        <i class="fas fa-home"></i>
-                        الرئيسية
-                    </a>
-                    
-                    <a href="#" onclick="showPage('ordersPage')" class="nav-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        طلباتي
-                    </a>
-                    
-                    <div class="user-account" id="userAccount">
-                        <div class="user-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div id="userInfo">
-                            <div style="font-size: 12px; font-weight: bold;">مرحباً</div>
-                            <div style="font-size: 11px; opacity: 0.8;" id="userPhone"></div>
-                        </div>
-                        <a href="#" onclick="logout()" class="nav-link-logout" style="padding: 5px 10px; font-size: 12px;">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </a>
-                    </div>
-                </nav>
-            </header>
-
-            <section class="hero">
-                <h1>شحن جواهر Linky بأفضل الأسعار</h1>
-                <p>احصل على جواهر Linky بأرخص الأسعار مع ضمان الاسترجاع</p>
-                <a href="#packages" class="btn jewel">
-                    <i class="fas fa-gem"></i> ابدأ الآن
-                </a>
-            </section>
-
-            <!-- إجمالي المصروفات -->
-            <div class="total-spent">
-                <h3><i class="fas fa-coins"></i> إجمالي مصروفاتك</h3>
-                <p id="totalSpent" style="font-size: 2rem; font-weight: bold; margin: 10px 0;">0 جنيه</p>
-                <small>المبلغ الإجمالي الذي تم صرفه على الطلبات</small>
-            </div>
-
-            <section class="features">
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>ضمان الجودة</h3>
-                    <p>جواهر Linky مع ضمان استرجاع الأموال اذا لم تصل الجواهر</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>تسليم فوري</h3>
-                    <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-lock"></i>
-                    <h3>آمن تماماً</h3>
-                    <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
-                </div>
-            </section>
-
-            <!-- الباقات البسيطة -->
-            <section class="packages-section" id="packages">
-                <h2 class="section-title jewel">باقات شحن الجواهر</h2>
-                
-                <div class="package-grid">
-                    <div class="package-card jewel">
-                        <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">1000</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">10 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(1000, 10, 'linky', 'جواهر')">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
-                        </button>
-                    </div>
-                    
-                    <div class="package-card jewel">
-                        <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">2500</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">20 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(2500, 20, 'linky', 'جواهر')">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
-                        </button>
-                    </div>
-                    
-                    <div class="package-card jewel">
-                        <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">3500</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">30 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(3500, 30, 'linky', 'جواهر')">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
-                        </button>
-                    </div>
-                </div>
-
-                <!-- العروض المميزة -->
-                <h2 class="section-title jewel">العروض المميزة</h2>
-                
-                <div class="package-grid">
-                    <div class="package-card jewel">
-                        <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">8000</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">60 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(8000, 60, 'linky', 'جواهر')">
-                            <i class="fas fa-crown"></i> اختر الباقة
-                        </button>
-                    </div>
-                    
-                    <div class="package-card jewel">
-                        <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">20000</div>
-                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">160 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(20000, 160, 'linky', 'جواهر')">
-                            <i class="fas fa-crown"></i> اختر الباقة
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- قسم التواصل -->
-            <section class="contact-section">
-                <div class="contact-bar">
-                    <a href="https://wa.me/+201011305439" class="contact-item" target="_blank">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-info">
-                            <div class="contact-title">واتساب للاستفسارات</div>
-                            <div class="contact-desc">01011305439</div>
-                            <div class="contact-desc" style="font-size: 0.8rem; margin-top: 5px;">للأسئلة والمشاكل الفنية</div>
-                        </div>
-                    </a>
-                </div>
-            </section>
-        </div>
-
-        <!-- صفحة الطلبات -->
-        <div id="ordersPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Helmy Stor Logo">
-                    </div>
-                    <div>
-                        <div class="logo-text">Helmy Stor</div>
-                        <div class="logo-subtitle">Linky Jewels Services</div>
-                    </div>
-                </div>
-
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-
-                <nav id="ordersNav">
-                    <a href="#" onclick="showPage('homePage')" class="nav-link">
-                        <i class="fas fa-home"></i>
-                        الرئيسية
-                    </a>
-                    
-                    <a href="#" onclick="showPage('ordersPage')" class="nav-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        طلباتي
-                    </a>
-                </nav>
-            </header>
-
-            <h2 class="section-title jewel">طلباتي</h2>
-            <div id="ordersList">
-                <!-- الطلبات تظهر هنا -->
-            </div>
-        </div>
-
-        <!-- صفحة الدفع -->
-        <div id="paymentPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Helmy Stor">
-                    </div>
-                    <div>
-                        <div class="logo-text">Helmy Stor</div>
-                        <div class="logo-subtitle">Linky Jewels Services</div>
-                    </div>
-                </div>
-
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-
-                <nav id="paymentNav">
-                    <a href="#" onclick="showPage('homePage')" class="nav-link">
-                        <i class="fas fa-home"></i>
-                        الرئيسية
-                    </a>
-                    
-                    <a href="#" onclick="showPage('ordersPage')" class="nav-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        طلباتي
-                    </a>
-                </nav>
-            </header>
-
-            <div class="payment-page">
-                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
-
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>بيانات الباقة المختارة</h3>
-                    <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 1000 جوهرة - 10 جنيه</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>طريقة الدفع</h3>
-                    <p style="margin-bottom: 15px; opacity: 0.9;">الدفع عبر فودافون كاش</p>
-                    
-                    <div class="cash-numbers">
-                        <div class="cash-number">01031090116</div>
-                        <div class="cash-number">01099342969</div>
-                    </div>
-                    
-                    <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 10px;">يرجى إرسال المبلغ لأي من الرقمين أعلاه ثم إرفاق صورة إيصال الدفع</p>
-                </div>
-
+    <!-- صفحة تسجيل الدخول -->
+    <div id="loginPage" class="auth-page">
+        <div class="auth-card">
+            <h2 class="auth-title">تسجيل الدخول</h2>
+            <form id="loginForm" class="auth-form">
+                <div id="loginError" class="error-message" style="display: none;"></div>
                 <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">ID اللعبة في Linky</label>
-                    <input type="text" id="gameId" class="form-control" placeholder="أدخل ID اللعبة">
+                    <input type="email" id="loginEmail" class="form-control" placeholder="البريد الإلكتروني" required>
                 </div>
-
                 <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">رقمك للتواصل</label>
-                    <input type="tel" id="phone" class="form-control" placeholder="رقم الهاتف للتواصل">
+                    <input type="password" id="loginPassword" class="form-control" placeholder="كلمة المرور" required>
                 </div>
-
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">صورة إيصال الدفع</label>
-                    <input type="file" id="receipt" class="form-control" accept="image/*" onchange="previewReceipt(event)">
-                    <small style="color: var(--accent); font-size: 0.8rem;">يدعم جميع أنواع الصور بما فيها صور الكاميرا</small>
-                    
-                    <!-- معاينة الصورة -->
-                    <div class="receipt-preview">
-                        <img id="receiptPreview" src="" alt="معاينة الإيصال">
-                    </div>
-                </div>
-
-                <button class="btn jewel" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
+                <button type="submit" class="btn">تسجيل الدخول</button>
+            </form>
+            <div class="auth-link">
+                ليس لديك حساب؟ <a href="#" onclick="showRegisterPage()">إنشاء حساب جديد</a>
             </div>
         </div>
     </div>
 
-    <!-- Firebase -->
+    <!-- صفحة إنشاء حساب -->
+    <div id="registerPage" class="auth-page" style="display: none;">
+        <div class="auth-card">
+            <h2 class="auth-title">إنشاء حساب جديد</h2>
+            <form id="registerForm" class="auth-form">
+                <div id="registerError" class="error-message" style="display: none;"></div>
+                <div id="registerSuccess" class="success-message" style="display: none;"></div>
+                <div class="form-group">
+                    <input type="text" id="registerName" class="form-control" placeholder="الاسم الكامل" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="registerEmail" class="form-control" placeholder="البريد الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="registerPhone" class="form-control" placeholder="رقم الهاتف" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerPassword" class="form-control" placeholder="كلمة المرور (6 أحرف على الأقل)" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerConfirmPassword" class="form-control" placeholder="تأكيد كلمة المرور" required>
+                </div>
+                <button type="submit" class="btn">إنشاء حساب</button>
+            </form>
+            <div class="auth-link">
+                لديك حساب بالفعل؟ <a href="#" onclick="showLoginPage()">تسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- الموقع الرئيسي (يظهر بعد تسجيل الدخول) -->
+    <div id="mainSite" style="display: none;">
+        <div class="container">
+            <!-- الصفحة الرئيسية -->
+            <div id="homePage" class="page active">
+                <!-- الشريط العلوي المحسن -->
+                <header>
+                    <div class="logo-container">
+                        <div class="logo">
+                            <img src="1.png" alt="Helmy Stor">
+                        </div>
+                        <div>
+                            <div class="logo-text">Helmy Stor</div>
+                            <div class="logo-subtitle">Linky Jewels Services</div>
+                        </div>
+                    </div>
+
+                    <button class="menu-toggle" onclick="toggleMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <nav id="mainNav">
+                        <a href="#" onclick="showPage('homePage')" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            الرئيسية
+                        </a>
+                        
+                        <a href="#" onclick="showPage('ordersPage')" class="nav-link">
+                            <i class="fas fa-shopping-bag"></i>
+                            طلباتي
+                        </a>
+                        
+                        <div class="user-account" id="userAccount">
+                            <div class="user-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div id="userInfo">
+                                <div style="font-size: 12px; font-weight: bold;">مرحباً</div>
+                                <div style="font-size: 11px; opacity: 0.8;" id="userPhone"></div>
+                            </div>
+                            <a href="#" onclick="logout()" class="nav-link-logout" style="padding: 5px 10px; font-size: 12px;">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </div>
+                    </nav>
+                </header>
+
+                <section class="hero">
+                    <h1>شحن جواهر Linky بأفضل الأسعار</h1>
+                    <p>احصل على جواهر Linky بأرخص الأسعار مع ضمان الاسترجاع</p>
+                    <a href="#packages" class="btn btn-jewel">
+                        <i class="fas fa-gem"></i> ابدأ الآن
+                    </a>
+                </section>
+
+                <!-- إجمالي المصروفات -->
+                <div class="total-spent">
+                    <h3><i class="fas fa-coins"></i> إجمالي مصروفاتك</h3>
+                    <p id="totalSpent" style="font-size: 2rem; font-weight: bold; margin: 10px 0;">0 جنيه</p>
+                    <small>المبلغ الإجمالي الذي تم صرفه على الطلبات</small>
+                </div>
+
+                <section class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>ضمان الجودة</h3>
+                        <p>جواهر Linky مع ضمان استرجاع الأموال اذا لم تصل الجواهر</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>تسليم فوري</h3>
+                        <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-lock"></i>
+                        <h3>آمن تماماً</h3>
+                        <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
+                    </div>
+                </section>
+
+                <!-- الباقات البسيطة -->
+                <section class="packages-section" id="packages">
+                    <h2 class="section-title jewel">باقات شحن الجواهر</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card jewel">
+                            <div class="package-icon">💎</div>
+                            <div class="package-amount jewel">1000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                            <div class="package-price">10 جنيه</div>
+                            <button class="btn btn-jewel" onclick="selectPackage(1000, 10, 'linky', 'جواهر')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card jewel">
+                            <div class="package-icon">💎</div>
+                            <div class="package-amount jewel">2500</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                            <div class="package-price">20 جنيه</div>
+                            <button class="btn btn-jewel" onclick="selectPackage(2500, 20, 'linky', 'جواهر')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card jewel">
+                            <div class="package-icon">💎</div>
+                            <div class="package-amount jewel">3500</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                            <div class="package-price">30 جنيه</div>
+                            <button class="btn btn-jewel" onclick="selectPackage(3500, 30, 'linky', 'جواهر')">
+                                <i class="fas fa-shopping-cart"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- العروض المميزة -->
+                    <h2 class="section-title jewel">العروض المميزة</h2>
+                    
+                    <div class="package-grid">
+                        <div class="package-card jewel">
+                            <div class="package-icon">💎</div>
+                            <div class="package-amount jewel">8000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                            <div class="package-price">60 جنيه</div>
+                            <button class="btn btn-jewel" onclick="selectPackage(8000, 60, 'linky', 'جواهر')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                        
+                        <div class="package-card jewel">
+                            <div class="package-icon">💎</div>
+                            <div class="package-amount jewel">20000</div>
+                            <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                            <div class="package-price">160 جنيه</div>
+                            <button class="btn btn-jewel" onclick="selectPackage(20000, 160, 'linky', 'جواهر')">
+                                <i class="fas fa-crown"></i> اختر الباقة
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- قسم التواصل -->
+                <section class="contact-section">
+                    <div class="contact-bar">
+                        <a href="https://wa.me/+201011305439" class="contact-item" target="_blank">
+                            <div class="contact-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-title">واتساب للاستفسارات</div>
+                                <div class="contact-desc">01011305439</div>
+                                <div class="contact-desc" style="font-size: 0.8rem; margin-top: 5px;">للأسئلة والمشاكل الفنية</div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- صفحة الطلبات -->
+            <div id="ordersPage" class="page">
+                <header>
+                    <div class="logo-container">
+                        <div class="logo">
+                            <img src="1.png" alt="Helmy Stor Logo">
+                        </div>
+                        <div>
+                            <div class="logo-text">Helmy Stor</div>
+                            <div class="logo-subtitle">Linky Jewels Services</div>
+                        </div>
+                    </div>
+
+                    <button class="menu-toggle" onclick="toggleMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <nav id="ordersNav">
+                        <a href="#" onclick="showPage('homePage')" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            الرئيسية
+                        </a>
+                        
+                        <a href="#" onclick="showPage('ordersPage')" class="nav-link">
+                            <i class="fas fa-shopping-bag"></i>
+                            طلباتي
+                        </a>
+                    </nav>
+                </header>
+
+                <h2 class="section-title jewel">طلباتي</h2>
+                <div id="ordersList">
+                    <!-- الطلبات تظهر هنا -->
+                </div>
+            </div>
+
+            <!-- صفحة الدفع -->
+            <div id="paymentPage" class="page">
+                <header>
+                    <div class="logo-container">
+                        <div class="logo">
+                            <img src="1.png" alt="Helmy Stor">
+                        </div>
+                        <div>
+                            <div class="logo-text">Helmy Stor</div>
+                            <div class="logo-subtitle">Linky Jewels Services</div>
+                        </div>
+                    </div>
+
+                    <button class="menu-toggle" onclick="toggleMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <nav id="paymentNav">
+                        <a href="#" onclick="showPage('homePage')" class="nav-link">
+                            <i class="fas fa-home"></i>
+                            الرئيسية
+                        </a>
+                        
+                        <a href="#" onclick="showPage('ordersPage')" class="nav-link">
+                            <i class="fas fa-shopping-bag"></i>
+                            طلباتي
+                        </a>
+                    </nav>
+                </header>
+
+                <div class="payment-page">
+                    <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
+
+                    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
+                        <h3>بيانات الباقة المختارة</h3>
+                        <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 1000 جوهرة - 10 جنيه</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
+                        <h3>طريقة الدفع</h3>
+                        <p style="margin-bottom: 15px; opacity: 0.9;">الدفع عبر فودافون كاش</p>
+                        
+                        <div class="cash-numbers">
+                            <div class="cash-number">01031090116</div>
+                            <div class="cash-number">01099342969</div>
+                        </div>
+                        
+                        <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 10px;">يرجى إرسال المبلغ لأي من الرقمين أعلاه ثم إرفاق صورة إيصال الدفع</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 8px; font-weight: bold;">ID اللعبة في Linky</label>
+                        <input type="text" id="gameId" class="form-control" placeholder="أدخل ID اللعبة">
+                    </div>
+
+                    <button class="btn btn-jewel" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
     <script>
-        // Firebase Configuration - المشروع الجديد
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAtJsnMgwmduOyTFcgZOvbBPHXb996Q5ig",
             authDomain: "helmy-47ada.firebaseapp.com",
+            databaseURL: "https://helmy-47ada-default-rtdb.firebaseio.com",
             projectId: "helmy-47ada",
             storageBucket: "helmy-47ada.firebasestorage.app",
             messagingSenderId: "9755290268",
-            appId: "1:9755290268:web:8754eb7b3c5f0a9f2edb59",
-            measurementId: "G-0ZC7L8DZLR"
+            appId: "1:9755290268:web:d8a0e533ba5feca22edb59",
+            measurementId: "G-ZW4Z5BELFP"
         };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
         const db = firebase.firestore();
 
         let selectedPackage = { amount: 1000, price: 10, service: 'linky', type: 'جواهر' };
-        let currentUserId = null;
-        let currentUserPhone = null;
+        let currentUser = null;
 
-        // دالة إدارة المستخدم
-        function initializeUser() {
-            // جلب بيانات المستخدم من localStorage
-            let userId = localStorage.getItem('helmy_user_id');
-            let userPhone = localStorage.getItem('helmy_user_phone');
-            
-            if (!userId) {
-                // إنشاء مستخدم جديد
-                userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                localStorage.setItem('helmy_user_id', userId);
+        // التحقق من حالة المستخدم عند تحميل الصفحة
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // المستخدم مسجل الدخول
+                currentUser = user;
+                showMainSite();
+                loadUserData(user);
+            } else {
+                // المستخدم غير مسجل الدخول
+                showLoginPage();
             }
-            
-            currentUserId = userId;
-            currentUserPhone = userPhone;
-            
-            // تحديث واجهة المستخدم
-            updateUserUI();
-            
-            // حساب إجمالي المصروفات
-            calculateTotalSpent();
+        });
+
+        // عرض صفحة تسجيل الدخول
+        function showLoginPage() {
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('registerPage').style.display = 'none';
+            document.getElementById('mainSite').style.display = 'none';
         }
 
-        // تحديث واجهة المستخدم
-        function updateUserUI() {
-            const userInfo = document.getElementById('userInfo');
-            const userPhoneEl = document.getElementById('userPhone');
+        // عرض صفحة إنشاء حساب
+        function showRegisterPage() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('registerPage').style.display = 'flex';
+            document.getElementById('mainSite').style.display = 'none';
+        }
+
+        // عرض الموقع الرئيسي بعد تسجيل الدخول
+        function showMainSite() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('registerPage').style.display = 'none';
+            document.getElementById('mainSite').style.display = 'block';
+        }
+
+        // تسجيل الدخول
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
             
-            if (currentUserPhone) {
-                userPhoneEl.textContent = currentUserPhone;
-            } else {
-                userPhoneEl.textContent = 'زائر';
-                // إذا كان زائراً، اطلب رقم الهاتف عند أول طلب
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            errorDiv.style.display = 'none';
+            
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                // سيتم توجيه المستخدم تلقائياً عبر onAuthStateChanged
+            } catch (error) {
+                errorDiv.textContent = getErrorMessage(error.code);
+                errorDiv.style.display = 'block';
+            }
+        });
+
+        // إنشاء حساب جديد
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            const errorDiv = document.getElementById('registerError');
+            const successDiv = document.getElementById('registerSuccess');
+            
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            
+            // التحقق من كلمات المرور
+            if (password !== confirmPassword) {
+                errorDiv.textContent = 'كلمات المرور غير متطابقة';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            if (password.length < 6) {
+                errorDiv.textContent = 'كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            try {
+                // إنشاء حساب في Firebase Authentication
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // حفظ بيانات إضافية للمستخدم في Firestore
+                await db.collection('users').doc(user.uid).set({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    totalSpent: 0
+                });
+                
+                successDiv.textContent = 'تم إنشاء الحساب بنجاح! جاري تسجيل الدخول...';
+                successDiv.style.display = 'block';
+                
+                // تسجيل الدخول تلقائياً بعد إنشاء الحساب
                 setTimeout(() => {
-                    if (!currentUserPhone) {
-                        const phone = prompt("مرحباً بك! الرجاء إدخال رقم هاتفك للتواصل:");
-                        if (phone && phone.length >= 10) {
-                            localStorage.setItem('helmy_user_phone', phone);
-                            currentUserPhone = phone;
-                            updateUserUI();
-                        }
-                    }
-                }, 1000);
+                    showMainSite();
+                }, 1500);
+                
+            } catch (error) {
+                errorDiv.textContent = getErrorMessage(error.code);
+                errorDiv.style.display = 'block';
+            }
+        });
+
+        // تحميل بيانات المستخدم
+        async function loadUserData(user) {
+            try {
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                if (userDoc.exists) {
+                    const userData = userDoc.data();
+                    
+                    // تحديث واجهة المستخدم
+                    document.getElementById('userPhone').textContent = userData.phone;
+                    
+                    // حساب إجمالي المصروفات
+                    calculateTotalSpent(user.uid);
+                }
+            } catch (error) {
+                console.error('Error loading user data:', error);
             }
         }
 
-        // دالة لمعاينة صورة الإيصال
-        function previewReceipt(event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('receiptPreview');
+        // تسجيل الخروج
+        function logout() {
+            if (confirm('هل تريد تسجيل الخروج؟')) {
+                auth.signOut();
+            }
+        }
+
+        // تحويل رسائل الخطأ
+        function getErrorMessage(errorCode) {
+            const messages = {
+                'auth/email-already-in-use': 'هذا البريد الإلكتروني مستخدم بالفعل',
+                'auth/invalid-email': 'البريد الإلكتروني غير صالح',
+                'auth/operation-not-allowed': 'عملية غير مسموح بها',
+                'auth/weak-password': 'كلمة المرور ضعيفة، يجب أن تكون 6 أحرف على الأقل',
+                'auth/user-disabled': 'هذا الحساب معطل',
+                'auth/user-not-found': 'لا يوجد حساب بهذا البريد الإلكتروني',
+                'auth/wrong-password': 'كلمة المرور غير صحيحة',
+                'auth/network-request-failed': 'خطأ في الاتصال بالشبكة',
+                'auth/too-many-requests': 'محاولات كثيرة جداً، حاول مرة أخرى لاحقاً'
+            };
             
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                    preview.classList.add('preview-medium');
-                };
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.display = 'none';
-            }
+            return messages[errorCode] || 'حدث خطأ غير معروف';
         }
 
-        // دالة محسنة لتحويل الصور إلى Base64
-        function convertImageToBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                
-                reader.onload = function(event) {
-                    try {
-                        const base64String = event.target.result;
-                        
-                        if (base64String && base64String.startsWith('data:image')) {
-                            resolve(base64String);
-                        } else {
-                            const img = new Image();
-                            img.onload = function() {
-                                const canvas = document.createElement('canvas');
-                                canvas.width = img.width;
-                                canvas.height = img.height;
-                                const ctx = canvas.getContext('2d');
-                                ctx.drawImage(img, 0, 0);
-                                const fixedBase64 = canvas.toDataURL('image/jpeg', 0.8);
-                                resolve(fixedBase64);
-                            };
-                            img.onerror = reject;
-                            img.src = URL.createObjectURL(file);
-                        }
-                    } catch (error) {
-                        reject(error);
-                    }
-                };
-                
-                reader.onerror = function(error) {
-                    try {
-                        const blobUrl = URL.createObjectURL(file);
-                        const img = new Image();
-                        img.onload = function() {
-                            const canvas = document.createElement('canvas');
-                            canvas.width = img.width;
-                            canvas.height = img.height;
-                            const ctx = canvas.getContext('2d');
-                            ctx.drawImage(img, 0, 0);
-                            const base64 = canvas.toDataURL('image/jpeg', 0.8);
-                            URL.revokeObjectURL(blobUrl);
-                            resolve(base64);
-                        };
-                        img.onerror = reject;
-                        img.src = blobUrl;
-                    } catch (blobError) {
-                        reject(blobError);
-                    }
-                };
-                
-                reader.readAsDataURL(file);
-            });
-        }
-
-        // دالة لضغط الصورة قبل التحويل
-        function compressImage(file, maxWidth = 800, quality = 0.7) {
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    
-                    let width = img.width;
-                    let height = img.height;
-                    
-                    if (width > maxWidth) {
-                        height = (height * maxWidth) / width;
-                        width = maxWidth;
-                    }
-                    
-                    canvas.width = width;
-                    canvas.height = height;
-                    
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, width, height);
-                    
-                    canvas.toBlob(function(blob) {
-                        const reader = new FileReader();
-                        reader.onload = function() {
-                            resolve(reader.result);
-                        };
-                        reader.onerror = reject;
-                        reader.readAsDataURL(blob);
-                    }, 'image/jpeg', quality);
-                };
-                img.onerror = reject;
-                img.src = URL.createObjectURL(file);
-            });
+        // باقي الدوال (selectPackage, showPage, toggleMenu, etc...)
+        function selectPackage(amount, price, service, type) {
+            selectedPackage = { amount, price, service, type };
+            
+            document.getElementById('selectedPackageInfo').textContent = 
+                `باقة ${amount} جوهرة - ${price} جنيه`;
+            
+            showPage('paymentPage');
         }
 
         function showPage(pageId) {
@@ -1207,17 +1184,8 @@
             });
             document.getElementById(pageId).classList.add('active');
             
-            // إغلاق القائمة في الشاشات الصغيرة
-            document.querySelectorAll('nav').forEach(menu => {
-                menu.classList.remove('show');
-            });
-            
             if (pageId === 'ordersPage') {
                 loadOrders();
-            }
-            
-            if (pageId === 'homePage') {
-                calculateTotalSpent();
             }
         }
 
@@ -1229,22 +1197,11 @@
             navMenu.classList.toggle('show');
         }
 
-        function selectPackage(amount, price, service, type) {
-            selectedPackage = { amount, price, service, type };
-            
-            document.getElementById('selectedPackageInfo').textContent = 
-                `باقة ${amount} جوهرة - ${price} جنيه`;
-            
-            showPage('paymentPage');
-        }
-
         // دالة حساب إجمالي المصروفات
-        async function calculateTotalSpent() {
-            if (!currentUserId) return;
-            
+        async function calculateTotalSpent(userId) {
             try {
                 const snapshot = await db.collection('jewelry-orders')
-                    .where('userId', '==', currentUserId)
+                    .where('userId', '==', userId)
                     .get();
                 
                 let total = 0;
@@ -1263,84 +1220,54 @@
 
         async function submitOrder() {
             const gameId = document.getElementById('gameId').value;
-            const phone = document.getElementById('phone').value;
-            const receiptFile = document.getElementById('receipt').files[0];
             
             if (!gameId) {
                 alert('يرجى إدخال ID اللعبة في Linky');
                 return;
             }
             
-            if (!phone) {
-                alert('يرجى إدخال رقم الهاتف للتواصل');
+            if (!currentUser) {
+                alert('يرجى تسجيل الدخول أولاً');
                 return;
-            }
-            
-            if (!receiptFile) {
-                alert('يرجى إرفاق صورة إيصال الدفع');
-                return;
-            }
-            
-            // تحديث رقم الهاتف في الحساب
-            if (!currentUserPhone) {
-                localStorage.setItem('helmy_user_phone', phone);
-                currentUserPhone = phone;
-                updateUserUI();
             }
             
             try {
-                // إظهار رسالة التحميل
-                const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الطلب...';
-                submitButton.disabled = true;
-                
-                // تحويل الصورة إلى Base64 مع ضغط
-                let receiptBase64;
-                
-                if (receiptFile.size > 2000000) {
-                    receiptBase64 = await compressImage(receiptFile, 1024, 0.6);
-                } else if (receiptFile.size > 500000) {
-                    receiptBase64 = await compressImage(receiptFile, 1200, 0.7);
-                } else {
-                    receiptBase64 = await convertImageToBase64(receiptFile);
-                }
+                // الحصول على بيانات المستخدم
+                const userDoc = await db.collection('users').doc(currentUser.uid).get();
+                const userData = userDoc.data();
                 
                 // إنشاء كائن الطلب
                 const newOrder = {
                     package: selectedPackage,
                     gameId: gameId,
-                    phone: phone,
-                    receiptImage: receiptBase64,
+                    phone: userData.phone,
                     status: 'قيد المراجعة',
                     date: new Date().toLocaleDateString('ar-EG'),
                     time: new Date().toLocaleTimeString('ar-EG'),
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     orderId: generateOrderId(),
                     service: 'Linky',
-                    userId: currentUserId,
-                    userPhone: currentUserPhone,
+                    userId: currentUser.uid,
+                    userName: userData.name,
+                    userEmail: userData.email,
+                    userPhone: userData.phone,
                     completed: false,
                     completedAt: null,
                     adminNote: '',
-                    countInProfit: false // سيتم تعديله من قبل الأدمن
+                    countInProfit: false
                 };
                 
                 // إرسال الطلب إلى Firebase
                 await db.collection('jewelry-orders').add(newOrder);
                 
-                // استعادة الزر لحالته الأصلية
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-                
                 // رسالة نجاح
                 alert(`✅ تم تقديم طلبك بنجاح!\nرقم الطلب: ${newOrder.orderId}\nسيتم مراجعة طلبك قريباً.`);
                 
                 // إعادة تعيين النموذج
-                resetPaymentForm();
+                document.getElementById('gameId').value = '';
                 
                 // حساب المصروفات الجديدة
-                calculateTotalSpent();
+                calculateTotalSpent(currentUser.uid);
                 
                 // العودة إلى صفحة الطلبات
                 showPage('ordersPage');
@@ -1348,19 +1275,11 @@
             } catch (error) {
                 console.error('Error submitting order:', error);
                 
-                // استعادة الزر لحالته الأصلية
-                const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
-                submitButton.innerHTML = 'تأكيد الطلب';
-                submitButton.disabled = false;
-                
-                // رسالة خطأ واضحة
                 let errorMessage = '❌ حدث خطأ أثناء إرسال الطلب.\n\n';
                 errorMessage += 'نصائح لحل المشكلة:\n';
                 errorMessage += '1. تأكد من اتصال الإنترنت\n';
-                errorMessage += '2. جرب استخدام صورة مختلفة\n';
-                errorMessage += '3. تأكد من أن حجم الصورة لا يتجاوز 5MB\n';
-                errorMessage += '4. أعد تحميل الصفحة وحاول مرة أخرى\n';
-                errorMessage += '5. إذا استمرت المشكلة، اتصل بالدعم الفني على 01011305439';
+                errorMessage += '2. أعد تحميل الصفحة وحاول مرة أخرى\n';
+                errorMessage += '3. إذا استمرت المشكلة، اتصل بالدعم الفني على 01011305439';
                 
                 alert(errorMessage);
             }
@@ -1373,17 +1292,10 @@
             return `HLM${timestamp}${random}`;
         }
 
-        function resetPaymentForm() {
-            document.getElementById('gameId').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('receipt').value = '';
-            document.getElementById('receiptPreview').style.display = 'none';
-        }
-
         async function loadOrders() {
             const ordersList = document.getElementById('ordersList');
             
-            if (!currentUserId) {
+            if (!currentUser) {
                 ordersList.innerHTML = `
                     <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
                         <i class="fas fa-user-slash" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
@@ -1396,7 +1308,7 @@
             
             try {
                 const snapshot = await db.collection('jewelry-orders')
-                    .where('userId', '==', currentUserId)
+                    .where('userId', '==', currentUser.uid)
                     .orderBy('timestamp', 'desc')
                     .get();
                 
@@ -1416,19 +1328,6 @@
                     const order = doc.data();
                     const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
                     
-                    // إنشاء زر لعرض صورة الإيصال
-                    const receiptButton = order.receiptImage ? 
-                        `<button class="btn jewel" style="padding: 8px 15px; font-size: 14px; margin-top: 10px;" onclick="showReceipt('${order.receiptImage}', '${order.orderId}')">
-                            <i class="fas fa-image"></i> عرض الإيصال
-                        </button>` : 
-                        '<span style="color: var(--warning);">لا يوجد إيصال</span>';
-                    
-                    // ملاحظة الأدمن إذا كانت موجودة
-                    const adminNote = order.adminNote ? 
-                        `<div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-top: 10px;">
-                            <strong><i class="fas fa-user-shield"></i> ملاحظة الأدمن:</strong> ${order.adminNote}
-                        </div>` : '';
-                    
                     ordersHTML += `
                         <div class="order-item">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
@@ -1438,15 +1337,13 @@
                                 </div>
                                 <span class="${statusClass}">${order.status}</span>
                             </div>
-                            <p><strong>ID اللعبة:</strong> ${order.gameId}</p>
-                            <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
+                            <p><strong>ID اللعبة:</strong> ${order.gameId || 'غير محدد'}</p>
+                            <p><strong>رقم الهاتف:</strong> ${order.phone || 'غير محدد'}</p>
                             <p><strong>تاريخ الطلب:</strong> ${order.date} ${order.time || ''}</p>
-                            ${order.completedAt ? 
-                                `<p><strong>تم الإرسال:</strong> ${new Date(order.completedAt.toDate()).toLocaleString('ar-EG')}</p>` : 
+                            ${order.adminNote ? 
+                                `<p><strong>ملاحظة الأدمن:</strong> ${order.adminNote}</p>` : 
                                 ''
                             }
-                            <p><strong>صورة الإيصال:</strong><br>${receiptButton}</p>
-                            ${adminNote}
                         </div>
                     `;
                 });
@@ -1458,61 +1355,9 @@
             }
         }
 
-        // دالة لعرض صورة الإيصال في نافذة منبثقة
-        function showReceipt(base64Image, orderId) {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.9);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-                backdrop-filter: blur(10px);
-            `;
-            
-            modal.innerHTML = `
-                <div style="position: relative; max-width: 90%; max-height: 90%;">
-                    <button onclick="this.parentElement.parentElement.remove()" 
-                            style="position: absolute; top: -40px; right: -10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">
-                        ✕
-                    </button>
-                    <img src="${base64Image}" 
-                         alt="إيصال طلب ${orderId}" 
-                         style="max-width: 100%; max-height: 80vh; border-radius: 10px; border: 2px solid var(--accent);">
-                    <p style="text-align: center; margin-top: 10px; color: white;">إيصال طلب ${orderId}</p>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            // إغلاق النافذة عند النقر خارج الصورة
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    document.body.removeChild(modal);
-                }
-            });
-        }
-
-        // تسجيل الخروج
-        function logout() {
-            if (confirm("هل تريد تسجيل الخروج؟")) {
-                localStorage.removeItem("helmy_user_id");
-                localStorage.removeItem("helmy_user_phone");
-                alert("تم تسجيل الخروج بنجاح");
-                location.reload();
-            }
-        }
-
         // Auto-load عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Helmy Stor Started Successfully!');
-            initializeUser();
-            loadOrders();
         });
     </script>
 </body>
