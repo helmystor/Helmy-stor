@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="language" content="Arabic">
+    <meta name="geo.region" content="EG">
+    <meta name="geo.placename" content="Egypt">
+    <title>Helmy Stor | شحن جواهر Linky</title>
+    <link rel="icon" type="image/png" href="1.png">
+    <!-- تحسين الظهور في بحث جوجل (SEO) -->
+    <meta name="description" content="موقع Helmy Stor يقدم خدمات شحن جواهر Linky بأرخص الأسعار وبجودة عالية وضمان الاسترجاع.">
+    <meta name="keywords" content="شحن جواهر, شراء جواهر, جواهر Linky, Linky, Helmy Stor, هلمي ستور, شحن جواهر Linky, ارخص اسعار جواهر">
+    <meta name="author" content="Helmy Stor Team">
+    <meta name="robots" content="index, follow">
+
+    <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
+    <meta property="og:title" content="Helmy Stor | شحن جواهر Linky بأرخص الأسعار">
+    <meta property="og:description" content="أفضل موقع لشحن جواهر Linky بأرخص الأسعار - Helmy Stor.">
+    <meta property="og:url" content="https://helmy-stor.com">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_AR">
+    <link rel="canonical" href="https://helmy-stor.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        :root {
+            --primary: #4A00E0;
+            --primary-dark: #8E2DE2;
+            --secondary: #00C9FF;
+            --secondary-dark: #92FE9D;
+            --accent: #FF5F6D;
+            --light: #F8F9FA;
+            --dark: #121212;
+            --success: #00C9A7;
+            --warning: #FFC75F;
+            --danger: #FF8066;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            --jewel-color: #FFD700;
+            --jewel-gradient: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, #1A1A2E 100%);
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* الشريط العلوي المحسن */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            background: rgba(18, 18, 18, 0.98);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(74, 0, 224, 0.4);
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: var(--secondary);
+            margin: 0;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 0, 224, 0.3);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-link-download {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 20px rgba(74, 0, 224, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-link-download:hover::before {
+            left: 100%;
+        }
+
+        .nav-link-logout {
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+            background: rgba(0, 201, 255, 0.1);
+        }
+
+        .nav-link-logout:hover {
+            background: rgba(0, 201, 255, 0.2);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(74, 0, 224, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(74, 0, 224, 0.4);
+        }
+
+        .btn.jewel {
+            background: var(--jewel-gradient);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(74, 0, 224, 0.6);
+        }
+
+        .btn.jewel:hover {
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.08);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card i {
+            font-size: 50px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .packages-section {
+            margin: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 20px;
+        }
+
+        .section-title.jewel {
+            background: var(--jewel-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .section-title.jewel::after {
+            background: var(--jewel-gradient);
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .package-card {
+            background: rgba(255,255,255,0.08);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+
+        .package-card.jewel::before {
+            background: var(--jewel-gradient);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .package-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .package-amount.jewel {
+            background: var(--jewel-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .package-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: var(--light);
+        }
+
+        .package-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* قسم التواصل الجديد */
+        .contact-section {
+            background: rgba(255,255,255,0.05);
+            margin: 80px -20px;
+            padding: 50px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-bar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: var(--gradient);
+            flex-shrink: 0;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .contact-desc {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .active {
+            display: block;
+        }
+
+        .payment-page {
+            background: rgba(255,255,255,0.08);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            margin: 50px auto;
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(74, 0, 224, 0.3);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .order-item {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .order-item:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateX(5px);
+        }
+
+        .status-pending {
+            background: rgba(255, 199, 95, 0.2);
+            color: var(--warning);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .status-completed {
+            background: rgba(0, 201, 167, 0.2);
+            color: var(--success);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        /* معاينة صورة الإيصال */
+        .receipt-preview {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .receipt-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+            display: none;
+        }
+
+        /* تحسينات للاستجابة */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .nav-link {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                padding: 0 15px;
+            }
+
+            .contact-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                padding: 15px;
+            }
+            
+            .payment-page {
+                padding: 25px;
+                margin: 30px auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .package-amount {
+                font-size: 2.5rem;
+            }
+            
+            .package-price {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                padding: 0 10px;
+            }
+            
+            .payment-page {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+
+        /* هامبرغر مينو للشاشات الصغيرة */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(18, 18, 18, 0.95);
+                padding: 20px;
+                border-radius: 0 0 15px 15px;
+                gap: 10px;
+            }
+            
+            nav.show {
+                display: flex;
+            }
+        }
+        
+        /* أحجام مختلفة لمعاينة الصور */
+        .preview-small {
+            max-width: 150px;
+            max-height: 150px;
+        }
+        
+        .preview-medium {
+            max-width: 250px;
+            max-height: 250px;
+        }
+        
+        .preview-large {
+            max-width: 100%;
+            max-height: 300px;
+        }
+        
+        /* تنسيق أرقام الكاش */
+        .cash-numbers {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .cash-number {
+            background: rgba(255,255,255,0.08);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- الصفحة الرئيسية -->
+        <div id="homePage" class="page active">
+            <!-- الشريط العلوي المحسن -->
+            <header>
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="1.png" alt="Helmy Stor">
+                    </div>
+                    <div>
+                        <div class="logo-text">Helmy Stor</div>
+                        <div class="logo-subtitle">Linky Jewels Services</div>
+                    </div>
+                </div>
+
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav id="mainNav">
+                    <a href="#" onclick="showPage('homePage')" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        الرئيسية
+                    </a>
+                    
+                    <a href="#" onclick="showPage('ordersPage')" class="nav-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        طلباتي
+                    </a>
+                    
+                    <a href="#" onclick="logout()" class="nav-link nav-link-logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        تسجيل الخروج
+                    </a>
+                </nav>
+            </header>
+
+            <section class="hero">
+                <h1>شحن جواهر Linky بأفضل الأسعار</h1>
+                <p>احصل على جواهر Linky بأرخص الأسعار مع ضمان الاسترجاع</p>
+                <a href="#packages" class="btn jewel">
+                    <i class="fas fa-gem"></i> ابدأ الآن
+                </a>
+            </section>
+
+            <section class="features">
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>ضمان الجودة</h3>
+                    <p>جواهر Linky مع ضمان استرجاع الأموال اذا لم تصل الجواهر</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>تسليم فوري</h3>
+                    <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>آمن تماماً</h3>
+                    <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
+                </div>
+            </section>
+
+            <!-- الباقات البسيطة -->
+            <section class="packages-section" id="packages">
+                <h2 class="section-title jewel">باقات شحن الجواهر</h2>
+                
+                <div class="package-grid">
+                    <div class="package-card jewel">
+                        <div class="package-icon">💎</div>
+                        <div class="package-amount jewel">1000</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                        <div class="package-price">10 جنيه</div>
+                        <button class="btn jewel" onclick="selectPackage(1000, 10, 'linky', 'جواهر')">
+                            <i class="fas fa-shopping-cart"></i> اختر الباقة
+                        </button>
+                    </div>
+                    
+                    <div class="package-card jewel">
+                        <div class="package-icon">💎</div>
+                        <div class="package-amount jewel">2500</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                        <div class="package-price">20 جنيه</div>
+                        <button class="btn jewel" onclick="selectPackage(2500, 20, 'linky', 'جواهر')">
+                            <i class="fas fa-shopping-cart"></i> اختر الباقة
+                        </button>
+                    </div>
+                    
+                    <div class="package-card jewel">
+                        <div class="package-icon">💎</div>
+                        <div class="package-amount jewel">3500</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                        <div class="package-price">30 جنيه</div>
+                        <button class="btn jewel" onclick="selectPackage(3500, 30, 'linky', 'جواهر')">
+                            <i class="fas fa-shopping-cart"></i> اختر الباقة
+                        </button>
+                    </div>
+                </div>
+
+                <!-- العروض المميزة -->
+                <h2 class="section-title jewel">العروض المميزة</h2>
+                
+                <div class="package-grid">
+                    <div class="package-card jewel">
+                        <div class="package-icon">💎</div>
+                        <div class="package-amount jewel">8000</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                        <div class="package-price">60 جنيه</div>
+                        <button class="btn jewel" onclick="selectPackage(8000, 60, 'linky', 'جواهر')">
+                            <i class="fas fa-crown"></i> اختر الباقة
+                        </button>
+                    </div>
+                    
+                    <div class="package-card jewel">
+                        <div class="package-icon">💎</div>
+                        <div class="package-amount jewel">20000</div>
+                        <div style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
+                        <div class="package-price">160 جنيه</div>
+                        <button class="btn jewel" onclick="selectPackage(20000, 160, 'linky', 'جواهر')">
+                            <i class="fas fa-crown"></i> اختر الباقة
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم التواصل -->
+            <section class="contact-section">
+                <div class="contact-bar">
+                    <a href="https://wa.me/+201011305439" class="contact-item" target="_blank">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-title">واتساب للاستفسارات</div>
+                            <div class="contact-desc">01011305439</div>
+                            <div class="contact-desc" style="font-size: 0.8rem; margin-top: 5px;">للأسئلة والمشاكل الفنية</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- صفحة الطلبات -->
+        <div id="ordersPage" class="page">
+            <header>
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="1.png" alt="Helmy Stor Logo">
+                    </div>
+                    <div>
+                        <div class="logo-text">Helmy Stor</div>
+                        <div class="logo-subtitle">Linky Jewels Services</div>
+                    </div>
+                </div>
+
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav id="ordersNav">
+                    <a href="#" onclick="showPage('homePage')" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        الرئيسية
+                    </a>
+                    
+                    <a href="#" onclick="showPage('ordersPage')" class="nav-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        طلباتي
+                    </a>
+                </nav>
+            </header>
+
+            <h2 class="section-title jewel">طلباتي</h2>
+            <div id="ordersList">
+                <!-- الطلبات تظهر هنا -->
+            </div>
+        </div>
+
+        <!-- صفحة الدفع -->
+        <div id="paymentPage" class="page">
+            <header>
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="1.png" alt="Helmy Stor">
+                    </div>
+                    <div>
+                        <div class="logo-text">Helmy Stor</div>
+                        <div class="logo-subtitle">Linky Jewels Services</div>
+                    </div>
+                </div>
+
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav id="paymentNav">
+                    <a href="#" onclick="showPage('homePage')" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        الرئيسية
+                    </a>
+                    
+                    <a href="#" onclick="showPage('ordersPage')" class="nav-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        طلباتي
+                    </a>
+                </nav>
+            </header>
+
+            <div class="payment-page">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 2rem;">إتمام الطلب</h2>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
+                    <h3>بيانات الباقة المختارة</h3>
+                    <p id="selectedPackageInfo" style="font-size: 1.1rem; margin-top: 10px;">باقة 1000 جوهرة - 10 جنيه</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
+                    <h3>طريقة الدفع</h3>
+                    <p style="margin-bottom: 15px; opacity: 0.9;">الدفع عبر فودافون كاش</p>
+                    
+                    <div class="cash-numbers">
+                        <div class="cash-number">01031090116</div>
+                        <div class="cash-number">01099342969</div>
+                    </div>
+                    
+                    <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 10px;">يرجى إرسال المبلغ لأي من الرقمين أعلاه ثم إرفاق صورة إيصال الدفع</p>
+                </div>
+
+                <div class="form-group">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">ID اللعبة في Linky</label>
+                    <input type="text" id="gameId" class="form-control" placeholder="أدخل ID اللعبة">
+                </div>
+
+                <div class="form-group">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">رقمك للتواصل</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="رقم الهاتف للتواصل">
+                </div>
+
+                <div class="form-group">
+                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">صورة إيصال الدفع</label>
+                    <input type="file" id="receipt" class="form-control" accept="image/*" onchange="previewReceipt(event)">
+                    <small style="color: var(--accent); font-size: 0.8rem;">يدعم جميع أنواع الصور بما فيها صور الكاميرا</small>
+                    
+                    <!-- معاينة الصورة -->
+                    <div class="receipt-preview">
+                        <img id="receiptPreview" src="" alt="معاينة الإيصال">
+                    </div>
+                </div>
+
+                <button class="btn jewel" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Firebase Configuration - المشروع الجديد
+        const firebaseConfig = {
+            apiKey: "AIzaSyAtJsnMgwmduOyTFcgZOvbBPHXb996Q5ig",
+            authDomain: "helmy-47ada.firebaseapp.com",
+            projectId: "helmy-47ada",
+            storageBucket: "helmy-47ada.firebasestorage.app",
+            messagingSenderId: "9755290268",
+            appId: "1:9755290268:web:8754eb7b3c5f0a9f2edb59",
+            measurementId: "G-0ZC7L8DZLR"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        let selectedPackage = { amount: 1000, price: 10, service: 'linky', type: 'جواهر' };
+
+        // دالة لمعاينة صورة الإيصال
+        function previewReceipt(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('receiptPreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    preview.classList.add('preview-medium');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+
+        // دالة محسنة لتحويل الصور إلى Base64
+        function convertImageToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    try {
+                        const base64String = event.target.result;
+                        
+                        if (base64String && base64String.startsWith('data:image')) {
+                            resolve(base64String);
+                        } else {
+                            const img = new Image();
+                            img.onload = function() {
+                                const canvas = document.createElement('canvas');
+                                canvas.width = img.width;
+                                canvas.height = img.height;
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(img, 0, 0);
+                                const fixedBase64 = canvas.toDataURL('image/jpeg', 0.8);
+                                resolve(fixedBase64);
+                            };
+                            img.onerror = reject;
+                            img.src = URL.createObjectURL(file);
+                        }
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+                
+                reader.onerror = function(error) {
+                    try {
+                        const blobUrl = URL.createObjectURL(file);
+                        const img = new Image();
+                        img.onload = function() {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0);
+                            const base64 = canvas.toDataURL('image/jpeg', 0.8);
+                            URL.revokeObjectURL(blobUrl);
+                            resolve(base64);
+                        };
+                        img.onerror = reject;
+                        img.src = blobUrl;
+                    } catch (blobError) {
+                        reject(blobError);
+                    }
+                };
+                
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // دالة لضغط الصورة قبل التحويل
+        function compressImage(file, maxWidth = 800, quality = 0.7) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    
+                    let width = img.width;
+                    let height = img.height;
+                    
+                    if (width > maxWidth) {
+                        height = (height * maxWidth) / width;
+                        width = maxWidth;
+                    }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    canvas.toBlob(function(blob) {
+                        const reader = new FileReader();
+                        reader.onload = function() {
+                            resolve(reader.result);
+                        };
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    }, 'image/jpeg', quality);
+                };
+                img.onerror = reject;
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // إغلاق القائمة في الشاشات الصغيرة
+            document.querySelectorAll('nav').forEach(menu => {
+                menu.classList.remove('show');
+            });
+            
+            if (pageId === 'ordersPage') {
+                loadOrders();
+            }
+        }
+
+        function toggleMenu() {
+            const currentPage = document.querySelector('.page.active').id;
+            const navId = currentPage === 'homePage' ? 'mainNav' : 
+                         currentPage === 'ordersPage' ? 'ordersNav' : 'paymentNav';
+            const navMenu = document.getElementById(navId);
+            navMenu.classList.toggle('show');
+        }
+
+        function selectPackage(amount, price, service, type) {
+            selectedPackage = { amount, price, service, type };
+            
+            document.getElementById('selectedPackageInfo').textContent = 
+                `باقة ${amount} جوهرة - ${price} جنيه`;
+            
+            showPage('paymentPage');
+        }
+
+        async function submitOrder() {
+            const gameId = document.getElementById('gameId').value;
+            const phone = document.getElementById('phone').value;
+            const receiptFile = document.getElementById('receipt').files[0];
+            
+            if (!gameId) {
+                alert('يرجى إدخال ID اللعبة في Linky');
+                return;
+            }
+            
+            if (!phone) {
+                alert('يرجى إدخال رقم الهاتف للتواصل');
+                return;
+            }
+            
+            if (!receiptFile) {
+                alert('يرجى إرفاق صورة إيصال الدفع');
+                return;
+            }
+            
+            try {
+                // إظهار رسالة التحميل
+                const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الطلب...';
+                submitButton.disabled = true;
+                
+                // تحويل الصورة إلى Base64 مع ضغط
+                let receiptBase64;
+                
+                if (receiptFile.size > 2000000) {
+                    receiptBase64 = await compressImage(receiptFile, 1024, 0.6);
+                } else if (receiptFile.size > 500000) {
+                    receiptBase64 = await compressImage(receiptFile, 1200, 0.7);
+                } else {
+                    receiptBase64 = await convertImageToBase64(receiptFile);
+                }
+                
+                // إنشاء كائن الطلب
+                const newOrder = {
+                    package: selectedPackage,
+                    gameId: gameId,
+                    phone: phone,
+                    receiptImage: receiptBase64,
+                    status: 'قيد المراجعة',
+                    date: new Date().toLocaleDateString('ar-EG'),
+                    time: new Date().toLocaleTimeString('ar-EG'),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    orderId: generateOrderId(),
+                    service: 'Linky'
+                };
+                
+                // إرسال الطلب إلى Firebase
+                await db.collection('jewelry-orders').add(newOrder);
+                
+                // استعادة الزر لحالته الأصلية
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                
+                // رسالة نجاح
+                alert(`✅ تم تقديم طلبك بنجاح!\nرقم الطلب: ${newOrder.orderId}\nسيتم مراجعة طلبك قريباً.`);
+                
+                // إعادة تعيين النموذج
+                resetPaymentForm();
+                
+                // العودة إلى صفحة الطلبات
+                showPage('ordersPage');
+                
+            } catch (error) {
+                console.error('Error submitting order:', error);
+                
+                // استعادة الزر لحالته الأصلية
+                const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
+                submitButton.innerHTML = 'تأكيد الطلب';
+                submitButton.disabled = false;
+                
+                // رسالة خطأ واضحة
+                let errorMessage = '❌ حدث خطأ أثناء إرسال الطلب.\n\n';
+                errorMessage += 'نصائح لحل المشكلة:\n';
+                errorMessage += '1. تأكد من اتصال الإنترنت\n';
+                errorMessage += '2. جرب استخدام صورة مختلفة\n';
+                errorMessage += '3. تأكد من أن حجم الصورة لا يتجاوز 5MB\n';
+                errorMessage += '4. أعد تحميل الصفحة وحاول مرة أخرى\n';
+                errorMessage += '5. إذا استمرت المشكلة، اتصل بالدعم الفني على 01011305439';
+                
+                alert(errorMessage);
+            }
+        }
+
+        // دالة لإنشاء رقم طلب فريد
+        function generateOrderId() {
+            const timestamp = Date.now().toString().slice(-6);
+            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            return `HLM${timestamp}${random}`;
+        }
+
+        function resetPaymentForm() {
+            document.getElementById('gameId').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('receipt').value = '';
+            document.getElementById('receiptPreview').style.display = 'none';
+        }
+
+        async function loadOrders() {
+            const ordersList = document.getElementById('ordersList');
+            
+            try {
+                const snapshot = await db.collection('jewelry-orders')
+                    .orderBy('timestamp', 'desc')
+                    .get();
+                
+                if (snapshot.empty) {
+                    ordersList.innerHTML = `
+                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                            <i class="fas fa-shopping-cart" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
+                            <h3>لا توجد طلبات حالياً</h3>
+                            <p style="opacity: 0.7;">بمجرد إرسال طلبك، سيظهر هنا</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let ordersHTML = '';
+                snapshot.forEach(doc => {
+                    const order = doc.data();
+                    const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
+                    
+                    // إنشاء زر لعرض صورة الإيصال
+                    const receiptButton = order.receiptImage ? 
+                        `<button class="btn jewel" style="padding: 8px 15px; font-size: 14px; margin-top: 10px;" onclick="showReceipt('${order.receiptImage}', '${order.orderId}')">
+                            <i class="fas fa-image"></i> عرض الإيصال
+                        </button>` : 
+                        '<span style="color: var(--warning);">لا يوجد إيصال</span>';
+                    
+                    ordersHTML += `
+                        <div class="order-item">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <strong>طلب #${order.orderId || doc.id.slice(-6)}</strong>
+                                    <p style="margin-top: 5px; opacity: 0.8;">${order.package.amount} جوهرة Linky - ${order.package.price} جنيه</p>
+                                </div>
+                                <span class="${statusClass}">${order.status}</span>
+                            </div>
+                            <p><strong>ID اللعبة:</strong> ${order.gameId}</p>
+                            <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
+                            <p><strong>تاريخ الطلب:</strong> ${order.date} ${order.time || ''}</p>
+                            <p><strong>صورة الإيصال:</strong><br>${receiptButton}</p>
+                        </div>
+                    `;
+                });
+                
+                ordersList.innerHTML = ordersHTML;
+            } catch (error) {
+                console.error('Error loading orders:', error);
+                ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
+            }
+        }
+
+        // دالة لعرض صورة الإيصال في نافذة منبثقة
+        function showReceipt(base64Image, orderId) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                backdrop-filter: blur(10px);
+            `;
+            
+            modal.innerHTML = `
+                <div style="position: relative; max-width: 90%; max-height: 90%;">
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            style="position: absolute; top: -40px; right: -10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">
+                        ✕
+                    </button>
+                    <img src="${base64Image}" 
+                         alt="إيصال طلب ${orderId}" 
+                         style="max-width: 100%; max-height: 80vh; border-radius: 10px; border: 2px solid var(--accent);">
+                    <p style="text-align: center; margin-top: 10px; color: white;">إيصال طلب ${orderId}</p>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // إغلاق النافذة عند النقر خارج الصورة
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            });
+        }
+
+        // Auto-load orders when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Helmy Stor Started Successfully!');
+        });
+
+        // التحقق من تسجيل الدخول
+        if (!localStorage.getItem("loggedIn")) {
+            // إعادة التوجيه إلى صفحة تسجيل الدخول إذا لم يكن مسجلاً
+            // window.location.href = "login.html";
+            // يمكنك إضافة نظام تسجيل دخول لاحقاً
+        }
+        
+        // تسجيل الخروج
+        function logout() {
+            localStorage.removeItem("loggedIn");
+            // يمكنك إعادة التوجيه إلى صفحة تسجيل الدخول
+            alert('تم تسجيل الخروج بنجاح');
+            // window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
