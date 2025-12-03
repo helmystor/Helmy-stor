@@ -3,59 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="language" content="Arabic">
-    <meta name="geo.region" content="EG">
-    <meta name="geo.placename" content="Egypt">
-    <title>Helmy Stor | شحن جواهر Linky</title>
+    <title>Helmy Stor - شحن جواهر Linky</title>
     <link rel="icon" type="image/png" href="1.png">
-    <!-- تحسين الظهور في بحث جوجل (SEO) -->
-    <meta name="description" content="موقع Helmy Stor يقدم خدمات شحن جواهر Linky بأرخص الأسعار وبجودة عالية وضمان الاسترجاع.">
-    <meta name="keywords" content="شحن جواهر, شراء جواهر, جواهر Linky, Linky, Helmy Stor, هلمي ستور, شحن جواهر Linky, ارخص اسعار جواهر">
-    <meta name="author" content="Helmy Stor Team">
-    <meta name="robots" content="index, follow">
-
-    <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
-    <meta property="og:title" content="Helmy Stor | شحن جواهر Linky بأرخص الأسعار">
-    <meta property="og:description" content="أفضل موقع لشحن جواهر Linky بأرخص الأسعار - Helmy Stor.">
-    <meta property="og:url" content="https://helmy-stor.com">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_AR">
-    <link rel="canonical" href="https://helmy-stor.com">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --primary: #00C9A7;
+            --primary-dark: #00A88A;
+            --secondary: #4A90E2;
+            --accent: #FF6B6B;
+            --dark: #0F172A;
+            --darker: #0A0F1C;
+            --light: #F8FAFC;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #00C9A7 0%, #4A90E2 100%);
+            --gradient-dark: linear-gradient(135deg, #00A88A 0%, #357ABD 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        :root {
-            --primary: #4A00E0;
-            --primary-dark: #8E2DE2;
-            --secondary: #00C9FF;
-            --secondary-dark: #92FE9D;
-            --accent: #FF5F6D;
-            --light: #F8F9FA;
-            --dark: #121212;
-            --success: #00C9A7;
-            --warning: #FFC75F;
-            --danger: #FF8066;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            --gradient-dark: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-            --jewel-color: #FFD700;
-            --jewel-gradient: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00);
+            font-family: 'Cairo', 'Tajawal', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, var(--dark) 0%, #1A1A2E 100%);
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
             color: var(--light);
             min-height: 100vh;
             line-height: 1.6;
-            overflow-x: hidden;
+            font-weight: 400;
         }
 
         .container {
@@ -64,19 +46,22 @@
             padding: 0 20px;
         }
 
-        /* الشريط العلوي المحسن */
+        /* ===== Header ===== */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            background: rgba(18, 18, 18, 0.98);
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 18px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo-container {
@@ -93,284 +78,177 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(74, 0, 224, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 201, 167, 0.3);
             overflow: hidden;
         }
 
         .logo img {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
             object-fit: cover;
         }
 
-        .logo-text {
-            font-size: 1.4rem; /* تعديل حجم الخط */
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 1.8rem;
             font-weight: 800;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             letter-spacing: -0.5px;
         }
 
-        .logo-subtitle {
-            font-size: 0.75rem; /* تعديل حجم الخط */
-            color: var(--secondary);
-            margin: 0;
-            opacity: 0.9;
+        .brand-tagline {
+            font-size: 0.8rem;
+            color: #94A3B8;
+            margin-top: 2px;
             font-weight: 500;
         }
 
-        nav {
+        /* Navigation */
+        .nav-links {
             display: flex;
+            gap: 10px;
             align-items: center;
-            gap: 15px;
         }
 
-        .nav-link {
-            color: white;
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: 12px;
             text-decoration: none;
-            padding: 10px 20px; /* تقليل padding */
-            border-radius: 25px;
-            transition: all 0.3s;
+            color: #E2E8F0;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px; /* تقليل gap */
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem; /* تعديل حجم الخط */
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
         }
 
-        .nav-link:hover {
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 0, 224, 0.3);
-            background: rgba(255,255,255,0.1);
+            border-color: rgba(0, 201, 167, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 201, 167, 0.15);
         }
 
-        .nav-link-download {
+        .nav-btn.active {
             background: var(--gradient);
             color: white;
-            box-shadow: 0 4px 20px rgba(74, 0, 224, 0.4);
-            position: relative;
-            overflow: hidden;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(0, 201, 167, 0.3);
         }
 
-        .nav-link-download::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+        .nav-btn.logout {
+            color: var(--accent);
+            border-color: rgba(255, 107, 107, 0.3);
         }
 
-        .nav-link-download:hover::before {
-            left: 100%;
+        .nav-btn.logout:hover {
+            background: rgba(255, 107, 107, 0.1);
         }
 
-        .nav-link-logout {
-            color: var(--secondary);
-            border: 1px solid var(--secondary);
-            background: rgba(0, 201, 255, 0.1);
-        }
-
-        .nav-link-logout:hover {
-            background: rgba(0, 201, 255, 0.2);
-        }
-
+        /* ===== Hero Section ===== */
         .hero {
+            padding: 100px 0 60px;
             text-align: center;
-            padding: 80px 0; /* تقليل padding */
             position: relative;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(74, 0, 224, 0.1) 0%, transparent 70%);
-            z-index: -1;
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .hero h1 {
-            font-size: 2.5rem; /* تقليل حجم الخط */
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
             margin-bottom: 20px;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            line-height: 1.2;
         }
 
-        .hero p {
-            font-size: 1.1rem; /* تقليل حجم الخط */
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #94A3B8;
             margin-bottom: 40px;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.6;
         }
 
-        .btn {
-            background: var(--gradient);
-            color: white;
-            padding: 12px 30px; /* تقليل padding */
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem; /* تقليل حجم الخط */
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(74, 0, 224, 0.4);
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
         }
 
-        .btn.jewel {
-            background: var(--jewel-gradient);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(74, 0, 224, 0.6);
-        }
-
-        .btn.jewel:hover {
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.6);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px; /* تقليل gap */
-            margin: 60px 0; /* تقليل margin */
-        }
-
-        .feature-card {
-            background: rgba(255,255,255,0.08);
-            padding: 25px; /* تقليل padding */
-            border-radius: 20px;
+        .stat-item {
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
             background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        .stat-label {
+            font-size: 0.9rem;
+            color: #94A3B8;
         }
 
-        .feature-card i {
-            font-size: 2.5rem; /* تقليل حجم الأيقونة */
+        /* ===== Packages Section ===== */
+        .packages-section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 15px;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .feature-card h3 {
-            font-size: 1.2rem; /* تعديل حجم الخط */
-            margin-bottom: 10px;
+        .section-subtitle {
+            color: #94A3B8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .feature-card p {
-            font-size: 0.95rem; /* تعديل حجم الخط */
-        }
-
-        .packages-section {
-            margin: 80px 0; /* تقليل margin */
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem; /* تقليل حجم الخط */
-            margin-bottom: 40px; /* تقليل margin */
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            padding: 0 20px;
-        }
-
-        .section-title.jewel {
-            background: var(--jewel-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 3px;
-            background: var(--gradient);
-            border-radius: 3px;
-        }
-
-        .section-title.jewel::after {
-            background: var(--jewel-gradient);
-        }
-
-        .package-grid {
+        .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* تقليل minmax */
-            gap: 25px; /* تقليل gap */
-            margin-bottom: 60px; /* تقليل margin */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .package-card {
-            background: rgba(255,255,255,0.08);
-            padding: 25px; /* تقليل padding */
-            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 30px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.12);
+            transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            transition: 0.4s;
             position: relative;
             overflow: hidden;
         }
@@ -381,21 +259,28 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: var(--gradient);
         }
 
-        .package-card.jewel::before {
-            background: var(--jewel-gradient);
+        .package-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 201, 167, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        .package-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .package-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
 
         .package-amount {
-            font-size: 2.5rem; /* تقليل حجم الخط */
+            font-size: 2.5rem;
             font-weight: 800;
             background: var(--gradient);
             -webkit-background-clip: text;
@@ -403,69 +288,484 @@
             margin-bottom: 10px;
         }
 
-        .package-amount.jewel {
-            background: var(--jewel-gradient);
+        .package-desc {
+            color: #94A3B8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .package-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 25px 0;
+            color: white;
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            color: #94A3B8;
+        }
+
+        .package-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .package-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 201, 167, 0.4);
+        }
+
+        /* ===== Orders Page ===== */
+        .orders-page {
+            padding: 60px 0;
+        }
+
+        .orders-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .orders-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .package-price {
-            font-size: 1.8rem; /* تقليل حجم الخط */
-            font-weight: 700;
-            margin: 15px 0; /* تقليل margin */
-            color: var(--light);
-        }
-
-        .package-icon {
-            font-size: 2rem; /* تقليل حجم الأيقونة */
-            margin-bottom: 15px;
-        }
-
-        /* قسم التواصل الجديد */
-        .contact-section {
-            background: rgba(255,255,255,0.05);
-            margin: 60px -20px; /* تقليل margin */
-            padding: 40px 20px; /* تقليل padding */
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .contact-bar {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        .orders-container {
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
 
-        .contact-item {
+        .order-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .order-item:hover {
+            border-color: rgba(0, 201, 167, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .order-info {
+            flex: 1;
+        }
+
+        .order-id {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .order-date {
+            color: #94A3B8;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
+            gap: 8px;
+        }
+
+        .order-status {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .status-pending {
+            background: rgba(255, 199, 95, 0.15);
+            color: #FFC75F;
+            border: 1px solid rgba(255, 199, 95, 0.3);
+        }
+
+        .status-completed {
+            background: rgba(0, 201, 167, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(0, 201, 167, 0.3);
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            padding: 18px; /* تقليل padding */
-            background: rgba(255,255,255,0.08);
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.12);
+            margin-bottom: 20px;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-label {
+            color: #94A3B8;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-value {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .receipt-note {
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .receipt-note i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        .receipt-note p {
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+
+        /* ===== Payment Page ===== */
+        .payment-page {
+            padding: 60px 0;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .payment-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .payment-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .payment-subtitle {
+            color: #94A3B8;
+            font-size: 1rem;
+        }
+
+        .selected-package {
+            background: rgba(0, 201, 167, 0.1);
+            border: 1px solid rgba(0, 201, 167, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .package-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .package-summary div:first-child {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-summary .amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .package-summary .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .payment-method {
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .method-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .method-header i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .method-number {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .method-number code {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 201, 167, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #64748B;
+        }
+
+        .file-input-container {
+            position: relative;
+        }
+
+        .file-input {
+            padding: 40px 20px;
+            text-align: center;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-input:hover {
+            border-color: var(--primary);
+            background: rgba(0, 201, 167, 0.05);
+        }
+
+        .file-input i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .file-input p {
+            color: #94A3B8;
+            margin-bottom: 5px;
+        }
+
+        .file-input span {
+            color: #64748B;
+            font-size: 0.85rem;
+        }
+
+        .file-input input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 201, 167, 0.4);
+        }
+
+        /* ===== Empty States ===== */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .empty-icon {
+            font-size: 4.5rem;
+            color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .empty-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .empty-description {
+            color: #94A3B8;
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        /* ===== Loading State ===== */
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+            margin: 0 auto 25px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #94A3B8;
+            font-size: 1.1rem;
+        }
+
+        /* ===== Contact Section ===== */
+        .contact-section {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 60px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
             transition: all 0.3s ease;
             text-decoration: none;
             color: inherit;
         }
 
-        .contact-item:hover {
-            transform: translateY(-3px);
-            background: rgba(255,255,255,0.12);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .contact-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            background: rgba(0, 201, 167, 0.05);
         }
 
         .contact-icon {
-            width: 45px; /* تقليل الحجم */
-            height: 45px;
-            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem; /* تقليل حجم الخط */
-            background: var(--gradient);
+            font-size: 1.5rem;
             flex-shrink: 0;
         }
 
@@ -474,603 +774,357 @@
         }
 
         .contact-title {
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 5px;
-            font-size: 1rem; /* تعديل حجم الخط */
+            color: white;
         }
 
-        .contact-desc {
-            opacity: 0.8;
-            font-size: 0.85rem; /* تعديل حجم الخط */
+        .contact-details {
+            color: #94A3B8;
+            font-size: 0.95rem;
         }
 
+        /* ===== Page Transitions ===== */
         .page {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .active {
             display: block;
         }
 
-        .payment-page {
-            background: rgba(255,255,255,0.08);
-            padding: 30px; /* تقليل padding */
-            border-radius: 20px;
-            max-width: 500px;
-            margin: 40px auto; /* تقليل margin */
-            border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .payment-page h2 {
-            font-size: 1.5rem; /* تقليل حجم الخط */
-        }
-
-        .payment-page h3 {
-            font-size: 1.1rem; /* تقليل حجم الخط */
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px; /* تقليل padding */
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            font-size: 0.95rem; /* تعديل حجم الخط */
-            transition: 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(74, 0, 224, 0.3);
-        }
-
-        .form-control::placeholder {
-            color: rgba(255,255,255,0.5);
-        }
-
-        .order-item {
-            background: rgba(255,255,255,0.05);
-            padding: 18px; /* تقليل padding */
-            margin-bottom: 15px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s;
-        }
-
-        .order-item:hover {
-            background: rgba(255,255,255,0.08);
-            transform: translateX(5px);
-        }
-
-        .status-pending {
-            background: rgba(255, 199, 95, 0.2);
-            color: var(--warning);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem; /* تعديل حجم الخط */
-            display: inline-block;
-        }
-
-        .status-completed {
-            background: rgba(0, 201, 167, 0.2);
-            color: var(--success);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem; /* تعديل حجم الخط */
-            display: inline-block;
-        }
-
-        /* معاينة صورة الإيصال */
-        .receipt-preview {
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        .receipt-preview img {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 10px;
-            border: 2px solid var(--accent);
-            display: none;
-        }
-
-        /* إجمالي المصروفات */
-        .total-spent {
-            background: var(--jewel-gradient);
-            padding: 18px; /* تقليل padding */
-            border-radius: 15px;
-            text-align: center;
-            margin: 25px 0; /* تقليل margin */
-            border: 1px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .total-spent h3 {
-            font-size: 1.1rem; /* تعديل حجم الخط */
-        }
-
-        .total-spent #totalSpent {
-            font-size: 1.8rem; /* تقليل حجم الخط */
-        }
-
-        .total-spent small {
-            font-size: 0.85rem; /* تعديل حجم الخط */
-        }
-
-        /* تحسينات للاستجابة */
+        /* ===== Responsive Design ===== */
         @media (max-width: 768px) {
-            header {
+            .header-content {
                 flex-direction: column;
-                gap: 15px;
-                padding: 15px 20px;
+                gap: 20px;
             }
             
-            nav {
-                flex-wrap: wrap;
+            .nav-links {
+                width: 100%;
                 justify-content: center;
-                gap: 10px;
+                flex-wrap: wrap;
             }
             
-            .nav-link {
-                padding: 8px 15px;
-                font-size: 0.85rem;
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .hero h1 {
-                font-size: 2rem;
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .package-card.featured {
+                transform: none;
             }
             
-            .package-grid {
-                grid-template-columns: 1fr;
+            .orders-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
             
-            .section-title {
-                font-size: 1.7rem;
-                padding: 0 15px;
-            }
-
-            .contact-bar {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-item {
-                padding: 15px;
-            }
-            
-            .payment-page {
+            .payment-card {
                 padding: 25px;
-                margin: 30px auto;
             }
-
-            .logo-text {
-                font-size: 1.2rem;
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.7rem;
-            }
-            
-            .hero p {
-                font-size: 0.95rem;
-            }
-            
-            .package-amount {
+            .hero-title {
                 font-size: 2rem;
             }
             
-            .package-price {
-                font-size: 1.5rem;
-            }
-            
             .section-title {
-                font-size: 1.5rem;
-                padding: 0 10px;
+                font-size: 2rem;
             }
             
-            .payment-page {
-                padding: 20px;
-                margin: 20px auto;
-            }
-            
-            .btn {
-                padding: 10px 20px;
+            .nav-btn {
+                padding: 10px 16px;
                 font-size: 0.9rem;
             }
-
-            .features {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .total-spent #totalSpent {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* هامبرغر مينو للشاشات الصغيرة */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
             
-            nav {
-                display: none;
+            .order-header {
                 flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(18, 18, 18, 0.95);
-                padding: 20px;
-                border-radius: 0 0 15px 15px;
-                gap: 10px;
+                gap: 15px;
             }
             
-            nav.show {
-                display: flex;
+            .order-status {
+                align-self: flex-start;
             }
-        }
-        
-        /* أحجام مختلفة لمعاينة الصور */
-        .preview-small {
-            max-width: 150px;
-            max-height: 150px;
-        }
-        
-        .preview-medium {
-            max-width: 250px;
-            max-height: 250px;
-        }
-        
-        .preview-large {
-            max-width: 100%;
-            max-height: 300px;
-        }
-        
-        /* تنسيق أرقام الكاش */
-        .cash-numbers {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 15px 0;
-        }
-        
-        .cash-number {
-            background: rgba(255,255,255,0.08);
-            padding: 12px; /* تقليل padding */
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            font-size: 1.1rem; /* تقليل حجم الخط */
-            font-weight: bold;
-            color: var(--accent);
-        }
-        
-        /* تحسينات جديدة */
-        .user-account {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 15px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .user-icon {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem; /* تعديل حجم الخط */
-        }
-
-        #userInfo div:first-child {
-            font-size: 0.85rem; /* تعديل حجم الخط */
-        }
-
-        #userInfo div:last-child {
-            font-size: 0.75rem; /* تعديل حجم الخط */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- الصفحة الرئيسية -->
-        <div id="homePage" class="page active">
-            <!-- الشريط العلوي المحسن -->
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Helmy Stor">
-                    </div>
-                    <div>
-                        <div class="logo-text">Helmy Stor</div>
-                        <div class="logo-subtitle">Linky Jewels Services</div>
-                    </div>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="1.png" alt="Helmy Stor">
                 </div>
-
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-
-                <nav id="mainNav">
-                    <a href="#" onclick="showPage('homePage')" class="nav-link">
-                        <i class="fas fa-home"></i>
-                        الرئيسية
-                    </a>
-                    
-                    <a href="#" onclick="showPage('ordersPage')" class="nav-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        طلباتي
-                    </a>
-                    
-                    <div class="user-account" id="userAccount">
-                        <div class="user-icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div id="userInfo">
-                            <div style="font-weight: bold;">مرحباً</div>
-                            <div style="opacity: 0.8;" id="userPhone"></div>
-                        </div>
-                        <a href="#" onclick="logout()" class="nav-link-logout" style="padding: 5px 10px; font-size: 0.8rem;">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </a>
-                    </div>
-                </nav>
-            </header>
-
-            <section class="hero">
-                <h1>شحن جواهر Linky بأفضل الأسعار</h1>
-                <p>احصل على جواهر Linky بأرخص الأسعار مع ضمان الاسترجاع</p>
-                <a href="#packages" class="btn jewel">
-                    <i class="fas fa-gem"></i> ابدأ الآن
-                </a>
-            </section>
-
-            <!-- إجمالي المصروفات -->
-            <div class="total-spent">
-                <h3><i class="fas fa-coins"></i> إجمالي مصروفاتك</h3>
-                <p id="totalSpent" style="font-weight: bold; margin: 10px 0;">0 جنيه</p>
-                <small>المبلغ الإجمالي الذي تم صرفه على الطلبات</small>
+                <div class="brand-text">
+                    <div class="brand-name">Helmy Stor</div>
+                    <div class="brand-tagline">شحن جواهر Linky باحترافية</div>
+                </div>
             </div>
+            
+            <div class="nav-links">
+                <a href="#" onclick="showPage('homePage')" class="nav-btn active">
+                    <i class="fas fa-home"></i> الرئيسية
+                </a>
+                <a href="#" onclick="showPage('ordersPage')" class="nav-btn">
+                    <i class="fas fa-shopping-bag"></i> طلباتي
+                </a>
+                <a href="#" onclick="logout()" class="nav-btn logout">
+                    <i class="fas fa-sign-out-alt"></i> تسجيل خروج
+                </a>
+            </div>
+        </div>
+    </header>
 
-            <section class="features">
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>ضمان الجودة</h3>
-                    <p>جواهر Linky مع ضمان استرجاع الأموال اذا لم تصل الجواهر</p>
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1 class="hero-title">شحن جواهر Linky أصبح أسهل</h1>
+                <p class="hero-subtitle">
+                    خدمة سريعة وآمنة لشحن جواهر Linky بأفضل الأسعار. استمتع بأسرع تجربة وأعلى جودة.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">⚡ 5-10 د</div>
+                        <div class="stat-label">أسرع خدمة</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">🛡️ 100%</div>
+                        <div class="stat-label">ضمان الجودة</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">👑 +500</div>
+                        <div class="stat-label">عميل راضي</div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>تسليم فوري</h3>
-                    <p>تبدأ خدمتنا فور تأكيد الدفع، خلال 10-20 دقيقة</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-lock"></i>
-                    <h3>آمن تماماً</h3>
-                    <p>خدمتنا آمنة ولا تحتاج لكلمة مرور حسابك</p>
-                </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- الباقات البسيطة -->
-            <section class="packages-section" id="packages">
-                <h2 class="section-title jewel">باقات شحن الجواهر</h2>
+        <!-- Packages Section -->
+        <section class="packages-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">اختر باقتك المفضلة</h2>
+                    <p class="section-subtitle">
+                        باقات متنوعة تناسب جميع احتياجاتك. اختر ما يناسبك واستمتع بأفضل تجربة.
+                    </p>
+                </div>
                 
-                <div class="package-grid">
-                    <div class="package-card jewel">
+                <div class="packages-grid">
+                    <!-- Basic Package -->
+                    <div class="package-card">
                         <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">1000</div>
-                        <div style="margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">10 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(1000, 10, 'linky', 'جواهر')">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
+                        <div class="package-amount">1,000</div>
+                        <p class="package-desc">جوهرة Linky</p>
+                        <div class="package-price">10 <span class="price-unit">جنيه</span></div>
+                        <button class="package-btn" onclick="selectPackage(1000, 10)">
+                            <i class="fas fa-shopping-cart"></i> اختيار الباقة
                         </button>
                     </div>
                     
-                    <div class="package-card jewel">
-                        <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">2500</div>
-                        <div style="margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">20 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(2500, 20, 'linky', 'جواهر')">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
+                    <!-- Popular Package -->
+                    <div class="package-card featured">
+                        <div class="package-icon">💎✨</div>
+                        <div class="package-amount">2,500</div>
+                        <p class="package-desc">جوهرة Linky</p>
+                        <div class="package-price">20 <span class="price-unit">جنيه</span></div>
+                        <button class="package-btn" onclick="selectPackage(2500, 20)">
+                            <i class="fas fa-bolt"></i> الأكثر طلباً
                         </button>
                     </div>
                     
-                    <div class="package-card jewel">
-                        <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">3500</div>
-                        <div style="margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">30 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(3500, 30, 'linky', 'جواهر')">
-                            <i class="fas fa-shopping-cart"></i> اختر الباقة
+                    <!-- Premium Package -->
+                    <div class="package-card">
+                        <div class="package-icon">💎💎</div>
+                        <div class="package-amount">3,500</div>
+                        <p class="package-desc">جوهرة Linky</p>
+                        <div class="package-price">30 <span class="price-unit">جنيه</span></div>
+                        <button class="package-btn" onclick="selectPackage(3500, 30)">
+                            <i class="fas fa-crown"></i> اختيار الباقة
                         </button>
                     </div>
                 </div>
-
-                <!-- العروض المميزة -->
-                <h2 class="section-title jewel">العروض المميزة</h2>
                 
-                <div class="package-grid">
-                    <div class="package-card jewel">
-                        <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">8000</div>
-                        <div style="margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">60 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(8000, 60, 'linky', 'جواهر')">
-                            <i class="fas fa-crown"></i> اختر الباقة
+                <div class="packages-grid" style="margin-top: 30px;">
+                    <!-- Pro Package -->
+                    <div class="package-card">
+                        <div class="package-icon">💎💎💎</div>
+                        <div class="package-amount">8,000</div>
+                        <p class="package-desc">جوهرة Linky</p>
+                        <div class="package-price">60 <span class="price-unit">جنيه</span></div>
+                        <button class="package-btn" onclick="selectPackage(8000, 60)">
+                            <i class="fas fa-gem"></i> احصل على عرض
                         </button>
                     </div>
                     
-                    <div class="package-card jewel">
-                        <div class="package-icon">💎</div>
-                        <div class="package-amount jewel">20000</div>
-                        <div style="margin-bottom: 15px; opacity: 0.8;">جوهرة Linky</div>
-                        <div class="package-price">160 جنيه</div>
-                        <button class="btn jewel" onclick="selectPackage(20000, 160, 'linky', 'جواهر')">
-                            <i class="fas fa-crown"></i> اختر الباقة
+                    <!-- Ultimate Package -->
+                    <div class="package-card">
+                        <div class="package-icon">💎💎💎💎💎</div>
+                        <div class="package-amount">20,000</div>
+                        <p class="package-desc">جوهرة Linky</p>
+                        <div class="package-price">160 <span class="price-unit">جنيه</span></div>
+                        <button class="package-btn" onclick="selectPackage(20000, 160)">
+                            <i class="fas fa-rocket"></i> الباقة المميزة
                         </button>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- قسم التواصل -->
-            <section class="contact-section">
-                <div class="contact-bar">
-                    <a href="https://wa.me/+201011305439" class="contact-item" target="_blank">
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">تواصل معنا</h2>
+                    <p class="section-subtitle">
+                        فريق دعم متاح 24/7 لمساعدتك في أي استفسار
+                    </p>
+                </div>
+                
+                <div class="contact-grid">
+                    <a href="https://wa.me/+201122223344" target="_blank" class="contact-card">
                         <div class="contact-icon">
                             <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="contact-info">
-                            <div class="contact-title">واتساب للاستفسارات</div>
-                            <div class="contact-desc">01011305439</div>
-                            <div class="contact-desc" style="font-size: 0.8rem; margin-top: 5px;">للأسئلة والمشاكل الفنية</div>
+                            <div class="contact-title">واتساب للدعم</div>
+                            <div class="contact-details">01122223344</div>
                         </div>
                     </a>
-                </div>
-            </section>
-        </div>
-
-        <!-- صفحة الطلبات -->
-        <div id="ordersPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Helmy Stor Logo">
-                    </div>
-                    <div>
-                        <div class="logo-text">Helmy Stor</div>
-                        <div class="logo-subtitle">Linky Jewels Services</div>
-                    </div>
-                </div>
-
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-
-                <nav id="ordersNav">
-                    <a href="#" onclick="showPage('homePage')" class="nav-link">
-                        <i class="fas fa-home"></i>
-                        الرئيسية
-                    </a>
                     
-                    <a href="#" onclick="showPage('ordersPage')" class="nav-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        طلباتي
-                    </a>
-                </nav>
-            </header>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-title">رقم الدفع</div>
+                            <div class="contact-details">01099342969</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-title">خدمة العملاء</div>
+                            <div class="contact-details">متاح 24/7</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-            <h2 class="section-title jewel">طلباتي</h2>
-            <div id="ordersList">
-                <!-- الطلبات تظهر هنا -->
+    <!-- Orders Page -->
+    <div id="ordersPage" class="page">
+        <div class="container orders-page">
+            <div class="orders-header">
+                <h2 class="orders-title">طلباتي</h2>
+                <div style="display: flex; gap: 10px;">
+                    <button class="nav-btn" onclick="showPage('homePage')">
+                        <i class="fas fa-arrow-right"></i> العودة
+                    </button>
+                    <button class="nav-btn" onclick="loadOrders()">
+                        <i class="fas fa-redo"></i> تحديث
+                    </button>
+                </div>
+            </div>
+            
+            <div id="ordersList" class="orders-container">
+                <!-- Orders will appear here -->
             </div>
         </div>
+    </div>
 
-        <!-- صفحة الدفع -->
-        <div id="paymentPage" class="page">
-            <header>
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="1.png" alt="Helmy Stor">
-                    </div>
-                    <div>
-                        <div class="logo-text">Helmy Stor</div>
-                        <div class="logo-subtitle">Linky Jewels Services</div>
+    <!-- Payment Page -->
+    <div id="paymentPage" class="page">
+        <div class="container payment-page">
+            <div class="payment-card">
+                <div class="payment-header">
+                    <h2 class="payment-title">إتمام الطلب</h2>
+                    <p class="payment-subtitle">أكمل بيانات الطلب لتأكيد عملية الشراء</p>
+                </div>
+                
+                <div class="selected-package">
+                    <div class="package-summary">
+                        <div>
+                            <div class="amount" id="selectedAmount">1,000 جوهرة</div>
+                            <div class="price" id="selectedPrice">10 جنيه</div>
+                        </div>
+                        <div style="font-size: 3rem;">💎</div>
                     </div>
                 </div>
-
-                <button class="menu-toggle" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
+                
+                <div class="payment-method">
+                    <div class="method-header">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>
+                            <div style="font-weight: 600; color: white;">الدفع عبر فودافون كاش</div>
+                            <div style="font-size: 0.9rem; color: #94A3B8;">أرسل المبلغ ثم أرفق الإيصال</div>
+                        </div>
+                    </div>
+                    <div class="method-number">
+                        <code>01099342969</code>
+                    </div>
+                    <div style="text-align: center; color: #94A3B8; font-size: 0.9rem;">
+                        تأكد من إرسال المبلغ الصحيح قبل المتابعة
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-id-card" style="margin-left: 8px;"></i>
+                        ID Linky الخاص بك
+                    </label>
+                    <input type="text" id="linkyId" class="form-input" placeholder="أدخل الـ ID الخاص بك" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-phone" style="margin-left: 8px;"></i>
+                        رقم الهاتف
+                    </label>
+                    <input type="tel" id="phone" class="form-input" placeholder="رقم الهاتف للتواصل" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-receipt" style="margin-left: 8px;"></i>
+                        صورة إيصال الدفع
+                    </label>
+                    <div class="file-input-container">
+                        <div class="file-input">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>اسحب وأفلت أو انقر للرفع</p>
+                            <span>PNG, JPG, JPEG حتى 5MB</span>
+                            <input type="file" id="receipt" accept="image/*" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="submit-btn" onclick="submitOrder()">
+                    <i class="fas fa-lock"></i> تأكيد الطلب
                 </button>
-
-                <nav id="paymentNav">
-                    <a href="#" onclick="showPage('homePage')" class="nav-link">
-                        <i class="fas fa-home"></i>
-                        الرئيسية
-                    </a>
-                    
-                    <a href="#" onclick="showPage('ordersPage')" class="nav-link">
-                        <i class="fas fa-shopping-bag"></i>
-                        طلباتي
-                    </a>
-                </nav>
-            </header>
-
-            <div class="payment-page">
-                <h2 style="text-align: center; margin-bottom: 30px;">إتمام الطلب</h2>
-
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>بيانات الباقة المختارة</h3>
-                    <p id="selectedPackageInfo" style="font-size: 1rem; margin-top: 10px;">باقة 1000 جوهرة - 10 جنيه</p>
-                </div>
-
-                <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 25px;">
-                    <h3>طريقة الدفع</h3>
-                    <p style="margin-bottom: 15px; opacity: 0.9;">الدفع عبر فودافون كاش</p>
-                    
-                    <div class="cash-numbers">
-                        <div class="cash-number">01031090116</div>
-                        <div class="cash-number">01099342969</div>
-                    </div>
-                    
-                    <p style="opacity: 0.8; font-size: 0.85rem; margin-top: 10px;">يرجى إرسال المبلغ لأي من الرقمين أعلاه ثم إرفاق صورة إيصال الدفع</p>
-                </div>
-
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">ID اللعبة في Linky</label>
-                    <input type="text" id="gameId" class="form-control" placeholder="أدخل ID اللعبة">
-                </div>
-
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">رقمك للتواصل</label>
-                    <input type="tel" id="phone" class="form-control" placeholder="رقم الهاتف للتواصل">
-                </div>
-
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: bold;">صورة إيصال الدفع</label>
-                    <input type="file" id="receipt" class="form-control" accept="image/*" onchange="previewReceipt(event)">
-                    <small style="color: var(--accent); font-size: 0.8rem;">يدعم جميع أنواع الصور بما فيها صور الكاميرا</small>
-                    
-                    <!-- معاينة الصورة -->
-                    <div class="receipt-preview">
-                        <img id="receiptPreview" src="" alt="معاينة الإيصال">
-                    </div>
-                </div>
-
-                <button class="btn jewel" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
             </div>
         </div>
     </div>
@@ -1078,391 +1132,392 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
     <script>
-        // Firebase Configuration - المشروع الجديد
+        // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyAtJsnMgwmduOyTFcgZOvbBPHXb996Q5ig",
-            authDomain: "helmy-47ada.firebaseapp.com",
-            projectId: "helmy-47ada",
-            storageBucket: "helmy-47ada.firebasestorage.app",
-            messagingSenderId: "9755290268",
-            appId: "1:9755290268:web:8754eb7b3c5f0a9f2edb59",
-            measurementId: "G-0ZC7L8DZLR"
+            apiKey: "AIzaSyD4tDA25irl5qavqdMfJD9_e7AbMleUC6c",
+            authDomain: "helmy-f0cd2.firebaseapp.com",
+            projectId: "helmy-f0cd2",
+            storageBucket: "helmy-f0cd2.firebasestorage.app",
+            messagingSenderId: "383002018546",
+            appId: "1:383002018546:web:f5410ea854a3a007e8866b"
         };
 
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        const auth = firebase.auth();
 
-        let selectedPackage = { amount: 1000, price: 10, service: 'linky', type: 'جواهر' };
-        let currentUserId = null;
-        let currentUserPhone = null;
+        let selectedPackage = { amount: 1000, price: 10 };
 
-        // دالة إدارة المستخدم
-        function initializeUser() {
-            // جلب بيانات المستخدم من localStorage
-            let userId = localStorage.getItem('helmy_user_id');
-            let userPhone = localStorage.getItem('helmy_user_phone');
-            
-            if (!userId) {
-                // إنشاء مستخدم جديد
-                userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                localStorage.setItem('helmy_user_id', userId);
-            }
-            
-            currentUserId = userId;
-            currentUserPhone = userPhone;
-            
-            // تحديث واجهة المستخدم
-            updateUserUI();
-            
-            // حساب إجمالي المصروفات
-            calculateTotalSpent();
-        }
-
-        // تحديث واجهة المستخدم
-        function updateUserUI() {
-            const userInfo = document.getElementById('userInfo');
-            const userPhoneEl = document.getElementById('userPhone');
-            
-            if (currentUserPhone) {
-                userPhoneEl.textContent = currentUserPhone;
-            } else {
-                userPhoneEl.textContent = 'زائر';
-                // إذا كان زائراً، اطلب رقم الهاتف عند أول طلب
-                setTimeout(() => {
-                    if (!currentUserPhone) {
-                        const phone = prompt("مرحباً بك! الرجاء إدخال رقم هاتفك للتواصل:");
-                        if (phone && phone.length >= 10) {
-                            localStorage.setItem('helmy_user_phone', phone);
-                            currentUserPhone = phone;
-                            updateUserUI();
-                        }
-                    }
-                }, 1000);
-            }
-        }
-
-        // دالة لمعاينة صورة الإيصال
-        function previewReceipt(event) {
-            const file = event.target.files[0];
-            const preview = document.getElementById('receiptPreview');
-            
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                    preview.classList.add('preview-medium');
-                };
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.display = 'none';
-            }
-        }
-
+        // ===== Navigation Functions =====
         function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
+            // Update active nav button
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            if (pageId === 'homePage') {
+                document.querySelector('.nav-btn:first-child').classList.add('active');
+            } else if (pageId === 'ordersPage') {
+                document.querySelector('.nav-btn:nth-child(2)').classList.add('active');
+            }
             
-            // إغلاق القائمة في الشاشات الصغيرة
-            document.querySelectorAll('nav').forEach(menu => {
-                menu.classList.remove('show');
-            });
+            // Show page
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
             
             if (pageId === 'ordersPage') {
                 loadOrders();
             }
-            
-            if (pageId === 'homePage') {
-                calculateTotalSpent();
-            }
         }
 
-        function toggleMenu() {
-            const currentPage = document.querySelector('.page.active').id;
-            const navId = currentPage === 'homePage' ? 'mainNav' : 
-                         currentPage === 'ordersPage' ? 'ordersNav' : 'paymentNav';
-            const navMenu = document.getElementById(navId);
-            navMenu.classList.toggle('show');
-        }
-
-        function selectPackage(amount, price, service, type) {
-            selectedPackage = { amount, price, service, type };
-            
-            document.getElementById('selectedPackageInfo').textContent = 
-                `باقة ${amount} جوهرة - ${price} جنيه`;
-            
+        function selectPackage(amount, price) {
+            selectedPackage = { amount, price };
+            document.getElementById('selectedAmount').textContent = amount.toLocaleString() + ' جوهرة';
+            document.getElementById('selectedPrice').textContent = price + ' جنيه';
             showPage('paymentPage');
         }
 
-        // دالة حساب إجمالي المصروفات
-        async function calculateTotalSpent() {
-            if (!currentUserId) return;
-            
-            try {
-                const snapshot = await db.collection('jewelry-orders')
-                    .where('userId', '==', currentUserId)
-                    .get();
-                
-                let total = 0;
-                snapshot.forEach(doc => {
-                    const order = doc.data();
-                    if (order.package && order.package.price) {
-                        total += parseFloat(order.package.price);
-                    }
+        function logout() {
+            if (confirm('هل تريد تسجيل الخروج؟')) {
+                auth.signOut().then(() => {
+                    window.location.href = "login.html";
                 });
-                
-                document.getElementById('totalSpent').textContent = total + ' جنيه';
-            } catch (error) {
-                console.error('Error calculating total spent:', error);
             }
         }
 
+        // ===== Order Submission =====
         async function submitOrder() {
-            const gameId = document.getElementById('gameId').value;
-            const phone = document.getElementById('phone').value;
+            const linkyId = document.getElementById('linkyId').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             const receiptFile = document.getElementById('receipt').files[0];
             
-            if (!gameId) {
-                alert('يرجى إدخال ID اللعبة في Linky');
+            // Validation
+            if (!linkyId || !phone || !receiptFile) {
+                alert('❗ يرجى ملء جميع الحقول وإرفاق صورة الإيصال');
                 return;
             }
             
-            if (!phone) {
-                alert('يرجى إدخال رقم الهاتف للتواصل');
+            if (phone.length < 10) {
+                alert('❗ يرجى إدخال رقم هاتف صحيح');
                 return;
-            }
-            
-            if (!receiptFile) {
-                alert('يرجى إرفاق صورة إيصال الدفع');
-                return;
-            }
-            
-            // تحديث رقم الهاتف في الحساب
-            if (!currentUserPhone) {
-                localStorage.setItem('helmy_user_phone', phone);
-                currentUserPhone = phone;
-                updateUserUI();
             }
             
             try {
-                // إظهار رسالة التحميل
-                const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الطلب...';
-                submitButton.disabled = true;
+                const submitBtn = document.querySelector('.submit-btn');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري المعالجة...';
+                submitBtn.disabled = true;
                 
-                // تحويل الصورة إلى Base64
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const receiptBase64 = e.target.result;
-                    
-                    // إنشاء كائن الطلب
-                    const newOrder = {
-                        package: selectedPackage,
-                        gameId: gameId,
-                        phone: phone,
-                        receiptImage: receiptBase64,
-                        status: 'قيد المراجعة',
-                        date: new Date().toLocaleDateString('ar-EG'),
-                        time: new Date().toLocaleTimeString('ar-EG'),
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                        orderId: generateOrderId(),
-                        service: 'Linky',
-                        userId: currentUserId,
-                        userPhone: currentUserPhone,
-                        completed: false,
-                        completedAt: null,
-                        adminNote: '',
-                        countInProfit: false
-                    };
-                    
-                    // إرسال الطلب إلى Firebase
-                    db.collection('jewelry-orders').add(newOrder)
-                        .then(() => {
-                            // استعادة الزر لحالته الأصلية
-                            submitButton.innerHTML = originalText;
-                            submitButton.disabled = false;
-                            
-                            // رسالة نجاح
-                            alert(`✅ تم تقديم طلبك بنجاح!\nرقم الطلب: ${newOrder.orderId}\nسيتم مراجعة طلبك قريباً.`);
-                            
-                            // إعادة تعيين النموذج
-                            resetPaymentForm();
-                            
-                            // حساب المصروفات الجديدة
-                            calculateTotalSpent();
-                            
-                            // العودة إلى صفحة الطلبات
-                            showPage('ordersPage');
-                        })
-                        .catch(error => {
-                            console.error('Error submitting order:', error);
-                            submitButton.innerHTML = originalText;
-                            submitButton.disabled = false;
-                            alert('❌ حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.');
-                        });
+                // Convert image to Base64
+                const receiptBase64 = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(receiptFile);
+                });
+                
+                // Get current user
+                const user = auth.currentUser;
+                if (!user) {
+                    alert('🔒 يرجى تسجيل الدخول أولاً');
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                // Create order object
+                const order = {
+                    userId: user.uid,
+                    userEmail: user.email,
+                    userName: user.displayName || user.email.split('@')[0],
+                    linkyId: linkyId,
+                    phone: phone,
+                    amount: selectedPackage.amount,
+                    price: selectedPackage.price,
+                    receiptImage: receiptBase64,
+                    status: 'قيد المراجعة',
+                    date: new Date().toLocaleDateString('ar-EG'),
+                    time: new Date().toLocaleTimeString('ar-EG'),
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    orderId: 'HEL' + Date.now().toString().slice(-8) + Math.random().toString(36).substr(2, 4).toUpperCase()
                 };
                 
-                reader.readAsDataURL(receiptFile);
+                // Save to Firebase
+                await db.collection('orders').add(order);
+                
+                // Success message
+                alert(`✅ تم تقديم طلبك بنجاح!\n\n📋 رقم الطلب: ${order.orderId}\n💰 المبلغ: ${order.price} جنيه\n🔄 الحالة: قيد المراجعة\n\nسيتم مراجعة طلبك خلال 5-10 دقائق.`);
+                
+                // Reset form
+                document.getElementById('linkyId').value = '';
+                document.getElementById('phone').value = '';
+                document.getElementById('receipt').value = '';
+                
+                // Go to orders page
+                showPage('ordersPage');
                 
             } catch (error) {
-                console.error('Error submitting order:', error);
-                alert('❌ حدث خطأ أثناء إرسال الطلب.');
+                console.error('❌ Error submitting order:', error);
+                alert('حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.');
+            } finally {
+                const submitBtn = document.querySelector('.submit-btn');
+                submitBtn.innerHTML = '<i class="fas fa-lock"></i> تأكيد الطلب';
+                submitBtn.disabled = false;
             }
         }
 
-        // دالة لإنشاء رقم طلب فريد
-        function generateOrderId() {
-            const timestamp = Date.now().toString().slice(-6);
-            const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-            return `HLM${timestamp}${random}`;
-        }
-
-        function resetPaymentForm() {
-            document.getElementById('gameId').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('receipt').value = '';
-            document.getElementById('receiptPreview').style.display = 'none';
-        }
-
+        // ===== Orders Loading =====
         async function loadOrders() {
             const ordersList = document.getElementById('ordersList');
-            
-            if (!currentUserId) {
-                ordersList.innerHTML = `
-                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                        <i class="fas fa-user-slash" style="font-size: 2.5rem; margin-bottom: 20px; opacity: 0.5;"></i>
-                        <h3>يرجى تسجيل الدخول</h3>
-                        <p style="opacity: 0.7;">يجب تسجيل الدخول لعرض الطلبات</p>
-                    </div>
-                `;
-                return;
-            }
+            ordersList.innerHTML = `
+                <div class="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text">جاري تحميل طلباتك...</p>
+                </div>
+            `;
             
             try {
-                const snapshot = await db.collection('jewelry-orders')
-                    .where('userId', '==', currentUserId)
-                    .orderBy('timestamp', 'desc')
-                    .get();
-                
-                if (snapshot.empty) {
+                const user = auth.currentUser;
+                if (!user) {
                     ordersList.innerHTML = `
-                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                            <i class="fas fa-shopping-cart" style="font-size: 2.5rem; margin-bottom: 20px; opacity: 0.5;"></i>
-                            <h3>لا توجد طلبات حالياً</h3>
-                            <p style="opacity: 0.7;">بمجرد إرسال طلبك، سيظهر هنا</p>
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-user-lock"></i>
+                            </div>
+                            <h3 class="empty-title">يجب تسجيل الدخول</h3>
+                            <p class="empty-description">
+                                يرجى تسجيل الدخول لعرض طلباتك.
+                            </p>
+                            <a href="login.html" class="package-btn" style="display: inline-flex; width: auto; padding: 12px 30px;">
+                                <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                            </a>
                         </div>
                     `;
                     return;
                 }
                 
+                console.log('🔄 جاري تحميل طلبات المستخدم:', user.email);
+                
+                // Try multiple query methods
+                let orders = [];
+                
+                // Method 1: Query by userId
+                try {
+                    const snapshot1 = await db.collection('orders')
+                        .where('userId', '==', user.uid)
+                        .orderBy('timestamp', 'desc')
+                        .get();
+                    
+                    snapshot1.forEach(doc => {
+                        orders.push({ id: doc.id, ...doc.data() });
+                    });
+                    console.log('✅ Found ' + orders.length + ' orders by userId');
+                } catch (error) {
+                    console.log('⚠️ Query by userId failed:', error.message);
+                }
+                
+                // If no orders found, try by email
+                if (orders.length === 0) {
+                    try {
+                        const snapshot2 = await db.collection('orders')
+                            .where('userEmail', '==', user.email)
+                            .get();
+                        
+                        snapshot2.forEach(doc => {
+                            orders.push({ id: doc.id, ...doc.data() });
+                        });
+                        console.log('✅ Found ' + orders.length + ' orders by email');
+                    } catch (error) {
+                        console.log('⚠️ Query by email failed:', error.message);
+                    }
+                }
+                
+                // If still no orders, try to get all and filter
+                if (orders.length === 0) {
+                    try {
+                        const allOrders = await db.collection('orders').get();
+                        allOrders.forEach(doc => {
+                            const order = doc.data();
+                            if (order.userEmail === user.email || order.userId === user.uid) {
+                                orders.push({ id: doc.id, ...order });
+                            }
+                        });
+                        console.log('✅ Found ' + orders.length + ' orders by filtering all');
+                    } catch (error) {
+                        console.log('❌ All methods failed:', error.message);
+                    }
+                }
+                
+                // Check if any orders were found
+                if (orders.length === 0) {
+                    ordersList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h3 class="empty-title">لا توجد طلبات</h3>
+                            <p class="empty-description">
+                                لم تقم بتقديم أي طلبات بعد. ابدأ الآن واختار باقتك المفضلة!
+                            </p>
+                            <button onclick="showPage('homePage')" class="package-btn" style="display: inline-flex; width: auto; padding: 12px 30px;">
+                                <i class="fas fa-gem"></i> تقديم طلب جديد
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Sort orders by timestamp (newest first)
+                orders.sort((a, b) => {
+                    const timeA = a.timestamp?.toDate ? a.timestamp.toDate().getTime() : 0;
+                    const timeB = b.timestamp?.toDate ? b.timestamp.toDate().getTime() : 0;
+                    return timeB - timeA;
+                });
+                
+                // Generate orders HTML
                 let ordersHTML = '';
-                snapshot.forEach(doc => {
-                    const order = doc.data();
+                orders.forEach((order, index) => {
+                    const orderId = order.orderId || order.id.slice(-8).toUpperCase();
                     const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
-                    
-                    // إنشاء زر لعرض صورة الإيصال
-                    const receiptButton = order.receiptImage ? 
-                        `<button class="btn jewel" style="padding: 8px 15px; font-size: 0.85rem; margin-top: 10px;" onclick="showReceipt('${order.receiptImage}', '${order.orderId}')">
-                            <i class="fas fa-image"></i> عرض الإيصال
-                        </button>` : 
-                        '<span style="color: var(--warning);">لا يوجد إيصال</span>';
-                    
-                    // ملاحظة الأدمن إذا كانت موجودة
-                    const adminNote = order.adminNote ? 
-                        `<div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-top: 10px;">
-                            <strong><i class="fas fa-user-shield"></i> ملاحظة الأدمن:</strong> ${order.adminNote}
-                        </div>` : '';
+                    const statusIcon = order.status === 'تم الإرسال' ? 'fas fa-check-circle' : 'fas fa-clock';
+                    const statusText = order.status === 'تم الإرسال' ? 'تم الإرسال' : 'قيد المراجعة';
                     
                     ordersHTML += `
                         <div class="order-item">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <div>
-                                    <strong>طلب #${order.orderId || doc.id.slice(-6)}</strong>
-                                    <p style="margin-top: 5px; opacity: 0.8;">${order.package.amount} جوهرة Linky - ${order.package.price} جنيه</p>
+                            <div class="order-header">
+                                <div class="order-info">
+                                    <div class="order-id">طلب #${orderId}</div>
+                                    <div class="order-date">
+                                        <i class="far fa-calendar"></i>
+                                        ${order.date} • ${order.time || ''}
+                                    </div>
                                 </div>
-                                <span class="${statusClass}">${order.status}</span>
+                                <div class="order-status ${statusClass}">
+                                    <i class="${statusIcon}"></i>
+                                    ${statusText}
+                                </div>
                             </div>
-                            <p><strong>ID اللعبة:</strong> ${order.gameId}</p>
-                            <p><strong>رقم الهاتف:</strong> ${order.phone}</p>
-                            <p><strong>تاريخ الطلب:</strong> ${order.date} ${order.time || ''}</p>
-                            ${order.completedAt ? 
-                                `<p><strong>تم الإرسال:</strong> ${new Date(order.completedAt.toDate()).toLocaleString('ar-EG')}</p>` : 
-                                ''
-                            }
-                            <p><strong>صورة الإيصال:</strong><br>${receiptButton}</p>
-                            ${adminNote}
+                            
+                            <div class="order-details">
+                                <div class="detail-card">
+                                    <div class="detail-label">
+                                        <i class="fas fa-gem"></i>
+                                        الكمية
+                                    </div>
+                                    <div class="detail-value">${order.amount?.toLocaleString() || '0'} جوهرة</div>
+                                </div>
+                                
+                                <div class="detail-card">
+                                    <div class="detail-label">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        المبلغ
+                                    </div>
+                                    <div class="detail-value">${order.price || '0'} جنيه</div>
+                                </div>
+                                
+                                <div class="detail-card">
+                                    <div class="detail-label">
+                                        <i class="fas fa-id-card"></i>
+                                        ID Linky
+                                    </div>
+                                    <div class="detail-value">${order.linkyId || 'غير محدد'}</div>
+                                </div>
+                                
+                                <div class="detail-card">
+                                    <div class="detail-label">
+                                        <i class="fas fa-phone"></i>
+                                        الهاتف
+                                    </div>
+                                    <div class="detail-value">${order.phone || 'غير محدد'}</div>
+                                </div>
+                            </div>
+                            
+                            <!-- صورة الإيصال مخفية عن العميل - تظهر للأدمن فقط -->
+                            <div class="receipt-note">
+                                <i class="fas fa-eye-slash"></i>
+                                <p>صورة الإيصال مخفية لحماية خصوصيتك. يمكن للأدمن فقط رؤيتها.</p>
+                            </div>
+                            
+                            ${order.status === 'تم الإرسال' && order.completedAt ? `
+                                <div style="margin-top: 15px; padding: 12px; background: rgba(0,201,167,0.1); border-radius: 10px; border: 1px solid rgba(0,201,167,0.2);">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-check-circle" style="color: var(--primary);"></i>
+                                        <div>
+                                            <div style="font-weight: 600; color: white;">تم الإرسال بنجاح</div>
+                                            <div style="font-size: 0.9rem; color: #94A3B8;">
+                                                ${order.completedAt.toDate ? new Date(order.completedAt.toDate()).toLocaleString('ar-EG') : order.completedAt}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ` : ''}
                         </div>
                     `;
                 });
                 
-                ordersList.innerHTML = ordersHTML;
+                // Add orders count header
+                ordersList.innerHTML = `
+                    <div style="margin-bottom: 25px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05);">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="width: 45px; height: 45px; border-radius: 12px; background: var(--gradient); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem;">
+                                ${orders.length}
+                            </div>
+                            <div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: white;">إجمالي الطلبات</div>
+                                <div style="font-size: 0.9rem; color: #94A3B8;">يتم تحديث الطلبات تلقائياً</div>
+                            </div>
+                        </div>
+                    </div>
+                    ${ordersHTML}
+                `;
+                
+                console.log(`🎉 Successfully loaded ${orders.length} orders`);
+                
             } catch (error) {
-                console.error('Error loading orders:', error);
-                ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
+                console.error('❌ Error loading orders:', error);
+                ordersList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="empty-title">حدث خطأ</h3>
+                        <p class="empty-description">
+                            تعذر تحميل الطلبات. يرجى التأكد من اتصال الإنترنت والمحاولة مرة أخرى.
+                        </p>
+                        <div style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
+                            <button onclick="loadOrders()" class="package-btn" style="display: inline-flex; width: auto; padding: 12px 25px;">
+                                <i class="fas fa-redo"></i> إعادة المحاولة
+                            </button>
+                            <button onclick="showPage('homePage')" class="nav-btn" style="background: rgba(255,255,255,0.05);">
+                                <i class="fas fa-home"></i> الرئيسية
+                            </button>
+                        </div>
+                    </div>
+                `;
             }
         }
 
-        // دالة لعرض صورة الإيصال في نافذة منبثقة
-        function showReceipt(base64Image, orderId) {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.9);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-                backdrop-filter: blur(10px);
-            `;
-            
-            modal.innerHTML = `
-                <div style="position: relative; max-width: 90%; max-height: 90%;">
-                    <button onclick="this.parentElement.parentElement.remove()" 
-                            style="position: absolute; top: -40px; right: -10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">
-                        ✕
-                    </button>
-                    <img src="${base64Image}" 
-                         alt="إيصال طلب ${orderId}" 
-                         style="max-width: 100%; max-height: 80vh; border-radius: 10px; border: 2px solid var(--accent);">
-                    <p style="text-align: center; margin-top: 10px; color: white;">إيصال طلب ${orderId}</p>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            
-            // إغلاق النافذة عند النقر خارج الصورة
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    document.body.removeChild(modal);
-                }
-            });
-        }
-
-        // تسجيل الخروج
-        function logout() {
-            if (confirm("هل تريد تسجيل الخروج؟")) {
-                localStorage.removeItem("helmy_user_id");
-                localStorage.removeItem("helmy_user_phone");
-                alert("تم تسجيل الخروج بنجاح");
-                location.reload();
+        // ===== Authentication =====
+        auth.onAuthStateChanged((user) => {
+            if (!user && !window.location.pathname.includes('login.html') && !window.location.pathname.includes('signup.html')) {
+                window.location.href = "login.html";
             }
-        }
+        });
 
-        // Auto-load عند تحميل الصفحة
+        // ===== Initialization =====
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Helmy Stor Started Successfully!');
-            initializeUser();
-            loadOrders();
+            console.log('🚀 Helmy Stor initialized successfully');
+            
+            // Load orders if on orders page
+            if (document.getElementById('ordersPage').classList.contains('active')) {
+                loadOrders();
+            }
+            
+            // File input preview
+            const fileInput = document.getElementById('receipt');
+            fileInput.addEventListener('change', function(e) {
+                const fileName = e.target.files[0]?.name || 'لم يتم اختيار ملف';
+                document.querySelector('.file-input p').textContent = fileName;
+            });
         });
     </script>
 </body>
