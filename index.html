@@ -738,6 +738,55 @@
             max-width: 100%;
             max-height: 300px;
         }
+
+        /* شريط التحميل */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin: 10px 0;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* رسائل التنبيه */
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .alert.show {
+            transform: translateX(0);
+        }
+
+        .alert.success {
+            background: var(--success);
+        }
+
+        .alert.error {
+            background: var(--danger);
+        }
+
+        .alert.info {
+            background: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -1032,6 +1081,11 @@
                     <div class="receipt-preview">
                         <img id="receiptPreview" src="" alt="معاينة الإيصال">
                     </div>
+
+                    <!-- شريط التحميل -->
+                    <div class="progress-bar" id="uploadProgress">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
                 </div>
 
                 <button class="btn diamond" style="width: 100%;" onclick="submitOrder()">تأكيد الطلب</button>
@@ -1039,22 +1093,23 @@
         </div>
     </div>
 
+    <!-- منطقة الإشعارات -->
+    <div id="alertArea"></div>
+
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
     <script>
-        // Firebase Configuration - Helmy Stor
+        // ✅ Firebase Configuration - سيرفر Roma&Knzy الحالي (المجرب والعامل)
         const firebaseConfig = {
-            apiKey: "AIzaSyAtJsnMgwmduOyTFcgZOvbBPHXb996Q5ig",
-            authDomain: "helmy-47ada.firebaseapp.com",
-            databaseURL: "https://helmy-47ada-default-rtdb.firebaseio.com",
-            projectId: "helmy-47ada",
-            storageBucket: "helmy-47ada.firebasestorage.app",
-            messagingSenderId: "9755290268",
-            appId: "1:9755290268:web:d8a0e533ba5feca22edb59",
-            measurementId: "G-ZW4Z5BELFP"
+            apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
+            authDomain: "romalshop.firebaseapp.com",
+            projectId: "romalshop",
+            storageBucket: "romalshop.firebasestorage.app",
+            messagingSenderId: "830369715807",
+            appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
         };
 
         // Initialize Firebase
@@ -1063,6 +1118,30 @@
         const auth = firebase.auth();
 
         let selectedPackage = { amount: 1000, price: 10, service: 'linky', type: 'جواهر' };
+
+        // دالة لعرض الإشعارات
+        function showAlert(message, type) {
+            const alertArea = document.getElementById('alertArea');
+            const alert = document.createElement('div');
+            alert.className = `alert ${type}`;
+            alert.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                ${message}
+            `;
+            
+            alertArea.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                alert.classList.remove('show');
+                setTimeout(() => {
+                    alert.remove();
+                }, 400);
+            }, 4000);
+        }
 
         // دالة لمعاينة صورة الإيصال
         function previewReceipt(event) {
@@ -1082,7 +1161,7 @@
             }
         }
 
-        // دالة محسنة لتحويل الصور إلى Base64
+        // دالة لتحويل الصورة إلى Base64
         function convertImageToBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -1113,31 +1192,14 @@
                 };
                 
                 reader.onerror = function(error) {
-                    try {
-                        const blobUrl = URL.createObjectURL(file);
-                        const img = new Image();
-                        img.onload = function() {
-                            const canvas = document.createElement('canvas');
-                            canvas.width = img.width;
-                            canvas.height = img.height;
-                            const ctx = canvas.getContext('2d');
-                            ctx.drawImage(img, 0, 0);
-                            const base64 = canvas.toDataURL('image/jpeg', 0.8);
-                            URL.revokeObjectURL(blobUrl);
-                            resolve(base64);
-                        };
-                        img.onerror = reject;
-                        img.src = blobUrl;
-                    } catch (blobError) {
-                        reject(blobError);
-                    }
+                    reject(error);
                 };
                 
                 reader.readAsDataURL(file);
             });
         }
 
-        // دالة لضغط الصورة قبل التحويل
+        // دالة لضغط الصورة
         function compressImage(file, maxWidth = 800, quality = 0.7) {
             return new Promise((resolve, reject) => {
                 const img = new Image();
@@ -1178,7 +1240,6 @@
             });
             document.getElementById(pageId).classList.add('active');
             
-            // إغلاق القائمة في الشاشات الصغيرة
             document.querySelectorAll('nav').forEach(menu => {
                 menu.classList.remove('show');
             });
@@ -1206,17 +1267,23 @@
         }
 
         async function submitOrder() {
-            const linkyId = document.getElementById('linkyId').value;
-            const phone = document.getElementById('phone').value;
+            const linkyId = document.getElementById('linkyId').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             const receiptFile = document.getElementById('receipt').files[0];
             
+            // التحقق من صحة المدخلات
             if (!linkyId) {
-                alert('يرجى إدخال الـ ID الخاص بك في لعبة Linky');
+                showAlert('يرجى إدخال الـ ID الخاص بك في لعبة Linky', 'error');
                 return;
             }
             
-            if (!phone || !receiptFile) {
-                alert('يرجى ملء جميع الحقول وإرفاق صورة الإيصال');
+            if (!phone) {
+                showAlert('يرجى إدخال رقم الهاتف', 'error');
+                return;
+            }
+            
+            if (!receiptFile) {
+                showAlert('يرجى إرفاق صورة إيصال الدفع', 'error');
                 return;
             }
             
@@ -1227,7 +1294,25 @@
                 submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري معالجة الطلب...';
                 submitButton.disabled = true;
                 
-                // تحويل الصورة إلى Base64 مع ضغط
+                // إظهار شريط التحميل
+                const progressBar = document.getElementById('uploadProgress');
+                const progressFill = document.getElementById('progressFill');
+                progressBar.style.display = 'block';
+                progressFill.style.width = '10%';
+                
+                // التحقق من تسجيل الدخول
+                const user = auth.currentUser;
+                if (!user) {
+                    showAlert('يجب تسجيل الدخول أولاً', 'error');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                    return;
+                }
+                
+                // تحويل الصورة إلى Base64
+                progressFill.style.width = '30%';
+                
                 let receiptBase64;
                 
                 if (receiptFile.size > 2000000) {
@@ -1238,13 +1323,7 @@
                     receiptBase64 = await convertImageToBase64(receiptFile);
                 }
                 
-                // الحصول على المستخدم الحالي
-                const user = auth.currentUser;
-                if (!user) {
-                    alert('يجب تسجيل الدخول أولاً');
-                    window.location.href = 'login.html';
-                    return;
-                }
+                progressFill.style.width = '60%';
                 
                 // إنشاء كائن الطلب
                 const newOrder = {
@@ -1258,61 +1337,104 @@
                     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     orderId: generateOrderId(),
                     userId: user.uid,
-                    countInProfit: false // افتراضياً غير مضاف للربح
+                    email: user.email,
+                    serviceType: 'linky_diamonds',
+                    countInProfit: false
                 };
                 
-                // إرسال الطلب إلى Firebase
+                progressFill.style.width = '80%';
+                
+                // ✅ إرسال الطلب إلى Firestore
                 const orderRef = await db.collection('orders').add(newOrder);
                 
-                // إضافة معلومات المستخدم إذا كانت المرة الأولى
+                progressFill.style.width = '90%';
+                
+                // تحديث معلومات المستخدم
                 try {
                     const userRef = db.collection('users').doc(user.uid);
-                    await userRef.set({
-                        email: user.email,
-                        name: user.displayName || 'مستخدم Helmy Stor',
-                        phone: phone,
-                        linkyId: linkyId,
-                        lastOrder: firebase.firestore.FieldValue.serverTimestamp(),
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    }, { merge: true });
+                    const userDoc = await userRef.get();
+                    
+                    if (!userDoc.exists) {
+                        await userRef.set({
+                            email: user.email,
+                            name: user.displayName || 'مستخدم Helmy Stor',
+                            phone: phone,
+                            linkyId: linkyId,
+                            lastOrder: firebase.firestore.FieldValue.serverTimestamp(),
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    } else {
+                        await userRef.update({
+                            phone: phone,
+                            linkyId: linkyId,
+                            lastOrder: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                    }
                 } catch (userError) {
-                    console.log('Error updating user info:', userError);
+                    console.log('Info: User data updated partially:', userError);
                 }
                 
-                // استعادة الزر لحالته الأصلية
+                progressFill.style.width = '100%';
+                
+                // إخفاء شريط التحميل
+                setTimeout(() => {
+                    progressBar.style.display = 'none';
+                    progressFill.style.width = '0%';
+                }, 500);
+                
+                // استعادة الزر
                 submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
                 
                 // رسالة نجاح
-                alert(`✅ تم تقديم طلبك بنجاح!\nرقم الطلب: ${newOrder.orderId}\nسيتم مراجعة طلبك قريباً.`);
+                showAlert(`✅ تم تقديم طلبك بنجاح! رقم الطلب: ${newOrder.orderId}`, 'success');
                 
                 // إعادة تعيين النموذج
                 resetPaymentForm();
                 
-                // العودة إلى صفحة الطلبات
-                showPage('ordersPage');
+                // العودة إلى صفحة الطلبات بعد ثانيتين
+                setTimeout(() => {
+                    showPage('ordersPage');
+                }, 2000);
                 
             } catch (error) {
-                console.error('Error submitting order:', error);
+                console.error('❌ Error submitting order:', error);
                 
-                // استعادة الزر لحالته الأصلية
+                // إخفاء شريط التحميل
+                const progressBar = document.getElementById('uploadProgress');
+                const progressFill = document.getElementById('progressFill');
+                progressBar.style.display = 'none';
+                progressFill.style.width = '0%';
+                
+                // استعادة الزر
                 const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
                 submitButton.innerHTML = 'تأكيد الطلب';
                 submitButton.disabled = false;
                 
-                let errorMessage = '❌ حدث خطأ أثناء إرسال الطلب.\n\n';
-                errorMessage += 'نصائح لحل المشكلة:\n';
-                errorMessage += '1. تأكد من اتصال الإنترنت\n';
-                errorMessage += '2. جرب استخدام صورة مختلفة\n';
-                errorMessage += '3. تأكد من أن حجم الصورة لا يتجاوز 5MB\n';
-                errorMessage += '4. أعد تحميل الصفحة وحاول مرة أخرى\n';
-                errorMessage += '5. إذا استمرت المشكلة، اتصل بالدعم على 01122223344';
+                let errorMessage = 'حدث خطأ أثناء إرسال الطلب';
                 
-                alert(errorMessage);
+                // تحليل الخطأ
+                if (error.code === 'permission-denied') {
+                    errorMessage = 'خطأ في أذونات قاعدة البيانات. يرجى التحقق من قواعد Firestore';
+                } else if (error.code === 'unavailable') {
+                    errorMessage = 'لا يمكن الاتصال بخادم قاعدة البيانات. تحقق من اتصالك بالإنترنت';
+                } else if (error.message.includes('quota')) {
+                    errorMessage = 'تم تجاوز الحد المسموح به في قاعدة البيانات';
+                } else {
+                    errorMessage = 'حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى';
+                }
+                
+                showAlert(`❌ ${errorMessage}`, 'error');
+                
+                // إظهار تفاصيل الخطأ في console للمساعدة في التشخيص
+                console.log('Error details:', {
+                    code: error.code,
+                    message: error.message,
+                    stack: error.stack
+                });
             }
         }
 
-        // دالة لإنشاء رقم طلب فريد
         function generateOrderId() {
             const timestamp = Date.now().toString().slice(-6);
             const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
@@ -1345,6 +1467,7 @@
                     return;
                 }
                 
+                // جلب الطلبات الخاصة بالمستخدم الحالي فقط
                 const snapshot = await db.collection('orders')
                     .where('userId', '==', user.uid)
                     .orderBy('timestamp', 'desc')
@@ -1391,13 +1514,23 @@
                 });
                 
                 ordersList.innerHTML = ordersHTML;
+                
             } catch (error) {
                 console.error('Error loading orders:', error);
-                ordersList.innerHTML = '<p style="text-align: center; color: var(--danger);">حدث خطأ في تحميل الطلبات</p>';
+                ordersList.innerHTML = `
+                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 50px; margin-bottom: 20px; color: var(--danger);"></i>
+                        <h3>حدث خطأ في تحميل الطلبات</h3>
+                        <p style="opacity: 0.7;">${error.message || 'يرجى المحاولة مرة أخرى'}</p>
+                        <button onclick="loadOrders()" class="btn" style="margin-top: 20px;">
+                            <i class="fas fa-redo"></i> إعادة المحاولة
+                        </button>
+                    </div>
+                `;
             }
         }
 
-        // دالة لعرض صورة الإيصال في نافذة منبثقة
+        // دالة لعرض صورة الإيصال
         function showReceipt(base64Image, orderId) {
             const modal = document.createElement('div');
             modal.style.cssText = `
@@ -1429,7 +1562,6 @@
             
             document.body.appendChild(modal);
             
-            // إغلاق النافذة عند النقر خارج الصورة
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) {
                     document.body.removeChild(modal);
@@ -1450,29 +1582,51 @@
             link.click();
             document.body.removeChild(link);
             
-            alert('بدأ تحميل تطبيق Helmy Stor... شكراً لثقتك بنا!');
+            showAlert('بدأ تحميل تطبيق Helmy Stor... شكراً لثقتك بنا!', 'info');
         }
 
-        // التحقق من تسجيل الدخول
+        // التحقق من حالة تسجيل الدخول
         auth.onAuthStateChanged((user) => {
-            if (!user) {
-                window.location.href = "login.html";
+            if (user) {
+                console.log('✅ User logged in:', user.email);
+                // تحديث الصفحة إذا كان المستخدم في صفحة الطلبات
+                if (document.querySelector('#ordersPage.active')) {
+                    loadOrders();
+                }
             } else {
-                console.log('User logged in:', user.email);
+                // إذا لم يكن مسجل دخول، تحويل إلى صفحة تسجيل الدخول
+                if (!window.location.href.includes('login.html') && !window.location.href.includes('signup.html')) {
+                    window.location.href = 'login.html';
+                }
             }
         });
 
-        // Auto-load when page loads
+        // التحقق من تسجيل الدخول عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Helmy Stor Started Successfully!');
+            console.log('🚀 Helmy Stor Started Successfully!');
+            console.log('🔧 Firebase Project: romalshop');
+            console.log('📊 Database: Firestore');
+            
+            // التحقق من اتصال Firebase
+            auth.onAuthStateChanged((user) => {
+                if (!user && !window.location.href.includes('login.html') && !window.location.href.includes('signup.html')) {
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 100);
+                }
+            });
         });
         
         // تسجيل الخروج
         function logout() {
             auth.signOut().then(() => {
-                window.location.href = "login.html";
+                showAlert('تم تسجيل الخروج بنجاح', 'info');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
             }).catch((error) => {
                 console.error('Logout error:', error);
+                showAlert('حدث خطأ أثناء تسجيل الخروج', 'error');
             });
         }
     </script>
