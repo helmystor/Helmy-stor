@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب | Helmy Stor</title>
+  <link rel="icon" type="image/png" href="helmy-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+  <!-- تحسين الظهور في بحث جوجل (SEO) -->
+  <meta name="description" content="موقع Helmy Stor يقدم خدمات شحن جواهر لعبة Linky بأرخص الأسعار وبجودة عالية. أفضل موقع لشراء جواهر Linky بسرعة واحترافية.">
+  <meta name="keywords" content="شحن جواهر Linky, شراء جواهر Linky, جواهر Linky, هيلمي ستور, Helmy Stor, موقع هيلمي, Linky diamonds">
+  <meta name="author" content="Helmy Stor Team">
+  <meta name="robots" content="index, follow">
+
+  <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
+  <meta property="og:title" content="Helmy Stor | شحن جواهر Linky بأرخص الأسعار">
+  <meta property="og:description" content="أفضل موقع لشحن وشراء جواهر Linky بأرخص الأسعار - Helmy Stor.">
+  <meta property="og:url" content="https://helmy-stor.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_AR">
+  <link rel="canonical" href="https://helmy-stor.com/">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+    }
+
+    :root {
+      --primary: #7B1FA2;
+      --secondary: #CE93D8;
+      --accent: #BA68C8;
+      --dark: #1A1A2E;
+      --light: #F3E5F5;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(270deg, var(--primary), #4A0072, var(--dark));
+      background-size: 600% 600%;
+      animation: bgMove 10s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 25px;
+      padding: 40px 30px;
+      text-align: center;
+      width: 330px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 20px rgba(123, 31, 162, 0.5);
+      animation: float 3s ease-in-out infinite;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    h2 {
+      background: linear-gradient(to right, var(--accent), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(186, 104, 200, 0.3);
+    }
+
+    input::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(123, 31, 162, 0.4);
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: var(--light);
+      opacity: 0.8;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      background: rgba(255, 107, 107, 0.1);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .success-message {
+      color: #00C9A7;
+      background: rgba(0, 201, 167, 0.1);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .loading {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .loading i {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .password-requirements {
+      text-align: right;
+      margin: 5px 0;
+      font-size: 0.8rem;
+      color: var(--light);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <img src="helmy-logo.png" alt="Helmy Stor Logo">
+    </div>
+    <h2>إنشاء حساب جديد</h2>
+
+    <input type="email" id="email" placeholder="البريد الإلكتروني">
+    <input type="password" id="password" placeholder="كلمة المرور (6 أحرف على الأقل)">
+    <input type="password" id="confirmPassword" placeholder="تأكيد كلمة المرور">
+    
+    <div class="password-requirements">
+      ⚠️ كلمة المرور يجب أن تكون 6 أحرف على الأقل
+    </div>
+    
+    <div class="error-message" id="errorMessage"></div>
+    <div class="success-message" id="successMessage"></div>
+    
+    <div class="loading" id="loading">
+      <i class="fas fa-spinner fa-spin"></i> جاري إنشاء الحساب...
+    </div>
+    
+    <button onclick="signup()">إنشاء حساب</button>
+
+    <p>عندك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <script>
+    // Firebase Configuration - Helmy Stor
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtJsnMgwmduOyTFcgZOvbBPHXb996Q5ig",
+      authDomain: "helmy-47ada.firebaseapp.com",
+      databaseURL: "https://helmy-47ada-default-rtdb.firebaseio.com",
+      projectId: "helmy-47ada",
+      storageBucket: "helmy-47ada.firebasestorage.app",
+      messagingSenderId: "9755290268",
+      appId: "1:9755290268:web:d8a0e533ba5feca22edb59",
+      measurementId: "G-ZW4Z5BELFP"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function showError(message) {
+      const errorElement = document.getElementById('errorMessage');
+      errorElement.textContent = message;
+      errorElement.style.display = 'block';
+      document.getElementById('successMessage').style.display = 'none';
+    }
+
+    function showSuccess(message) {
+      const successElement = document.getElementById('successMessage');
+      successElement.textContent = message;
+      successElement.style.display = 'block';
+      document.getElementById('errorMessage').style.display = 'none';
+    }
+
+    function hideMessages() {
+      document.getElementById('errorMessage').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'none';
+    }
+
+    function showLoading() {
+      document.getElementById('loading').style.display = 'block';
+    }
+
+    function hideLoading() {
+      document.getElementById('loading').style.display = 'none';
+    }
+
+    async function signup() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      // التحقق من المدخلات
+      if (!email || !password || !confirmPassword) {
+        showError("يرجى ملء جميع الحقول");
+        return;
+      }
+
+      if (!email.includes('@') || !email.includes('.')) {
+        showError("يرجى إدخال بريد إلكتروني صحيح");
+        return;
+      }
+
+      if (password.length < 6) {
+        showError("كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showError("كلمة المرور وتأكيدها غير متطابقين");
+        return;
+      }
+
+      hideMessages();
+      showLoading();
+
+      try {
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        
+        hideLoading();
+        
+        // إرسال تحقق البريد الإلكتروني (اختياري)
+        try {
+          await user.sendEmailVerification();
+          showSuccess("✅ تم إنشاء حسابك بنجاح! تم إرسال رابط التحقق إلى بريدك الإلكتروني");
+        } catch (emailError) {
+          showSuccess("✅ تم إنشاء حسابك بنجاح!");
+        }
+        
+        // الانتقال إلى صفحة تسجيل الدخول بعد 3 ثوان
+        setTimeout(() => {
+          window.location.href = "login.html?signup=success";
+        }, 3000);
+        
+      } catch (error) {
+        hideLoading();
+        
+        let errorMessage = "حدث خطأ في إنشاء الحساب";
+        
+        switch(error.code) {
+          case 'auth/email-already-in-use':
+            errorMessage = "البريد الإلكتروني مسجل بالفعل";
+            break;
+          case 'auth/invalid-email':
+            errorMessage = "بريد إلكتروني غير صحيح";
+            break;
+          case 'auth/weak-password':
+            errorMessage = "كلمة المرور ضعيفة، يجب أن تكون 6 أحرف على الأقل";
+            break;
+          case 'auth/operation-not-allowed':
+            errorMessage = "إنشاء الحسابات غير مفعل حالياً";
+            break;
+          case 'auth/network-request-failed':
+            errorMessage = "خطأ في الاتصال بالإنترنت";
+            break;
+        }
+        
+        showError(errorMessage);
+        console.error('Signup error:', error);
+      }
+    }
+
+    // تفعيل التسجيل عند الضغط على Enter
+    document.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        signup();
+      }
+    });
+
+    // التحقق من تطابق كلمات المرور أثناء الكتابة
+    document.getElementById('confirmPassword').addEventListener('input', function() {
+      const password = document.getElementById('password').value;
+      const confirmPassword = this.value;
+      
+      if (confirmPassword && password !== confirmPassword) {
+        this.style.borderColor = '#ff6b6b';
+      } else {
+        this.style.borderColor = 'rgba(255,255,255,0.2)';
+      }
+    });
+  </script>
+</body>
+</html>
