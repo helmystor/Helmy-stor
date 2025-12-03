@@ -6,6 +6,7 @@
   <title>إنشاء حساب | Helmy Stor</title>
   <link rel="icon" type="image/png" href="helmy-logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
     * {
@@ -160,9 +161,7 @@
       text-decoration: underline;
     }
 
-    .error-message {
-      color: #ff6b6b;
-      background: rgba(255, 107, 107, 0.1);
+    .alert {
       padding: 10px;
       border-radius: 8px;
       margin-top: 10px;
@@ -170,14 +169,16 @@
       display: none;
     }
 
-    .success-message {
-      color: #00C9A7;
+    .alert.error {
+      background: rgba(255, 107, 107, 0.1);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 107, 107, 0.3);
+    }
+
+    .alert.success {
       background: rgba(0, 201, 167, 0.1);
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-size: 0.9rem;
-      display: none;
+      color: #00C9A7;
+      border: 1px solid rgba(0, 201, 167, 0.3);
     }
 
     .loading {
@@ -218,8 +219,8 @@
       ⚠️ كلمة المرور يجب أن تكون 6 أحرف على الأقل
     </div>
     
-    <div class="error-message" id="errorMessage"></div>
-    <div class="success-message" id="successMessage"></div>
+    <div class="alert error" id="errorMessage"></div>
+    <div class="alert success" id="successMessage"></div>
     
     <div class="loading" id="loading">
       <i class="fas fa-spinner fa-spin"></i> جاري إنشاء الحساب...
@@ -235,14 +236,15 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <script>
-    // ✅ Firebase Configuration - سيرفر Roma&Knzy الحالي
+    // ✅ تكوين Firebase - Helmy Stor
     const firebaseConfig = {
-      apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
-      authDomain: "romalshop.firebaseapp.com",
-      projectId: "romalshop",
-      storageBucket: "romalshop.firebasestorage.app",
-      messagingSenderId: "830369715807",
-      appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
+      apiKey: "AIzaSyBoY17p1utIAzGcxtT9ecWz07N7wOMB9XI",
+      authDomain: "helmy-48b8e.firebaseapp.com",
+      projectId: "helmy-48b8e",
+      storageBucket: "helmy-48b8e.firebasestorage.app",
+      messagingSenderId: "410548528210",
+      appId: "1:410548528210:web:2185ffd8e14018683a6b8b",
+      measurementId: "G-5GJBGQ09LG"
     };
 
     // Initialize Firebase
@@ -261,11 +263,6 @@
       successElement.textContent = message;
       successElement.style.display = 'block';
       document.getElementById('errorMessage').style.display = 'none';
-    }
-
-    function hideMessages() {
-      document.getElementById('errorMessage').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'none';
     }
 
     function showLoading() {
@@ -302,8 +299,8 @@
         return;
       }
 
-      hideMessages();
       showLoading();
+      hideAlerts();
 
       try {
         const userCredential = await auth.createUserWithEmailAndPassword(email, password);
@@ -311,7 +308,7 @@
         
         hideLoading();
         
-        // إرسال تحقق البريد الإلكتروني (اختياري)
+        // إرسال تحقق البريد الإلكتروني
         try {
           await user.sendEmailVerification();
           showSuccess("✅ تم إنشاء حسابك بنجاح! تم إرسال رابط التحقق إلى بريدك الإلكتروني");
@@ -356,6 +353,11 @@
         showError(errorMessage);
         console.error('Signup error:', error);
       }
+    }
+
+    function hideAlerts() {
+      document.getElementById('errorMessage').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'none';
     }
 
     // تفعيل التسجيل عند الضغط على Enter
