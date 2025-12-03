@@ -6,21 +6,6 @@
   <title>تسجيل الدخول | Helmy Stor</title>
   <link rel="icon" type="image/png" href="helmy-logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
-  <!-- تحسين الظهور في بحث جوجل (SEO) -->
-  <meta name="description" content="موقع Helmy Stor يقدم خدمات شحن جواهر لعبة Linky بأرخص الأسعار وبجودة عالية. أفضل موقع لشراء جواهر Linky بسرعة واحترافية.">
-  <meta name="keywords" content="شحن جواهر Linky, شراء جواهر Linky, جواهر Linky, هيلمي ستور, Helmy Stor, موقع هيلمي, Linky diamonds">
-  <meta name="author" content="Helmy Stor Team">
-  <meta name="robots" content="index, follow">
-
-  <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
-  <meta property="og:title" content="Helmy Stor | شحن جواهر Linky بأرخص الأسعار">
-  <meta property="og:description" content="أفضل موقع لشحن وشراء جواهر Linky بأرخص الأسعار - Helmy Stor.">
-  <meta property="og:url" content="https://helmy-stor.com/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ar_AR">
-  <link rel="canonical" href="https://helmy-stor.com/">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -185,6 +170,16 @@
       display: none;
     }
 
+    .success-message {
+      color: #00C9A7;
+      background: rgba(0, 201, 167, 0.1);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
     .loading {
       display: none;
       margin-top: 10px;
@@ -203,7 +198,7 @@
 <body>
   <div class="card">
     <div class="logo">
-      <img src="1.png" alt="Helmy Stor Logo">
+      <img src="helmy-logo.png" alt="Helmy Stor Logo">
     </div>
     <h2>تسجيل الدخول</h2>
 
@@ -211,6 +206,7 @@
     <input type="password" id="password" placeholder="كلمة المرور">
     
     <div class="error-message" id="errorMessage"></div>
+    <div class="success-message" id="successMessage"></div>
     
     <div class="loading" id="loading">
       <i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...
@@ -226,16 +222,14 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <script>
-    // Firebase Configuration - Helmy Stor
+    // ✅ Firebase Configuration - سيرفر Roma&Knzy الحالي
     const firebaseConfig = {
-      apiKey: "AIzaSyAtJsnMgwmduOyTFcgZOvbBPHXb996Q5ig",
-      authDomain: "helmy-47ada.firebaseapp.com",
-      databaseURL: "https://helmy-47ada-default-rtdb.firebaseio.com",
-      projectId: "helmy-47ada",
-      storageBucket: "helmy-47ada.firebasestorage.app",
-      messagingSenderId: "9755290268",
-      appId: "1:9755290268:web:d8a0e533ba5feca22edb59",
-      measurementId: "G-ZW4Z5BELFP"
+      apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
+      authDomain: "romalshop.firebaseapp.com",
+      projectId: "romalshop",
+      storageBucket: "romalshop.firebasestorage.app",
+      messagingSenderId: "830369715807",
+      appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
     };
 
     // Initialize Firebase
@@ -246,10 +240,19 @@
       const errorElement = document.getElementById('errorMessage');
       errorElement.textContent = message;
       errorElement.style.display = 'block';
+      document.getElementById('successMessage').style.display = 'none';
     }
 
-    function hideError() {
+    function showSuccess(message) {
+      const successElement = document.getElementById('successMessage');
+      successElement.textContent = message;
+      successElement.style.display = 'block';
       document.getElementById('errorMessage').style.display = 'none';
+    }
+
+    function hideMessages() {
+      document.getElementById('errorMessage').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'none';
     }
 
     function showLoading() {
@@ -261,7 +264,7 @@
     }
 
     async function login() {
-      const email = document.getElementById("email").value;
+      const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
       // التحقق من المدخلات
@@ -275,7 +278,7 @@
         return;
       }
 
-      hideError();
+      hideMessages();
       showLoading();
 
       try {
@@ -284,12 +287,16 @@
         
         hideLoading();
         
-        // حفظ حالة تسجيل الدخول
+        // حفظ بيانات المستخدم في localStorage
         localStorage.setItem("helmy_user_id", user.uid);
         localStorage.setItem("helmy_user_email", user.email);
         
-        // توجيه إلى الصفحة الرئيسية
-        window.location.href = "index.html";
+        showSuccess("✅ تم تسجيل الدخول بنجاح!");
+        
+        // الانتقال إلى الصفحة الرئيسية بعد 2 ثانية
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 2000);
         
       } catch (error) {
         hideLoading();
@@ -315,6 +322,8 @@
           case 'auth/network-request-failed':
             errorMessage = "خطأ في الاتصال بالإنترنت";
             break;
+          default:
+            errorMessage = "حدث خطأ غير متوقع. حاول مرة أخرى";
         }
         
         showError(errorMessage);
@@ -333,12 +342,16 @@
     document.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('signup') === 'success') {
-        const errorElement = document.getElementById('errorMessage');
-        errorElement.textContent = "✅ تم إنشاء حسابك بنجاح! يمكنك الآن تسجيل الدخول";
-        errorElement.style.color = "#00C9A7";
-        errorElement.style.background = "rgba(0, 201, 167, 0.1)";
-        errorElement.style.display = 'block';
+        showSuccess("✅ تم إنشاء حسابك بنجاح! يمكنك الآن تسجيل الدخول");
       }
+      
+      // التحقق من تسجيل الدخول الحالي
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          // إذا كان مسجل دخول بالفعل، تحويل إلى الصفحة الرئيسية
+          window.location.href = "index.html";
+        }
+      });
     });
   </script>
 </body>
