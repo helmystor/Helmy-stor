@@ -6,21 +6,6 @@
   <title>إنشاء حساب | Helmy Stor</title>
   <link rel="icon" type="image/png" href="helmy-logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
-  <!-- تحسين الظهور في بحث جوجل (SEO) -->
-  <meta name="description" content="موقع Helmy Stor يقدم خدمات شحن جواهر لعبة Linky بأرخص الأسعار وبجودة عالية. أفضل موقع لشراء جواهر Linky بسرعة واحترافية.">
-  <meta name="keywords" content="شحن جواهر Linky, شراء جواهر Linky, جواهر Linky, هيلمي ستور, Helmy Stor, موقع هيلمي, Linky diamonds">
-  <meta name="author" content="Helmy Stor Team">
-  <meta name="robots" content="index, follow">
-
-  <!-- وسوم لمشاركة الموقع على فيسبوك وواتساب -->
-  <meta property="og:title" content="Helmy Stor | شحن جواهر Linky بأرخص الأسعار">
-  <meta property="og:description" content="أفضل موقع لشحن وشراء جواهر Linky بأرخص الأسعار - Helmy Stor.">
-  <meta property="og:url" content="https://helmy-stor.com/">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ar_AR">
-  <link rel="canonical" href="https://helmy-stor.com/">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -221,7 +206,7 @@
 <body>
   <div class="card">
     <div class="logo">
-      <img src="1.png" alt="Helmy Stor Logo">
+      <img src="helmy-logo.png" alt="Helmy Stor Logo">
     </div>
     <h2>إنشاء حساب جديد</h2>
 
@@ -250,16 +235,14 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <script>
-    // Firebase Configuration - Helmy Stor
+    // ✅ Firebase Configuration - سيرفر Roma&Knzy الحالي
     const firebaseConfig = {
-      apiKey: "AIzaSyAtJsnMgwmduOyTFcgZOvbBPHXb996Q5ig",
-      authDomain: "helmy-47ada.firebaseapp.com",
-      databaseURL: "https://helmy-47ada-default-rtdb.firebaseio.com",
-      projectId: "helmy-47ada",
-      storageBucket: "helmy-47ada.firebasestorage.app",
-      messagingSenderId: "9755290268",
-      appId: "1:9755290268:web:d8a0e533ba5feca22edb59",
-      measurementId: "G-ZW4Z5BELFP"
+      apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
+      authDomain: "romalshop.firebaseapp.com",
+      projectId: "romalshop",
+      storageBucket: "romalshop.firebasestorage.app",
+      messagingSenderId: "830369715807",
+      appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
     };
 
     // Initialize Firebase
@@ -294,7 +277,7 @@
     }
 
     async function signup() {
-      const email = document.getElementById("email").value;
+      const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
 
@@ -336,6 +319,10 @@
           showSuccess("✅ تم إنشاء حسابك بنجاح!");
         }
         
+        // حفظ بيانات المستخدم
+        localStorage.setItem("helmy_user_id", user.uid);
+        localStorage.setItem("helmy_user_email", user.email);
+        
         // الانتقال إلى صفحة تسجيل الدخول بعد 3 ثوان
         setTimeout(() => {
           window.location.href = "login.html?signup=success";
@@ -362,6 +349,8 @@
           case 'auth/network-request-failed':
             errorMessage = "خطأ في الاتصال بالإنترنت";
             break;
+          default:
+            errorMessage = "حدث خطأ غير متوقع. حاول مرة أخرى";
         }
         
         showError(errorMessage);
@@ -386,6 +375,16 @@
       } else {
         this.style.borderColor = 'rgba(255,255,255,0.2)';
       }
+    });
+
+    // التحقق من تسجيل الدخول الحالي
+    document.addEventListener('DOMContentLoaded', function() {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          // إذا كان مسجل دخول بالفعل، تحويل إلى الصفحة الرئيسية
+          window.location.href = "index.html";
+        }
+      });
     });
   </script>
 </body>
