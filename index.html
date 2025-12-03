@@ -24,7 +24,6 @@
             --primary: #00C9A7;
             --primary-dark: #00A88A;
             --secondary: #4A90E2;
-            --secondary-dark: #357ABD;
             --accent: #FF6B6B;
             --light: #F8F9FA;
             --dark: #1A1A2E;
@@ -32,7 +31,6 @@
             --warning: #FFC75F;
             --danger: #FF8066;
             --gradient: linear-gradient(135deg, #00C9A7 0%, #4A90E2 100%);
-            --gradient-dark: linear-gradient(135deg, #00A88A 0%, #357ABD 100%);
         }
 
         body {
@@ -148,17 +146,6 @@
             text-align: center;
             padding: 100px 0;
             position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(0, 201, 167, 0.1) 0%, transparent 70%);
-            z-index: -1;
         }
 
         .hero h1 {
@@ -371,45 +358,143 @@
             color: rgba(255,255,255,0.5);
         }
 
-        .order-item {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
+        /* تنسيقات قسم طلباتي */
+        .orders-container {
+            padding: 20px 0;
         }
 
-        .order-item:hover {
+        .order-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .order-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .order-id {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .order-date {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .status-pending {
             background: rgba(255, 199, 95, 0.2);
             color: var(--warning);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
+            border: 1px solid rgba(255, 199, 95, 0.3);
         }
 
         .status-completed {
             background: rgba(0, 201, 167, 0.2);
             color: var(--success);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            display: inline-block;
+            border: 1px solid rgba(0, 201, 167, 0.3);
         }
 
-        .receipt-preview img {
-            max-width: 100%;
+        .order-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .detail-item {
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .detail-label {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            color: white;
+            font-weight: 500;
+        }
+
+        .receipt-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .receipt-image {
+            max-width: 200px;
             max-height: 200px;
             border-radius: 10px;
-            border: 2px solid var(--accent);
-            display: none;
+            border: 2px solid var(--primary);
+            cursor: pointer;
             margin-top: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-spinner {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--danger);
+            background: rgba(255,128,102,0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255,128,102,0.2);
         }
 
         @media (max-width: 768px) {
@@ -455,50 +540,15 @@
                 padding: 25px;
                 margin: 30px auto;
             }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
+            
+            .order-header {
+                flex-direction: column;
+                gap: 10px;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .order-details {
+                grid-template-columns: 1fr;
             }
-            
-            .package-amount {
-                font-size: 2.5rem;
-            }
-            
-            .package-price {
-                font-size: 1.8rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-                padding: 0 10px;
-            }
-            
-            .payment-page {
-                padding: 20px;
-                margin: 20px auto;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 16px;
-            }
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .loading i {
-            font-size: 2rem;
-            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -661,9 +711,11 @@
                 </nav>
             </header>
 
-            <h2 class="section-title">طلباتي</h2>
-            <div id="ordersList">
-                <!-- الطلبات تظهر هنا -->
+            <div class="orders-container">
+                <h2 class="section-title">طلباتي</h2>
+                <div id="ordersList">
+                    <!-- الطلبات تظهر هنا -->
+                </div>
             </div>
         </div>
 
@@ -728,7 +780,7 @@
                     
                     <!-- معاينة الصورة -->
                     <div class="receipt-preview">
-                        <img id="receiptPreview" src="" alt="معاينة الإيصال">
+                        <img id="receiptPreview" src="" alt="معاينة الإيصال" style="max-width: 100%; max-height: 200px; display: none; margin-top: 10px; border-radius: 10px;">
                     </div>
                 </div>
 
@@ -754,7 +806,7 @@
         };
 
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
 
@@ -862,7 +914,7 @@
                 
             } catch (error) {
                 console.error('Error submitting order:', error);
-                alert('❌ حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.\n' + error.message);
+                alert('❌ حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.');
                 
                 const submitButton = document.querySelector('#paymentPage button[onclick="submitOrder()"]');
                 submitButton.innerHTML = 'تأكيد الطلب';
@@ -884,34 +936,34 @@
         }
 
         // =============================================
-        // الكود المصحح لقسم "طلباتي"
+        // دالة تحميل الطلبات - تعمل تماماً مثل موقع المتابعين
         // =============================================
         async function loadOrders() {
             const ordersList = document.getElementById('ordersList');
+            
+            // عرض حالة التحميل
             ordersList.innerHTML = `
-                <div class="loading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>جاري تحميل الطلبات...</p>
+                <div class="loading-state">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <p>جاري تحميل طلباتك...</p>
                 </div>
             `;
             
             try {
-                // انتظر تحميل حالة المستخدم
-                await new Promise(resolve => {
-                    const unsubscribe = auth.onAuthStateChanged(user => {
-                        unsubscribe();
-                        resolve(user);
-                    });
-                });
-                
+                // التحقق من تسجيل الدخول
                 const user = auth.currentUser;
+                
                 if (!user) {
                     ordersList.innerHTML = `
-                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                            <i class="fas fa-exclamation-triangle" style="font-size: 50px; margin-bottom: 20px; color: var(--warning);"></i>
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-user-lock"></i>
+                            </div>
                             <h3>يجب تسجيل الدخول أولاً</h3>
-                            <p style="opacity: 0.7;">قم بتسجيل الدخول لعرض طلباتك</p>
-                            <a href="login.html" class="btn" style="margin-top: 20px; display: inline-block;">
+                            <p style="margin: 15px 0;">قم بتسجيل الدخول لعرض طلباتك</p>
+                            <a href="login.html" class="btn" style="margin-top: 10px;">
                                 <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
                             </a>
                         </div>
@@ -919,320 +971,186 @@
                     return;
                 }
                 
-                console.log('جاري تحميل طلبات المستخدم:', user.uid);
+                console.log('🔄 جاري تحميل طلبات المستخدم:', user.uid);
                 
-                // جلب الطلبات الخاصة بالمستخدم فقط
-                const querySnapshot = await db.collection('orders')
-                    .where('userId', '==', user.uid)
-                    .orderBy('timestamp', 'desc')
-                    .get();
+                // محاولة جلب الطلبات بطريقتين مختلفتين
+                let querySnapshot;
                 
-                console.log('عدد الطلبات المستلمة:', querySnapshot.size);
+                try {
+                    // الطريقة الأولى: الاستعلام المباشر
+                    querySnapshot = await db.collection('orders')
+                        .where('userId', '==', user.uid)
+                        .orderBy('timestamp', 'desc')
+                        .get();
+                        
+                } catch (indexError) {
+                    console.log('⚠️ خطأ في الفهرس، جرب طريقة بديلة...');
+                    
+                    // الطريقة الثانية: جلب جميع الطلبات ثم التصفية
+                    const allOrders = await db.collection('orders')
+                        .orderBy('timestamp', 'desc')
+                        .get();
+                    
+                    // تصفية الطلبات يدوياً
+                    querySnapshot = {
+                        empty: true,
+                        forEach: function(callback) {
+                            let count = 0;
+                            allOrders.forEach(doc => {
+                                const order = doc.data();
+                                if (order.userId === user.uid || order.userEmail === user.email) {
+                                    callback(doc);
+                                    count++;
+                                }
+                            });
+                            this.empty = count === 0;
+                        }
+                    };
+                }
                 
                 if (querySnapshot.empty) {
                     ordersList.innerHTML = `
-                        <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                            <i class="fas fa-shopping-cart" style="font-size: 50px; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
                             <h3>لا توجد طلبات حالياً</h3>
-                            <p style="opacity: 0.7;">بمجرد إرسال طلبك، سيظهر هنا</p>
+                            <p style="margin: 15px 0;">بمجرد إرسال طلبك، سيظهر هنا</p>
+                            <button onclick="showPage('homePage')" class="btn" style="margin-top: 10px;">
+                                <i class="fas fa-gem"></i> تقديم طلب جديد
+                            </button>
                         </div>
                     `;
                     return;
                 }
                 
                 let ordersHTML = '';
+                let orderCount = 0;
+                
                 querySnapshot.forEach(doc => {
-// =============================================
-// دالة تحميل الطلبات المصححة - تعمل تماماً مثل موقع المتابعين
-// =============================================
-async function loadOrders() {
-    const ordersList = document.getElementById('ordersList');
-    
-    // عرض حالة التحميل
-    ordersList.innerHTML = `
-        <div style="text-align: center; padding: 40px;">
-            <i class="fas fa-spinner fa-spin" style="font-size: 40px; color: var(--primary); margin-bottom: 15px;"></i>
-            <p style="color: var(--text-light);">جاري تحميل طلباتك...</p>
-        </div>
-    `;
-    
-    try {
-        // الانتظار حتى يتم تحميل حالة المصادقة
-        await new Promise((resolve) => {
-            const unsubscribe = auth.onAuthStateChanged(user => {
-                unsubscribe();
-                resolve(user);
-            });
-        });
-        
-        const user = auth.currentUser;
-        
-        if (!user) {
-            ordersList.innerHTML = `
-                <div style="text-align: center; padding: 50px; background: rgba(255,255,255,0.05); border-radius: 15px;">
-                    <i class="fas fa-user-lock" style="font-size: 60px; color: var(--warning); margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 10px;">يرجى تسجيل الدخول</h3>
-                    <p style="color: var(--text-light); margin-bottom: 20px;">لا يمكن عرض الطلبات بدون تسجيل الدخول</p>
-                    <a href="login.html" class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-sign-in-alt"></i> الذهاب لتسجيل الدخول
-                    </a>
-                </div>
-            `;
-            return;
-        }
-        
-        console.log('📱 المستخدم الحالي:', user.email, 'ID:', user.uid);
-        
-        // إضافة فهرس لـ userId في Firebase إذا لزم الأمر
-        // انتظر ثانية قبل الاستعلام
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        // الاستعلام عن طلبات المستخدم الحالي فقط
-        const querySnapshot = await db.collection('orders')
-            .where('userId', '==', user.uid)
-            .orderBy('timestamp', 'desc')
-            .get();
-        
-        console.log('📋 عدد الطلبات المستلمة:', querySnapshot.size);
-        
-        if (querySnapshot.empty) {
-            ordersList.innerHTML = `
-                <div style="text-align: center; padding: 60px; background: rgba(255,255,255,0.05); border-radius: 20px;">
-                    <i class="fas fa-shopping-cart" style="font-size: 70px; color: var(--primary); opacity: 0.3; margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 10px; color: white;">لا توجد طلبات بعد</h3>
-                    <p style="color: var(--text-light); margin-bottom: 25px;">عندما تقوم بتقديم طلب، سيظهر هنا تلقائياً</p>
-                    <button onclick="showPage('homePage')" class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
-                        <i class="fas fa-gem"></i> تقديم طلب جديد
-                    </button>
-                </div>
-            `;
-            return;
-        }
-        
-        let ordersHTML = '';
-        let orderCount = 0;
-        
-        querySnapshot.forEach((doc) => {
-            orderCount++;
-            const order = doc.data();
-            console.log(`📦 الطلب ${orderCount}:`, order);
-            
-            const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
-            const statusText = order.status === 'تم الإرسال' ? '✅ تم الإرسال' : '⏳ قيد المراجعة';
-            const statusIcon = order.status === 'تم الإرسال' ? '✅' : '⏳';
-            
-            // بيانات الطلب مع قيم افتراضية لمنع الأخطاء
-            const orderId = order.orderId || `HEL${doc.id.slice(-6)}`;
-            const packageAmount = order.package?.amount || order.packageAmount || 'غير محدد';
-            const packagePrice = order.package?.price || order.packagePrice || 'غير محدد';
-            const linkyId = order.linkyId || order.userInput || 'غير محدد';
-            const phone = order.phone || 'غير محدد';
-            const date = order.date || new Date().toLocaleDateString('ar-EG');
-            const time = order.time || '';
-            
-            // زر عرض الإيصال
-            let receiptSection = '';
-            if (order.receiptImage) {
-                receiptSection = `
-                    <div style="margin-top: 15px;">
-                        <p><strong>صورة الإيصال:</strong></p>
-                        <img src="${order.receiptImage}" 
-                             alt="إيصال الدفع" 
-                             style="max-width: 200px; max-height: 200px; border-radius: 10px; border: 2px solid var(--primary); cursor: pointer;"
-                             onclick="showReceipt('${order.receiptImage}', '${orderId}')">
-                        <br>
-                        <button onclick="showReceipt('${order.receiptImage}', '${orderId}')" 
-                                style="margin-top: 10px; padding: 8px 15px; background: var(--info); color: white; border: none; border-radius: 8px; cursor: pointer;">
-                            <i class="fas fa-expand"></i> عرض صورة الإيصال
-                        </button>
-                    </div>
-                `;
-            } else {
-                receiptSection = '<p style="color: var(--warning);"><strong>صورة الإيصال:</strong> غير مرفوعة</p>';
-            }
-            
-            ordersHTML += `
-                <div class="order-item" style="animation: fadeIn 0.5s ease ${orderCount * 0.1}s both;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                        <div style="flex: 1;">
-                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                                    ${orderCount}
-                                </div>
+                    orderCount++;
+                    const order = doc.data();
+                    
+                    // بيانات الطلب
+                    const orderId = order.orderId || doc.id.slice(-6);
+                    const packageAmount = order.package?.amount || order.packageAmount || 'غير محدد';
+                    const packagePrice = order.package?.price || order.packagePrice || 'غير محدد';
+                    const linkyId = order.linkyId || order.userInput || 'غير محدد';
+                    const phone = order.phone || 'غير محدد';
+                    const date = order.date || 'غير محدد';
+                    const time = order.time || '';
+                    
+                    // حالة الطلب
+                    const isCompleted = order.status === 'تم الإرسال';
+                    const statusClass = isCompleted ? 'status-completed' : 'status-pending';
+                    const statusText = isCompleted ? '✅ تم الإرسال' : '⏳ قيد المراجعة';
+                    const statusIcon = isCompleted ? 'fas fa-check-circle' : 'fas fa-clock';
+                    
+                    // تاريخ الإرسال إن وجد
+                    let deliveryDate = '';
+                    if (order.completedAt) {
+                        try {
+                            deliveryDate = new Date(order.completedAt.toDate()).toLocaleString('ar-EG');
+                        } catch (e) {
+                            deliveryDate = order.completedAt;
+                        }
+                    }
+                    
+                    ordersHTML += `
+                        <div class="order-card">
+                            <div class="order-header">
                                 <div>
-                                    <strong style="font-size: 1.1rem;">طلب #${orderId}</strong>
-                                    <p style="margin-top: 5px; opacity: 0.8; font-size: 0.9rem;">
-                                        <i class="fas fa-gem" style="color: var(--primary); margin-left: 5px;"></i>
-                                        ${packageAmount} جوهرة - ${packagePrice} جنيه
-                                    </p>
+                                    <div class="order-id">طلب #${orderId}</div>
+                                    <div class="order-date">${date} ${time}</div>
+                                </div>
+                                <div class="status-badge ${statusClass}">
+                                    <i class="${statusIcon}"></i>
+                                    ${statusText}
                                 </div>
                             </div>
                             
-                            <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; margin-top: 10px;">
-                                <p style="margin: 5px 0;">
-                                    <i class="fas fa-id-card" style="color: var(--primary); width: 20px;"></i>
-                                    <strong>ID Linky:</strong> ${linkyId}
-                                </p>
-                                <p style="margin: 5px 0;">
-                                    <i class="fas fa-phone" style="color: var(--primary); width: 20px;"></i>
-                                    <strong>الهاتف:</strong> ${phone}
-                                </p>
-                                <p style="margin: 5px 0;">
-                                    <i class="fas fa-calendar" style="color: var(--primary); width: 20px;"></i>
-                                    <strong>التاريخ:</strong> ${date} ${time ? ' - ' + time : ''}
-                                </p>
+                            <div class="order-details">
+                                <div class="detail-item">
+                                    <div class="detail-label">الباقة</div>
+                                    <div class="detail-value">${packageAmount} جوهرة</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">السعر</div>
+                                    <div class="detail-value">${packagePrice} جنيه</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">ID Linky</div>
+                                    <div class="detail-value">${linkyId}</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">رقم الهاتف</div>
+                                    <div class="detail-value">${phone}</div>
+                                </div>
                             </div>
+                            
+                            ${order.receiptImage ? `
+                                <div class="receipt-section">
+                                    <div class="detail-label">صورة الإيصال</div>
+                                    <img src="${order.receiptImage}" 
+                                         class="receipt-image" 
+                                         onclick="showReceiptModal('${order.receiptImage}', '${orderId}')"
+                                         alt="إيصال الدفع">
+                                    <button onclick="showReceiptModal('${order.receiptImage}', '${orderId}')" 
+                                            class="btn" style="margin-top: 10px; padding: 8px 15px; font-size: 14px;">
+                                        <i class="fas fa-expand"></i> عرض الإيصال
+                                    </button>
+                                </div>
+                            ` : ''}
+                            
+                            ${deliveryDate ? `
+                                <div style="margin-top: 15px; padding: 10px; background: rgba(0,201,167,0.1); border-radius: 8px; border: 1px solid rgba(0,201,167,0.2);">
+                                    <p style="margin: 0; font-size: 0.9rem;">
+                                        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                                        <strong>تم الإرسال في:</strong> ${deliveryDate}
+                                    </p>
+                                </div>
+                            ` : ''}
                         </div>
-                        
-                        <div style="text-align: left; min-width: 120px;">
-                            <div class="${statusClass}" style="padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; white-space: nowrap;">
-                                ${statusIcon} ${statusText}
-                            </div>
+                    `;
+                });
+                
+                // عرض عدد الطلبات في الأعلى
+                const ordersCountHTML = `
+                    <div style="text-align: center; margin-bottom: 30px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+                        <h3 style="color: white; margin-bottom: 10px;">عدد الطلبات: ${orderCount}</h3>
+                        <p style="color: rgba(255,255,255,0.7);">جميع طلباتك تظهر هنا</p>
+                    </div>
+                `;
+                
+                ordersList.innerHTML = ordersCountHTML + ordersHTML;
+                
+                console.log(`✅ تم تحميل ${orderCount} طلبات بنجاح`);
+                
+            } catch (error) {
+                console.error('❌ خطأ في تحميل الطلبات:', error);
+                
+                ordersList.innerHTML = `
+                    <div class="error-state">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>حدث خطأ في تحميل الطلبات</h3>
+                        <p style="margin: 15px 0;">${error.message}</p>
+                        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                            <button onclick="loadOrders()" class="btn">
+                                <i class="fas fa-redo"></i> إعادة المحاولة
+                            </button>
+                            <button onclick="showPage('homePage')" class="btn" style="background: var(--secondary);">
+                                <i class="fas fa-home"></i> العودة للرئيسية
+                            </button>
                         </div>
                     </div>
-                    
-                    ${receiptSection}
-                    
-                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
-                        <p style="font-size: 0.9rem; color: var(--text-light);">
-                            <i class="fas fa-info-circle" style="color: var(--info);"></i>
-                            سيتم مراجعة طلبك قريباً من قبل فريق الدعم
-                        </p>
-                    </div>
-                </div>
-            `;
-        });
-        
-        // إضافة عنوان عدد الطلبات
-        ordersList.innerHTML = `
-            <div style="margin-bottom: 20px; padding: 15px; background: rgba(0, 201, 167, 0.1); border-radius: 12px; border: 1px solid rgba(0, 201, 167, 0.2);">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
-                        ${orderCount}
-                    </div>
-                    <div>
-                        <h4 style="margin: 0; color: white;">طلباتك (${orderCount})</h4>
-                        <p style="margin: 5px 0 0 0; font-size: 0.9rem; opacity: 0.8;">جميع طلباتك تظهر هنا</p>
-                    </div>
-                </div>
-            </div>
-            ${ordersHTML}
-        `;
-        
-        console.log('✅ تم تحميل الطلبات بنجاح');
-        
-    } catch (error) {
-        console.error('❌ خطأ في تحميل الطلبات:', error);
-        
-        // رسالة خطأ مفصلة للمستخدم
-        let errorMessage = '';
-        if (error.code === 'failed-precondition') {
-            errorMessage = 'يحتاج الاستعلام إلى فهرس. جاري إنشاء الفهرس تلقائياً...';
-            // محاولة إنشاء الفهرس يدوياً
-            createFirestoreIndex();
-        } else if (error.code === 'permission-denied') {
-            errorMessage = 'لا تملك صلاحية عرض الطلبات. تأكد من تسجيل الدخول.';
-        } else {
-            errorMessage = `خطأ تقني: ${error.message}`;
+                `;
+            }
         }
-        
-        ordersList.innerHTML = `
-            <div style="text-align: center; padding: 50px; background: rgba(255,107,107,0.1); border-radius: 15px; border: 1px solid rgba(255,107,107,0.2);">
-                <div style="font-size: 70px; color: var(--danger); margin-bottom: 20px;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <h3 style="color: white; margin-bottom: 10px;">تعذر تحميل الطلبات</h3>
-                <p style="color: var(--text-light); margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto;">
-                    ${errorMessage}
-                </p>
-                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                    <button onclick="loadOrders()" class="btn" style="background: var(--primary);">
-                        <i class="fas fa-redo"></i> إعادة المحاولة
-                    </button>
-                    <button onclick="window.location.reload()" class="btn" style="background: var(--secondary);">
-                        <i class="fas fa-sync"></i> تحديث الصفحة
-                    </button>
-                    <button onclick="showPage('homePage')" class="btn" style="background: var(--info);">
-                        <i class="fas fa-home"></i> العودة للرئيسية
-                    </button>
-                </div>
-                <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px; font-size: 0.9rem;">
-                    <p style="margin: 5px 0; color: var(--text-light);">
-                        <i class="fas fa-lightbulb"></i> نصائح:
-                    </p>
-                    <ul style="text-align: right; margin: 10px 0; padding-right: 20px; color: var(--text-light);">
-                        <li>تأكد من اتصال الإنترنت</li>
-                        <li>جرب تسجيل الخروج ثم الدخول مرة أخرى</li>
-                        <li>إذا استمرت المشكلة، اتصل بالدعم الفني</li>
-                    </ul>
-                </div>
-            </div>
-        `;
-    }
-}
 
-// دالة مساعدة لإنشاء فهرس Firebase
-function createFirestoreIndex() {
-    console.log('🛠️ محاولة إنشاء فهرس Firebase...');
-    // هذه رسالة للمطور، في الواقع يجب إنشاء الفهرس من Firebase Console
-    alert('⚠️ يحتاج النظام إلى فهرس في Firebase. يرجى إنشاء الفهرس التالي:\n\nCollection: orders\nFields: userId (Ascending), timestamp (Descending)');
-}
-
-// دالة لعرض صورة الإيصال
-function showReceipt(base64Image, orderId) {
-    const modal = document.createElement('div');
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.95);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 99999;
-        animation: fadeIn 0.3s ease;
-    `;
-    
-    modal.innerHTML = `
-        <div style="position: relative; max-width: 90vw; max-height: 90vh;">
-            <button onclick="this.parentElement.parentElement.remove()" 
-                    style="position: absolute; top: -45px; right: -5px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; z-index: 100000;">
-                <i class="fas fa-times"></i>
-            </button>
-            <div style="position: relative;">
-                <img src="${base64Image}" 
-                     alt="إيصال طلب ${orderId}" 
-                     style="max-width: 100%; max-height: 80vh; border-radius: 15px; border: 3px solid var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                <div style="position: absolute; bottom: -40px; left: 0; right: 0; text-align: center;">
-                    <p style="color: white; font-size: 1rem; background: rgba(0,0,0,0.7); padding: 5px 15px; border-radius: 20px; display: inline-block;">
-                        <i class="fas fa-receipt"></i> إيصال طلب #${orderId}
-                    </p>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    // إغلاق بالنقر خارج الصورة أو بالزر ESC
-    modal.onclick = function(e) {
-        if (e.target === modal) {
-            modal.remove();
-        }
-    };
-    
-    document.addEventListener('keydown', function closeModal(e) {
-        if (e.key === 'Escape') {
-            modal.remove();
-            document.removeEventListener('keydown', closeModal);
-        }
-    });
-}
-
-        // دالة لعرض صورة الإيصال في نافذة منبثقة
-        function showReceipt(base64Image, orderId) {
+        // دالة لعرض صورة الإيصال في modal
+        function showReceiptModal(imageUrl, orderId) {
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -1240,45 +1158,56 @@ function showReceipt(base64Image, orderId) {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0,0,0,0.9);
+                background: rgba(0,0,0,0.95);
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                z-index: 9999;
-                backdrop-filter: blur(10px);
+                z-index: 99999;
+                animation: fadeIn 0.3s ease;
             `;
             
             modal.innerHTML = `
-                <div style="position: relative; max-width: 90%; max-height: 90%;">
+                <div style="position: relative; max-width: 90vw; max-height: 90vh;">
                     <button onclick="this.parentElement.parentElement.remove()" 
-                            style="position: absolute; top: -40px; right: -10px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 18px;">
-                        ✕
+                            style="position: absolute; top: -45px; right: -5px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; z-index: 100000;">
+                        <i class="fas fa-times"></i>
                     </button>
-                    <img src="${base64Image}" 
-                         alt="إيصال طلب ${orderId}" 
-                         style="max-width: 100%; max-height: 80vh; border-radius: 10px; border: 2px solid var(--primary);">
-                    <p style="text-align: center; margin-top: 10px; color: white;">إيصال طلب ${orderId}</p>
+                    <div style="position: relative;">
+                        <img src="${imageUrl}" 
+                             alt="إيصال طلب ${orderId}" 
+                             style="max-width: 100%; max-height: 80vh; border-radius: 15px; border: 3px solid var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <div style="position: absolute; bottom: -40px; left: 0; right: 0; text-align: center;">
+                            <p style="color: white; font-size: 1rem; background: rgba(0,0,0,0.7); padding: 5px 15px; border-radius: 20px; display: inline-block;">
+                                <i class="fas fa-receipt"></i> إيصال طلب #${orderId}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             `;
             
             document.body.appendChild(modal);
             
-            // إغلاق النافذة عند النقر خارج الصورة
-            modal.addEventListener('click', function(e) {
+            // إغلاق بالنقر خارج الصورة
+            modal.onclick = function(e) {
                 if (e.target === modal) {
-                    document.body.removeChild(modal);
+                    modal.remove();
+                }
+            };
+            
+            // إغلاق بالزر ESC
+            document.addEventListener('keydown', function closeModal(e) {
+                if (e.key === 'Escape') {
+                    modal.remove();
+                    document.removeEventListener('keydown', closeModal);
                 }
             });
         }
 
         function downloadApp() {
-            const appDownloadUrl = 'app-release.apk';
-            
             const link = document.createElement('a');
-            link.href = appDownloadUrl;
+            link.href = 'app-release.apk';
             link.download = 'HelmyStor.apk';
             link.style.display = 'none';
-            
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -1298,20 +1227,18 @@ function showReceipt(base64Image, orderId) {
             if (confirm('هل تريد تسجيل الخروج؟')) {
                 auth.signOut().then(() => {
                     window.location.href = "login.html";
-                }).catch((error) => {
-                    console.error('خطأ في تسجيل الخروج:', error);
                 });
             }
         }
 
+        // تحميل تلقائي
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Helmy Stor Started Successfully!');
-            // تحميل الطلبات تلقائياً إذا كان المستخدم مسجل دخول
-            auth.onAuthStateChanged((user) => {
-                if (user && document.getElementById('ordersPage').classList.contains('active')) {
-                    loadOrders();
-                }
-            });
+            console.log('✅ Helmy Stor Started Successfully!');
+            
+            // تحميل الطلبات إذا كانت صفحة الطلبات نشطة
+            if (document.getElementById('ordersPage').classList.contains('active')) {
+                loadOrders();
+            }
         });
     </script>
 </body>
