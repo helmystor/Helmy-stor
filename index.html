@@ -942,61 +942,294 @@
                 
                 let ordersHTML = '';
                 querySnapshot.forEach(doc => {
-                    const order = doc.data();
-                    console.log('الطلب:', order);
-                    
-                    const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
-                    const statusText = order.status === 'تم الإرسال' ? '✅ تم الإرسال' : '⏳ قيد المراجعة';
-                    
-                    // التحقق من وجود بيانات الباقة
-                    const packageAmount = order.package?.amount || 'غير محدد';
-                    const packagePrice = order.package?.price || 'غير محدد';
-                    const linkyId = order.linkyId || 'غير محدد';
-                    const phone = order.phone || 'غير محدد';
-                    const date = order.date || 'غير محدد';
-                    const time = order.time || '';
-                    const orderId = order.orderId || doc.id.slice(-6);
-                    
-                    // إنشاء زر لعرض صورة الإيصال
-                    const receiptButton = order.receiptImage ? 
-                        `<button class="btn" style="padding: 8px 15px; font-size: 14px; margin-top: 10px; background: linear-gradient(45deg, var(--primary), var(--secondary));" onclick="showReceipt('${order.receiptImage}', '${orderId}')">
-                            <i class="fas fa-image"></i> عرض الإيصال
-                        </button>` : 
-                        '<span style="color: var(--warning);">لا يوجد إيصال</span>';
-                    
-                    ordersHTML += `
-                        <div class="order-item">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <div>
-                                    <strong>طلب #${orderId}</strong>
-                                    <p style="margin-top: 5px; opacity: 0.8;">${packageAmount} جوهرة - ${packagePrice} جنيه</p>
-                                </div>
-                                <span class="${statusClass}">${statusText}</span>
-                            </div>
-                            <p><strong>ID Linky:</strong> ${linkyId}</p>
-                            <p><strong>رقم الهاتف:</strong> ${phone}</p>
-                            <p><strong>تاريخ الطلب:</strong> ${date} ${time || ''}</p>
-                            <p><strong>صورة الإيصال:</strong><br>${receiptButton}</p>
-                        </div>
-                    `;
-                });
-                
-                ordersList.innerHTML = ordersHTML;
-                
-            } catch (error) {
-                console.error('خطأ في تحميل الطلبات:', error);
-                ordersList.innerHTML = `
-                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 15px; color: var(--danger);">
-                        <i class="fas fa-exclamation-circle" style="font-size: 50px; margin-bottom: 20px;"></i>
-                        <h3>حدث خطأ في تحميل الطلبات</h3>
-                        <p style="opacity: 0.7;">${error.message}</p>
-                        <button onclick="loadOrders()" class="btn" style="margin-top: 20px;">
-                            <i class="fas fa-redo"></i> إعادة المحاولة
+// =============================================
+// دالة تحميل الطلبات المصححة - تعمل تماماً مثل موقع المتابعين
+// =============================================
+async function loadOrders() {
+    const ordersList = document.getElementById('ordersList');
+    
+    // عرض حالة التحميل
+    ordersList.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 40px; color: var(--primary); margin-bottom: 15px;"></i>
+            <p style="color: var(--text-light);">جاري تحميل طلباتك...</p>
+        </div>
+    `;
+    
+    try {
+        // الانتظار حتى يتم تحميل حالة المصادقة
+        await new Promise((resolve) => {
+            const unsubscribe = auth.onAuthStateChanged(user => {
+                unsubscribe();
+                resolve(user);
+            });
+        });
+        
+        const user = auth.currentUser;
+        
+        if (!user) {
+            ordersList.innerHTML = `
+                <div style="text-align: center; padding: 50px; background: rgba(255,255,255,0.05); border-radius: 15px;">
+                    <i class="fas fa-user-lock" style="font-size: 60px; color: var(--warning); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 10px;">يرجى تسجيل الدخول</h3>
+                    <p style="color: var(--text-light); margin-bottom: 20px;">لا يمكن عرض الطلبات بدون تسجيل الدخول</p>
+                    <a href="login.html" class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-sign-in-alt"></i> الذهاب لتسجيل الدخول
+                    </a>
+                </div>
+            `;
+            return;
+        }
+        
+        console.log('📱 المستخدم الحالي:', user.email, 'ID:', user.uid);
+        
+        // إضافة فهرس لـ userId في Firebase إذا لزم الأمر
+        // انتظر ثانية قبل الاستعلام
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // الاستعلام عن طلبات المستخدم الحالي فقط
+        const querySnapshot = await db.collection('orders')
+            .where('userId', '==', user.uid)
+            .orderBy('timestamp', 'desc')
+            .get();
+        
+        console.log('📋 عدد الطلبات المستلمة:', querySnapshot.size);
+        
+        if (querySnapshot.empty) {
+            ordersList.innerHTML = `
+                <div style="text-align: center; padding: 60px; background: rgba(255,255,255,0.05); border-radius: 20px;">
+                    <i class="fas fa-shopping-cart" style="font-size: 70px; color: var(--primary); opacity: 0.3; margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 10px; color: white;">لا توجد طلبات بعد</h3>
+                    <p style="color: var(--text-light); margin-bottom: 25px;">عندما تقوم بتقديم طلب، سيظهر هنا تلقائياً</p>
+                    <button onclick="showPage('homePage')" class="btn" style="display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-gem"></i> تقديم طلب جديد
+                    </button>
+                </div>
+            `;
+            return;
+        }
+        
+        let ordersHTML = '';
+        let orderCount = 0;
+        
+        querySnapshot.forEach((doc) => {
+            orderCount++;
+            const order = doc.data();
+            console.log(`📦 الطلب ${orderCount}:`, order);
+            
+            const statusClass = order.status === 'تم الإرسال' ? 'status-completed' : 'status-pending';
+            const statusText = order.status === 'تم الإرسال' ? '✅ تم الإرسال' : '⏳ قيد المراجعة';
+            const statusIcon = order.status === 'تم الإرسال' ? '✅' : '⏳';
+            
+            // بيانات الطلب مع قيم افتراضية لمنع الأخطاء
+            const orderId = order.orderId || `HEL${doc.id.slice(-6)}`;
+            const packageAmount = order.package?.amount || order.packageAmount || 'غير محدد';
+            const packagePrice = order.package?.price || order.packagePrice || 'غير محدد';
+            const linkyId = order.linkyId || order.userInput || 'غير محدد';
+            const phone = order.phone || 'غير محدد';
+            const date = order.date || new Date().toLocaleDateString('ar-EG');
+            const time = order.time || '';
+            
+            // زر عرض الإيصال
+            let receiptSection = '';
+            if (order.receiptImage) {
+                receiptSection = `
+                    <div style="margin-top: 15px;">
+                        <p><strong>صورة الإيصال:</strong></p>
+                        <img src="${order.receiptImage}" 
+                             alt="إيصال الدفع" 
+                             style="max-width: 200px; max-height: 200px; border-radius: 10px; border: 2px solid var(--primary); cursor: pointer;"
+                             onclick="showReceipt('${order.receiptImage}', '${orderId}')">
+                        <br>
+                        <button onclick="showReceipt('${order.receiptImage}', '${orderId}')" 
+                                style="margin-top: 10px; padding: 8px 15px; background: var(--info); color: white; border: none; border-radius: 8px; cursor: pointer;">
+                            <i class="fas fa-expand"></i> عرض صورة الإيصال
                         </button>
                     </div>
                 `;
+            } else {
+                receiptSection = '<p style="color: var(--warning);"><strong>صورة الإيصال:</strong> غير مرفوعة</p>';
             }
+            
+            ordersHTML += `
+                <div class="order-item" style="animation: fadeIn 0.5s ease ${orderCount * 0.1}s both;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
+                        <div style="flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                                    ${orderCount}
+                                </div>
+                                <div>
+                                    <strong style="font-size: 1.1rem;">طلب #${orderId}</strong>
+                                    <p style="margin-top: 5px; opacity: 0.8; font-size: 0.9rem;">
+                                        <i class="fas fa-gem" style="color: var(--primary); margin-left: 5px;"></i>
+                                        ${packageAmount} جوهرة - ${packagePrice} جنيه
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; margin-top: 10px;">
+                                <p style="margin: 5px 0;">
+                                    <i class="fas fa-id-card" style="color: var(--primary); width: 20px;"></i>
+                                    <strong>ID Linky:</strong> ${linkyId}
+                                </p>
+                                <p style="margin: 5px 0;">
+                                    <i class="fas fa-phone" style="color: var(--primary); width: 20px;"></i>
+                                    <strong>الهاتف:</strong> ${phone}
+                                </p>
+                                <p style="margin: 5px 0;">
+                                    <i class="fas fa-calendar" style="color: var(--primary); width: 20px;"></i>
+                                    <strong>التاريخ:</strong> ${date} ${time ? ' - ' + time : ''}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: left; min-width: 120px;">
+                            <div class="${statusClass}" style="padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; white-space: nowrap;">
+                                ${statusIcon} ${statusText}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${receiptSection}
+                    
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
+                        <p style="font-size: 0.9rem; color: var(--text-light);">
+                            <i class="fas fa-info-circle" style="color: var(--info);"></i>
+                            سيتم مراجعة طلبك قريباً من قبل فريق الدعم
+                        </p>
+                    </div>
+                </div>
+            `;
+        });
+        
+        // إضافة عنوان عدد الطلبات
+        ordersList.innerHTML = `
+            <div style="margin-bottom: 20px; padding: 15px; background: rgba(0, 201, 167, 0.1); border-radius: 12px; border: 1px solid rgba(0, 201, 167, 0.2);">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                        ${orderCount}
+                    </div>
+                    <div>
+                        <h4 style="margin: 0; color: white;">طلباتك (${orderCount})</h4>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9rem; opacity: 0.8;">جميع طلباتك تظهر هنا</p>
+                    </div>
+                </div>
+            </div>
+            ${ordersHTML}
+        `;
+        
+        console.log('✅ تم تحميل الطلبات بنجاح');
+        
+    } catch (error) {
+        console.error('❌ خطأ في تحميل الطلبات:', error);
+        
+        // رسالة خطأ مفصلة للمستخدم
+        let errorMessage = '';
+        if (error.code === 'failed-precondition') {
+            errorMessage = 'يحتاج الاستعلام إلى فهرس. جاري إنشاء الفهرس تلقائياً...';
+            // محاولة إنشاء الفهرس يدوياً
+            createFirestoreIndex();
+        } else if (error.code === 'permission-denied') {
+            errorMessage = 'لا تملك صلاحية عرض الطلبات. تأكد من تسجيل الدخول.';
+        } else {
+            errorMessage = `خطأ تقني: ${error.message}`;
         }
+        
+        ordersList.innerHTML = `
+            <div style="text-align: center; padding: 50px; background: rgba(255,107,107,0.1); border-radius: 15px; border: 1px solid rgba(255,107,107,0.2);">
+                <div style="font-size: 70px; color: var(--danger); margin-bottom: 20px;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 style="color: white; margin-bottom: 10px;">تعذر تحميل الطلبات</h3>
+                <p style="color: var(--text-light); margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    ${errorMessage}
+                </p>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="loadOrders()" class="btn" style="background: var(--primary);">
+                        <i class="fas fa-redo"></i> إعادة المحاولة
+                    </button>
+                    <button onclick="window.location.reload()" class="btn" style="background: var(--secondary);">
+                        <i class="fas fa-sync"></i> تحديث الصفحة
+                    </button>
+                    <button onclick="showPage('homePage')" class="btn" style="background: var(--info);">
+                        <i class="fas fa-home"></i> العودة للرئيسية
+                    </button>
+                </div>
+                <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px; font-size: 0.9rem;">
+                    <p style="margin: 5px 0; color: var(--text-light);">
+                        <i class="fas fa-lightbulb"></i> نصائح:
+                    </p>
+                    <ul style="text-align: right; margin: 10px 0; padding-right: 20px; color: var(--text-light);">
+                        <li>تأكد من اتصال الإنترنت</li>
+                        <li>جرب تسجيل الخروج ثم الدخول مرة أخرى</li>
+                        <li>إذا استمرت المشكلة، اتصل بالدعم الفني</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// دالة مساعدة لإنشاء فهرس Firebase
+function createFirestoreIndex() {
+    console.log('🛠️ محاولة إنشاء فهرس Firebase...');
+    // هذه رسالة للمطور، في الواقع يجب إنشاء الفهرس من Firebase Console
+    alert('⚠️ يحتاج النظام إلى فهرس في Firebase. يرجى إنشاء الفهرس التالي:\n\nCollection: orders\nFields: userId (Ascending), timestamp (Descending)');
+}
+
+// دالة لعرض صورة الإيصال
+function showReceipt(base64Image, orderId) {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+        animation: fadeIn 0.3s ease;
+    `;
+    
+    modal.innerHTML = `
+        <div style="position: relative; max-width: 90vw; max-height: 90vh;">
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="position: absolute; top: -45px; right: -5px; background: var(--danger); color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; z-index: 100000;">
+                <i class="fas fa-times"></i>
+            </button>
+            <div style="position: relative;">
+                <img src="${base64Image}" 
+                     alt="إيصال طلب ${orderId}" 
+                     style="max-width: 100%; max-height: 80vh; border-radius: 15px; border: 3px solid var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div style="position: absolute; bottom: -40px; left: 0; right: 0; text-align: center;">
+                    <p style="color: white; font-size: 1rem; background: rgba(0,0,0,0.7); padding: 5px 15px; border-radius: 20px; display: inline-block;">
+                        <i class="fas fa-receipt"></i> إيصال طلب #${orderId}
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // إغلاق بالنقر خارج الصورة أو بالزر ESC
+    modal.onclick = function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    };
+    
+    document.addEventListener('keydown', function closeModal(e) {
+        if (e.key === 'Escape') {
+            modal.remove();
+            document.removeEventListener('keydown', closeModal);
+        }
+    });
+}
 
         // دالة لعرض صورة الإيصال في نافذة منبثقة
         function showReceipt(base64Image, orderId) {
