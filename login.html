@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الدخول | Helmy Stor</title>
-  <link rel="icon" type="image/png" href="helmy-logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="1.png">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -16,91 +17,75 @@
       font-family: 'Tajawal', sans-serif;
     }
 
-    :root {
-      --primary: #7B1FA2;
-      --secondary: #CE93D8;
-      --accent: #BA68C8;
-      --dark: #1A1A2E;
-      --light: #F3E5F5;
-    }
-
     body {
       height: 100vh;
-      background: linear-gradient(270deg, var(--primary), #4A0072, var(--dark));
-      background-size: 600% 600%;
-      animation: bgMove 10s ease infinite;
+      background: linear-gradient(135deg, #1A1A2E 0%, #2D1B3E 100%);
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
     }
 
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     .card {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 25px;
       padding: 40px 30px;
       text-align: center;
-      width: 330px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+      width: 350px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .logo {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
       overflow: hidden;
       margin: 0 auto 20px;
-      box-shadow: 0 0 20px rgba(123, 31, 162, 0.5);
-      animation: float 3s ease-in-out infinite;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 0 20px rgba(0, 201, 167, 0.4);
+      background: linear-gradient(135deg, #00C9A7, #4A90E2);
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .logo img {
-      width: 70%;
-      height: 70%;
-      object-fit: contain;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      width: 70px;
+      height: 70px;
+      border-radius: 15px;
+      object-fit: cover;
     }
 
     h2 {
-      background: linear-gradient(to right, var(--accent), var(--secondary));
+      background: linear-gradient(to right, #00C9A7, #4A90E2);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       margin-bottom: 25px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: right;
     }
 
     input {
       width: 100%;
-      padding: 12px;
+      padding: 15px;
       margin: 10px 0;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
       color: white;
-      font-size: 15px;
+      font-size: 16px;
       outline: none;
-      transition: 0.3s;
+      transition: all 0.3s ease;
     }
 
     input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(186, 104, 200, 0.3);
+      border-color: #00C9A7;
+      box-shadow: 0 0 0 2px rgba(0, 201, 167, 0.3);
     }
 
     input::placeholder {
@@ -109,113 +94,78 @@
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 15px;
       border: none;
-      border-radius: 10px;
-      background: linear-gradient(to right, var(--primary), var(--accent));
+      border-radius: 12px;
+      background: linear-gradient(to right, #00C9A7, #4A90E2);
       color: white;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
       margin-top: 10px;
-      transition: 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    button:hover::before {
-      left: 100%;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 201, 167, 0.4);
     }
 
     button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(123, 31, 162, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 201, 167, 0.6);
+    }
+
+    .error-message {
+      color: #FF8066;
+      margin-top: 10px;
+      font-size: 14px;
+      display: none;
     }
 
     p {
-      margin-top: 15px;
+      margin-top: 20px;
       font-size: 0.9rem;
-      color: var(--light);
-      opacity: 0.8;
+      color: #ccc;
     }
 
     a {
-      color: var(--accent);
+      color: #00C9A7;
       text-decoration: none;
       font-weight: 700;
-      transition: 0.3s;
+      transition: all 0.3s ease;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: #4A90E2;
     }
 
-    .alert {
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-size: 0.9rem;
-      display: none;
-    }
-
-    .alert.error {
-      background: rgba(255, 107, 107, 0.1);
-      color: #ff6b6b;
-      border: 1px solid rgba(255, 107, 107, 0.3);
-    }
-
-    .alert.success {
-      background: rgba(0, 201, 167, 0.1);
-      color: #00C9A7;
-      border: 1px solid rgba(0, 201, 167, 0.3);
-    }
-
-    .loading {
-      display: none;
-      margin-top: 10px;
-    }
-
-    .loading i {
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .forgot-password {
+      display: block;
+      text-align: left;
+      margin-bottom: 15px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="logo">
-      <img src="helmy-logo.png" alt="Helmy Stor Logo">
+      <img src="1.png" alt="Helmy Stor Logo">
     </div>
     <h2>تسجيل الدخول</h2>
 
-    <input type="email" id="email" placeholder="البريد الإلكتروني">
-    <input type="password" id="password" placeholder="كلمة المرور">
-    
-    <div class="alert error" id="errorMessage"></div>
-    <div class="alert success" id="successMessage"></div>
-    
-    <div class="loading" id="loading">
-      <i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...
+    <div class="input-group">
+      <input type="email" id="email" placeholder="البريد الإلكتروني" required>
     </div>
     
+    <div class="input-group">
+      <input type="password" id="password" placeholder="كلمة المرور" required>
+    </div>
+    
+    <a href="#" class="forgot-password" onclick="forgotPassword()">نسيت كلمة المرور؟</a>
+    
     <button onclick="login()">تسجيل الدخول</button>
-
-    <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب</a></p>
+    
+    <div id="errorMessage" class="error-message"></div>
+    
+    <p>ما عندكش حساب؟ <a href="signup.html">إنشاء حساب جديد</a></p>
   </div>
 
   <!-- Firebase -->
@@ -223,15 +173,14 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <script>
-    // ✅ تكوين Firebase - Helmy Stor
+    // Firebase Configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyBoY17p1utIAzGcxtT9ecWz07N7wOMB9XI",
-      authDomain: "helmy-48b8e.firebaseapp.com",
-      projectId: "helmy-48b8e",
-      storageBucket: "helmy-48b8e.firebasestorage.app",
-      messagingSenderId: "410548528210",
-      appId: "1:410548528210:web:2185ffd8e14018683a6b8b",
-      measurementId: "G-5GJBGQ09LG"
+      apiKey: "AIzaSyD4tDA25irl5qavqdMfJD9_e7AbMleUC6c",
+      authDomain: "helmy-f0cd2.firebaseapp.com",
+      projectId: "helmy-f0cd2",
+      storageBucket: "helmy-f0cd2.firebasestorage.app",
+      messagingSenderId: "383002018546",
+      appId: "1:383002018546:web:f5410ea854a3a007e8866b"
     };
 
     // Initialize Firebase
@@ -239,111 +188,86 @@
     const auth = firebase.auth();
 
     function showError(message) {
-      const errorElement = document.getElementById('errorMessage');
-      errorElement.textContent = message;
-      errorElement.style.display = 'block';
-      document.getElementById('successMessage').style.display = 'none';
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+      
+      setTimeout(() => {
+        errorDiv.style.display = 'none';
+      }, 5000);
     }
 
-    function showSuccess(message) {
-      const successElement = document.getElementById('successMessage');
-      successElement.textContent = message;
-      successElement.style.display = 'block';
-      document.getElementById('errorMessage').style.display = 'none';
-    }
-
-    function showLoading() {
-      document.getElementById('loading').style.display = 'block';
-    }
-
-    function hideLoading() {
-      document.getElementById('loading').style.display = 'none';
-    }
-
-    async function login() {
-      const email = document.getElementById("email").value.trim();
+    function login() {
+      const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-
-      // التحقق من المدخلات
+      
       if (!email || !password) {
-        showError("يرجى ملء جميع الحقول");
+        showError('يرجى ملء جميع الحقول');
         return;
       }
-
-      if (!email.includes('@') || !email.includes('.')) {
-        showError("يرجى إدخال بريد إلكتروني صحيح");
-        return;
-      }
-
-      showLoading();
-      document.getElementById('errorMessage').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'none';
-
-      try {
-        const userCredential = await auth.signInWithEmailAndPassword(email, password);
-        const user = userCredential.user;
-        
-        hideLoading();
-        
-        // حفظ بيانات المستخدم
-        localStorage.setItem("helmy_user_id", user.uid);
-        localStorage.setItem("helmy_user_email", user.email);
-        
-        showSuccess("✅ تم تسجيل الدخول بنجاح!");
-        
-        // الانتقال إلى الصفحة الرئيسية
-        setTimeout(() => {
-          window.location.href = "index.html";
-        }, 1500);
-        
-      } catch (error) {
-        hideLoading();
-        
-        let errorMessage = "حدث خطأ في تسجيل الدخول";
-        
-        switch(error.code) {
-          case 'auth/user-not-found':
-            errorMessage = "البريد الإلكتروني غير مسجل";
-            break;
-          case 'auth/wrong-password':
-            errorMessage = "كلمة المرور غير صحيحة";
-            break;
-          case 'auth/invalid-email':
-            errorMessage = "بريد إلكتروني غير صحيح";
-            break;
-          case 'auth/user-disabled':
-            errorMessage = "هذا الحساب معطل";
-            break;
-          case 'auth/too-many-requests':
-            errorMessage = "محاولات دخول كثيرة، حاول لاحقاً";
-            break;
-          case 'auth/network-request-failed':
-            errorMessage = "خطأ في الاتصال بالإنترنت";
-            break;
-          default:
-            errorMessage = "حدث خطأ غير متوقع. حاول مرة أخرى";
-        }
-        
-        showError(errorMessage);
-        console.error('Login error:', error);
-      }
+      
+      const button = document.querySelector('button');
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...';
+      button.disabled = true;
+      
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // تسجيل الدخول ناجح
+          button.innerHTML = '<i class="fas fa-check"></i> تم تسجيل الدخول';
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 1000);
+        })
+        .catch((error) => {
+          button.innerHTML = 'تسجيل الدخول';
+          button.disabled = false;
+          
+          let errorMessage = '';
+          switch(error.code) {
+            case 'auth/user-not-found':
+              errorMessage = 'المستخدم غير موجود';
+              break;
+            case 'auth/wrong-password':
+              errorMessage = 'كلمة المرور غير صحيحة';
+              break;
+            case 'auth/invalid-email':
+              errorMessage = 'البريد الإلكتروني غير صالح';
+              break;
+            case 'auth/user-disabled':
+              errorMessage = 'هذا الحساب معطل';
+              break;
+            case 'auth/too-many-requests':
+              errorMessage = 'محاولات كثيرة جداً، حاول لاحقاً';
+              break;
+            default:
+              errorMessage = 'حدث خطأ، حاول مرة أخرى';
+          }
+          showError(errorMessage);
+        });
     }
 
-    // تفعيل الدخول عند الضغط على Enter
-    document.addEventListener('keypress', function(event) {
-      if (event.key === 'Enter') {
+    function forgotPassword() {
+      const email = document.getElementById("email").value;
+      
+      if (!email) {
+        showError('يرجى إدخال البريد الإلكتروني أولاً');
+        return;
+      }
+      
+      auth.sendPasswordResetEmail(email)
+        .then(() => {
+          alert('تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني');
+        })
+        .catch((error) => {
+          showError('حدث خطأ في إرسال رابط إعادة التعيين');
+        });
+    }
+
+    // السماح بالإدخال بالضغط على Enter
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
         login();
       }
-    });
-
-    // التحقق إذا كان المستخدم مسجل دخول بالفعل
-    document.addEventListener('DOMContentLoaded', function() {
-      auth.onAuthStateChanged((user) => {
-        if (user) {
-          // إذا كان مسجل دخول بالفعل، تحويل إلى الصفحة الرئيسية
-          window.location.href = "index.html";
-        }
-      });
     });
   </script>
 </body>
