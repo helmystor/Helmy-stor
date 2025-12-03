@@ -6,6 +6,7 @@
   <title>تسجيل الدخول | Helmy Stor</title>
   <link rel="icon" type="image/png" href="helmy-logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
     * {
@@ -160,9 +161,7 @@
       text-decoration: underline;
     }
 
-    .error-message {
-      color: #ff6b6b;
-      background: rgba(255, 107, 107, 0.1);
+    .alert {
       padding: 10px;
       border-radius: 8px;
       margin-top: 10px;
@@ -170,14 +169,16 @@
       display: none;
     }
 
-    .success-message {
-      color: #00C9A7;
+    .alert.error {
+      background: rgba(255, 107, 107, 0.1);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 107, 107, 0.3);
+    }
+
+    .alert.success {
       background: rgba(0, 201, 167, 0.1);
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-size: 0.9rem;
-      display: none;
+      color: #00C9A7;
+      border: 1px solid rgba(0, 201, 167, 0.3);
     }
 
     .loading {
@@ -205,8 +206,8 @@
     <input type="email" id="email" placeholder="البريد الإلكتروني">
     <input type="password" id="password" placeholder="كلمة المرور">
     
-    <div class="error-message" id="errorMessage"></div>
-    <div class="success-message" id="successMessage"></div>
+    <div class="alert error" id="errorMessage"></div>
+    <div class="alert success" id="successMessage"></div>
     
     <div class="loading" id="loading">
       <i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...
@@ -222,14 +223,15 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <script>
-    // ✅ Firebase Configuration - سيرفر Roma&Knzy الحالي
+    // ✅ تكوين Firebase - Helmy Stor
     const firebaseConfig = {
-      apiKey: "AIzaSyA-Pi_g3EUeSgOeVii_OqodpDguMMyPknY",
-      authDomain: "romalshop.firebaseapp.com",
-      projectId: "romalshop",
-      storageBucket: "romalshop.firebasestorage.app",
-      messagingSenderId: "830369715807",
-      appId: "1:830369715807:web:fbfde9ded9daac6eb46dea"
+      apiKey: "AIzaSyBoY17p1utIAzGcxtT9ecWz07N7wOMB9XI",
+      authDomain: "helmy-48b8e.firebaseapp.com",
+      projectId: "helmy-48b8e",
+      storageBucket: "helmy-48b8e.firebasestorage.app",
+      messagingSenderId: "410548528210",
+      appId: "1:410548528210:web:2185ffd8e14018683a6b8b",
+      measurementId: "G-5GJBGQ09LG"
     };
 
     // Initialize Firebase
@@ -248,11 +250,6 @@
       successElement.textContent = message;
       successElement.style.display = 'block';
       document.getElementById('errorMessage').style.display = 'none';
-    }
-
-    function hideMessages() {
-      document.getElementById('errorMessage').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'none';
     }
 
     function showLoading() {
@@ -278,8 +275,9 @@
         return;
       }
 
-      hideMessages();
       showLoading();
+      document.getElementById('errorMessage').style.display = 'none';
+      document.getElementById('successMessage').style.display = 'none';
 
       try {
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
@@ -287,16 +285,16 @@
         
         hideLoading();
         
-        // حفظ بيانات المستخدم في localStorage
+        // حفظ بيانات المستخدم
         localStorage.setItem("helmy_user_id", user.uid);
         localStorage.setItem("helmy_user_email", user.email);
         
         showSuccess("✅ تم تسجيل الدخول بنجاح!");
         
-        // الانتقال إلى الصفحة الرئيسية بعد 2 ثانية
+        // الانتقال إلى الصفحة الرئيسية
         setTimeout(() => {
           window.location.href = "index.html";
-        }, 2000);
+        }, 1500);
         
       } catch (error) {
         hideLoading();
@@ -338,14 +336,8 @@
       }
     });
 
-    // إظهار رسالة ترحيب إذا أتى المستخدم من صفحة التسجيل
+    // التحقق إذا كان المستخدم مسجل دخول بالفعل
     document.addEventListener('DOMContentLoaded', function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('signup') === 'success') {
-        showSuccess("✅ تم إنشاء حسابك بنجاح! يمكنك الآن تسجيل الدخول");
-      }
-      
-      // التحقق من تسجيل الدخول الحالي
       auth.onAuthStateChanged((user) => {
         if (user) {
           // إذا كان مسجل دخول بالفعل، تحويل إلى الصفحة الرئيسية
